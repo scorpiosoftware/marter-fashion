@@ -1,0 +1,123 @@
+
+.brands-container {
+    position: relative;
+    justify-items: center;
+    width: 80%;
+    padding: 40px;
+    background: linear-gradient(145deg, #fce4ec, #eeccd7);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    overflow: hidden;
+}
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .brands-container {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .brands-container {
+        padding: 20px;
+        border-radius: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .brands-container {
+        padding: 15px;
+        border-radius: 10px;
+    }
+}
+
+.brands-title {
+    color: #030303;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.brands-slider {
+    display: flex;
+    gap: 50px;
+    padding: 20px 0;
+    padding-left: 20%;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.brand-item {
+    flex-shrink: 0;
+    width: 300px;
+    height: auto;
+    background: rgba(255,255,255,0.1);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    position: relative;
+    cursor: pointer;
+    transform-style: preserve-3d;
+}
+@media (max-width: 480px){
+    .brand-item{
+        width: 135px;
+        height: auto;
+    }
+}
+
+
+.brand-item:hover {
+    transform: translateY(-5px) scale(1.05);
+    background: rgba(255,255,255,0.15);
+}
+
+.brand-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 15px;
+    border: 2px solid rgba(255,255,255,0.1);
+    pointer-events: none;
+}
+
+.brand-item img {
+    max-width: 95%;
+    max-height: 95%;
+    filter: grayscale(0.8);
+    transition: filter 0.3s ease;
+}
+
+.brand-item:hover img {
+    filter: grayscale(0);
+}
+
+.brands-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(255,255,255,0.05) 0px,
+        rgba(255,255,255,0.05) 1px,
+        transparent 1px,
+        transparent 4px
+    );
+    pointer-events: none;
+}
+
+.brand-item:nth-child(odd) {
+    transform: rotate(1deg);
+}
+
+.brand-item:nth-child(even) {
+    transform: rotate(-1deg);
+}
+
+.brand-item:hover {
+    transform: rotate(0deg) translateY(-5px) scale(1.05);
+}

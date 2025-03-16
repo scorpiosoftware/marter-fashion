@@ -1,0 +1,19 @@
+.langSelect {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  border-radius: 40px;
+  padding: 10px;
+  z-index: 9999;
+}
+
+@media screen and (max-width: 600px) {
+  .langSelect {
+    position: fixed;
+    top: 75px;
+    right: 20px;
+    border-radius: 40px;
+    padding: 10px;
+    z-index: 9999;
+  }
+}

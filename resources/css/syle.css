@@ -1,0 +1,6 @@
+.popup {
+    transition: 0.3s;
+}
+.popup:hover{
+    transform: scale(1.1);
+}
