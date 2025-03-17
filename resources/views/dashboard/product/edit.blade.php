@@ -91,9 +91,9 @@
                         class="block mb-2 text-sm font-medium text-gray-900 d:text-white">Section</label>
                     <select id="section_id" name="section_id"
                         class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 d:bg-gray-700 d:border-gray-600 d:placeholder-gray-400 d:text-white d:focus:ring-blue-500 d:focus:border-blue-500">
-                        @foreach ($brands as $brand)
-                            <option value="{{ $brand->id }}" @if ($record->section_id == $brand->id) selected @endif>
-                                {{ $brand->name_en }}</option>
+                        @foreach ($sections as $section)
+                            <option value="{{ $section->id }}" @if ($record->section_id == $section->id) selected @endif>
+                                {{ $section->name }}</option>
                         @endforeach
                     </select>
                 </div>

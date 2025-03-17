@@ -11,6 +11,7 @@ use App\Actions\Product\ListProduct;
 use App\Actions\Product\StoreProduct;
 use App\Actions\Product\UpadateProduct;
 use App\Actions\StoreMedia;
+use App\Models\Branch;
 use App\Models\Color;
 use App\Models\OrderItem;
 use App\Models\Product;
@@ -118,8 +119,10 @@ class ProductController extends Controller
         $record = GetProduct::execute($id);
         $categories = ListCategory::execute();
         $brands = ListBrand::execute();
+        $sections = StoreSections::all();
+        $branches = Branch::all();
         $colors = Color::all();
-        return view("dashboard.product.edit", compact("record", "categories", "brands",'colors'));
+        return view("dashboard.product.edit", compact("record", "categories", "brands",'colors','sections','branches'));
     }
 
     /**

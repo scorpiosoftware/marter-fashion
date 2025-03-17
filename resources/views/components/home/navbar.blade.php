@@ -47,7 +47,7 @@
                     </a>
 
                     <!-- User Dropdown Container -->
-                    <div class="relative transition-all delay-75 hover:scale-90">
+                    <div class="relative">
                         <button id="userDropdownButton" data-dropdown-toggle="userDropdown"
                             class="flex items-center gap-2 px-4 py-2 bg-white rounded-full 
                    transition-colors duration-200 group focus:ring-2 focus:ring-[#5f9e9d] focus:outline-none">
