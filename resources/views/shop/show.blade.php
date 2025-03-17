@@ -19,20 +19,18 @@
                         </div>
                     </div>
                 </div>
-                <!-- Main Image with Zoom -->
-                <div class="group cursor-zoom-in overflow-hidden rounded-xl image-container bg-white p-2 max-w-xl">
-                    <div class="skeleton-loader min-h-36"></div>
+                <div class="group relative cursor-zoom-in overflow-hidden rounded-2xl shadow-xl transition-all duration-300 hover:shadow-2xl bg-white border border-gray-100">
+                    <div class="skeleton-loader absolute inset-0 bg-gradient-to-r from-gray-50 to-gray-100 animate-pulse"></div>
                     <img id="mainImage" 
                          src="{{ URL::to('storage/' . $record->main_image_url) }}" 
-                         class=" box-border w-[40%] object-cover transition-transform duration-300 group-hover:scale-90"
+                         class="relative z-10 h-full w-full object-cover transition-all duration-500 ease-out group-hover:scale-105 group-hover:brightness-110"
                          alt="Main product image"
                          data-modal-target="mainImageModal"
                          data-modal-toggle="mainImageModal">
-                    {{-- <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div> --}}
+                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
-
                 <!-- Thumbnail Carousel -->
-                <div class="mt-4 flex justify-start space-x-4 overflow-x-auto p-2 border bg-white max-w-xl">
+                <div class="mt-4 flex justify-start space-x-4 overflow-x-auto p-2 border bg-white ">
                     @foreach ($record->images as $image)
                         <!-- Thumbnail Modal -->
                         <div id="modal-{{ $image->id }}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -68,6 +66,8 @@
                 <h1 class="text-4xl font-bold text-[#2B3467] mb-4">
                     {!! session('lang') == 'en' ? $record->name_en : $record->name_ar !!}
                 </h1>
+
+ 
 
                 <!-- Rating Badge -->
                 <div class="mb-6 flex items-center space-x-2 bg-[#F8F5F1] px-4 py-2 rounded-full w-fit">
@@ -117,6 +117,11 @@
                 <!-- Add to Cart Section -->
                 <form action="{{ route('cart.add', $record->id) }}" method="GET" class="space-y-6">
                     @csrf
+                    <div class="flex justify-start items-center space-x-4 mb-4 ">
+                        @foreach ($record->colors as $color)
+                            <input type="checkbox" name="color" class="rounded-full box-border size-10 p-2 hover:border hove bg-[{!!$color->hex_code!!}]" style="background-color: {!!$color->hex_code!!}"/>
+                        @endforeach
+                    </div>
                     <div class="md:flex items-center md:space-x-4">
                         <div class=" flex justify-center items-center border rounded-lg overflow-hidden">
                             <button type="button" 
