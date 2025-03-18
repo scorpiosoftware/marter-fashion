@@ -80,11 +80,11 @@
     <!-- Price Section -->
     <div class="md:flex justify-center items-center space-x-2">
         <span class="@if (!empty($item->offer_price)) line-through text-sm text-red-500 @else price @endif">
-           USD {{ $item->price }}
+           د.ع {{ $item->price }}
         </span>
         @if (!empty($item->offer_price))
             <div class="text-black bg-slate-200 p-1 rounded-lg font-bold text-sm">
-               USD {{ $item->offer_price }}
+                د.ع  {{ $item->offer_price }}
             </div>
         @endif
     </div>

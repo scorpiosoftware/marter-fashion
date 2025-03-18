@@ -34,7 +34,7 @@ class HomeController extends Controller
         }
         else{
             session()->forget('lang');
-            session()->put('lang','en');
+            session()->put('lang','ar');
         }
         $bestSeller = ListProductsByCategory::execute(1);
         $perfumes = ListProductsByCategory::execute(category_id: 10);

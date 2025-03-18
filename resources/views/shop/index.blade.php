@@ -272,6 +272,7 @@
             @endif
             @foreach ($products as $item)
                 <x-home.product :item="$item" />
+                {{-- <livewire:product :item="$item"> --}}
             @endforeach
     
         </div>

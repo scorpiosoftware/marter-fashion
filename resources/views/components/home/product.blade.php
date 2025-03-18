@@ -1,11 +1,11 @@
-<div class="product-grid transition-all delay-75 hover:scale-95  wowDiv"  data-animation="animate__backInUp" data-min-delay='300' data-delay="1500">
+<div class="product-grid transition-all delay-75 hover:scale-95  wowDiv" data-animation="animate__backInUp"
+    data-min-delay='300' data-delay="1500">
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <div class="product-image">
         <a name="{{ $item->id }}" href="{{ route('shop.show', $item->id) }}" class="image">
             <div class="image-container">
                 <div class="skeleton-loader min-h-36"></div>
-                <img src="{{ URL::to('storage/' . $item->main_image_url) }}" 
-                class="w-full max-h-60 p-3 object-cover">
+                <img src="{{ URL::to('storage/' . $item->main_image_url) }}" class="w-full max-h-60 p-3 object-cover">
             </div>
 
         </a>
@@ -73,21 +73,21 @@
         </ul>
     </div>
     <div class="product-content flex flex-col">
-            <a href="#" class="line-clamp-2 text-sm text-center">
-                @if (session('lang') == 'en') 
-                    {{ $item->name_en }}
-                @else
-                    {{ $item->name_ar }}
-                @endif
-            </a>
+        <a href="#" class="line-clamp-2 text-sm text-center">
+            @if (session('lang') == 'en')
+                {{ $item->name_en }}
+            @else
+                {{ $item->name_ar }}
+            @endif
+        </a>
         <!-- Price Section -->
-        <div class="flex justify-center items-center space-x-2">
-            <div class="@if (!empty($item->offer_price)) line-through text-sm text-red-500 @else price @endif">
-               USD {{ $item->price }}
-            </div>
+        <div class="md:flex justify-center items-center space-x-2">
+            <span class="@if (!empty($item->offer_price)) line-through text-sm text-red-500 @else price @endif">
+                د.ع {{ $item->price }}
+            </span>
             @if (!empty($item->offer_price))
-                <div class="text-black bg-slate-200 p-1 rounded-lg font-bold text-xl">
-                    ${{ $item->offer_price }}
+                <div class="text-black bg-slate-200 p-1 rounded-lg font-bold text-sm">
+                    د.ع {{ $item->offer_price }}
                 </div>
             @endif
         </div>
