@@ -10,7 +10,7 @@
 
         </a>
         @if (!empty($item->offer_price))
-            <span class="product-hot-label ">{{ session('lang') == 'en' ? 'Sale' : 'حسومات' }}</span>
+            <span class="product-hot-label ">{{ session('lang') == 'en' ? 'Sale' : 'تخفيضات' }}</span>
         @endif
         <ul class="product-links">
             {{-- href="{{ route('cart.add', $item->id) }}" --}}

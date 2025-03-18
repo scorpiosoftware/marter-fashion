@@ -11,8 +11,8 @@
      
         </a>
         @if (!empty($item->offer_price))
-            <span class="product-hot-label absolute top-2 left-2 bg-red-500 text-white text-xs py-1 px-2 rounded">
-                {{ session('lang') == 'en' ? 'Sale' : 'حسومات' }}
+            <span class="product-hot-label absolute bg-red-500 text-white text-xs py-1 rounded">
+                {{ session('lang') == 'en' ? 'Sale' : 'تخفيضات' }}
             </span>
         @endif
         <ul class="product-links flex space-x-2 items-center justify-center">
@@ -78,7 +78,7 @@
             @endif
         </a>
     <!-- Price Section -->
-    <div class="flex justify-center items-center space-x-2">
+    <div class="md:flex justify-center items-center space-x-2">
         <span class="@if (!empty($item->offer_price)) line-through text-sm text-red-500 @else price @endif">
            USD {{ $item->price }}
         </span>

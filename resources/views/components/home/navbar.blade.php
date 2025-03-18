@@ -89,16 +89,16 @@
                         @endguest
 
                         @auth
-                            <div class="py-1">
+                            <div class="py-2 grid gap-y-2">
                                 @if (Auth::user()->role_id == 1)
                                     <a href="{{ route('dashboard.index') }}"
-                                        class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 
+                                        class="block px-4 py-2.5 text-sm bg-[#ec5793] text-white border
                           transition-colors">
                                         <i class="fas fa-tachometer-alt mr-2"></i>Dashboard
                                     </a>
                                 @endif
                                 <a href="#"
-                                    class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 
+                                    class="block px-4 py-2.5 text-sm bg-[#ec5793] text-white border
                           transition-colors">
                                     <i class="fas fa-user-circle mr-2"></i>Profile
                                 </a>
@@ -107,8 +107,7 @@
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <button type="submit"
-                                        class="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-blue-50 
-                                   hover:text-blue-600 transition-colors">
+                                        class="w-full text-left px-4 py-2.5 text-sm bg-[#ec5793] text-white border transition-colors">
                                         <i class="fas fa-sign-out-alt mr-2"></i>Sign Out
                                     </button>
                                 </form>

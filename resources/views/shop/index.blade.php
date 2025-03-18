@@ -238,53 +238,6 @@
                 @endforeach
             </select>
         </div>
-
-        {{-- <script>
-            $(document).ready(function() {
-                $("#section_id-{{ $section->id }}").on('change', function() {
-                    var sectionId = $(this).val();
-                    if (sectionId) {
-                        // Show loading indicator
-                        $('#loading').show();
-                        // $('#branchesSelect').show();
-                        $('#branchesSelect').empty();
-                        // Send AJAX request
-                        $.ajax({
-                            url: '/api/branches/' + sectionId + '/section',
-                            type: 'GET',
-                            dataType: 'json',
-                            success: function(data) {
-                                console.log(data);
-                                // Hide loading indicator
-                                $('#loading').hide();
-                                // Clear existing rows
-                                $('#branchesSelect tbody').empty();
-                                // Append new rows with AJAX data
-                                if (data.length > 0) {
-                                    $.each(data, function(key, branch) {
-                                        $('#branchesSelect').append(
-                                        "<option value='" + branch.id + "'>" + branch.name + "</option>"
-                                        );
-                                    });
-                                    $('#branchesSelect').show();
-                                } else {
-                                    $('#branchesSelect').empty();
-                                    $('#branchesSelect').show();
-                                }
-                            },
-                            error: function() {
-                                $('#loading').hide();
-                                alert('Failed to fetch branches. Please try again.');
-                            }
-                        });
-                    } else {
-                        // Clear the table if no section is selected
-                        $('#branchesSelect').empty();
-                        $('#branchesSelect').hide();
-                    }
-                });
-            });
-        </script> --}}
     </div>
 
     <div class="border p-2">

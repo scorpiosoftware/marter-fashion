@@ -33,6 +33,7 @@
 
     @vite('resources/css/app.css', 'resources/js/app.js')
     @livewireStyles
+    @stack('styles')
 </head>
 
 <body class="font-sans antialiased">
@@ -46,6 +47,7 @@
         <br>
         <x-home.footer />
         <x-section.scripts />
+        @stack('scripts')
     </main>
     @livewireScripts
 </body>
