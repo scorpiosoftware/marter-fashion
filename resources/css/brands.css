@@ -13,6 +13,7 @@
 @media (max-width: 1024px) {
     .brands-container {
         padding: 30px;
+        
     }
 }
 
@@ -27,6 +28,7 @@
     .brands-container {
         padding: 15px;
         border-radius: 10px;
+        width: 100%;
     }
 }
 

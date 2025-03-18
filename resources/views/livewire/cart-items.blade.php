@@ -15,7 +15,7 @@
                     <div class="">
                         <button wire:click='removeItem({{ $id }})' data-tooltip-target="tooltipRemoveItem1a"
                             class="text-red-600 hover:text-red-700 dark:text-red-500 dark:hover:text-red-600">
-                            <span class="sr-only"> Remove </span>
+                            <span class="sr-only"> {{session('lang') == 'en' ? 'Remove' : 'حذف'}}  </span>
                             <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                 fill="currentColor" viewBox="0 0 24 24">
                                 <path fill-rule="evenodd"
@@ -25,7 +25,7 @@
                         </button>
                         <div id="tooltipRemoveItem1a" role="tooltip"
                             class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
-                            Remove item
+                            {{session('lang') == 'en' ? 'Remove item' : 'حذف'}}
                             <div class="tooltip-arrow" data-popper-arrow></div>
                         </div>
                     </div>
@@ -38,18 +38,18 @@
     <div class="pt-10">
         <a href="{{ route('cart.show') }}"
             class="mb-2 inline-flex items-center justify-center w-full rounded-lg border-2 border-transparent text-[#ec5793] bg-white px-5 py-2.5 text-sm font-medium transition-colors duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-primary-300">
-            Proceed to Checkout
+               {{session('lang') == 'en' ? 'Proceed to Checkout' : 'المتابعة للدفع'}}
         </a>
     </div>
 
     @else
         <div class="w-full mx-auto text-center pt-10">
-            <span class="text-white">No items in your cart!</span>
+            <span class="text-white">{{session('lang') == 'en' ? 'No items in your cart!' : 'لا يوجد أي عناصر في سلة التسوق الخاصة بك!'}}</span>
         </div>
         <div class="mt-4 w-full mx-auto flex justify-center">
             <a href="{{ route('filter.products') }}"
                 class="p-2 text-sm border-2 rounded-full bg-white text-[#ec5793] hover:bg-[#388f8f] focus:outline-none focus:ring-2 focus:ring-[#388f8f] transition-colors duration-300 ease-in-out underline">
-                Continue shopping
+                {{session('lang') == 'en' ? 'Continue shopping' : 'مواصلة التسوق'}}
             </a>
         </div>
     @endif

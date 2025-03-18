@@ -1,5 +1,5 @@
 <div class="brands-container mx-auto">
-    <h2 class="brands-title">Brands</h2>
+    <h2 class="brands-title">{{session('lang') == 'en' ? 'Brands' : 'علاماتنا التجارية'}}</h2>
     <div class="brands-slider">
         @foreach ($brands as $brand)
             <div class="brand-item image-container">

@@ -122,7 +122,7 @@
         </div>
     </div>
     <div class="flex justify-end text-sm pt-2">
-        <button type="submit" class=" bg-blue-700 p-2 rounded-md text-white">Apply</button>
+        <button type="submit" class="p-2 rounded-md bg-white text-[#ec5793] border w-full font-bold transition-all delay-75 hover:text-white hover:bg-[#ec5793]">Apply</button>
     </div>
     </form>
 
@@ -299,14 +299,14 @@
         </div>
     </div>
     <div class="flex justify-end text-sm pt-2">
-        <button type="submit" class=" bg-blue-700 p-2 rounded-md text-white">Apply</button>
+        <button type="submit" class="p-2 rounded-md bg-white text-[#ec5793] border w-full font-bold transition-all delay-75 hover:text-white hover:bg-[#ec5793]">Apply</button>
     </div>
     </form>
     </div>
     <div class="md:max-w-4xl pt-4">
         <div class="text-start md:hidden justify-end p-4 flex">
             <button
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                class="p-2 rounded-md bg-white text-[#ec5793] border font-bold transition-all delay-75 hover:text-white hover:bg-[#ec5793]"
                 type="button" data-drawer-target="drawer-disabled-backdrop" data-drawer-show="drawer-disabled-backdrop"
                 data-drawer-backdrop="false" aria-controls="drawer-disabled-backdrop">
                 {{ session('lang') == 'en' ? 'Filter' : 'تنقية' }}

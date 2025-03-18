@@ -87,7 +87,7 @@
             <br>
             <x-home.brands :brands="$brands" />
             <br>
-            <x-home.show-category :categories="$categories" />
+            {{-- <x-home.show-category :categories="$categories" /> --}}
             <br>
             <x-home.footer />
     </div>

@@ -19,7 +19,7 @@
                         class="w-full pl-12 pr-4 py-3 bg-white border border-gray-700 rounded-lg 
                                text-[#ec5793] font-serif placeholder-gray-400 hover:placeholder-[#ec5793]
                                 focus:ring-2 focus:ring-[#5f9e9d] focus:outline-none focus:border-transparent transition-all "
-                        placeholder="Search products..." />
+                        placeholder=" {{ session('lang') == 'en' ? 'Search Products' : '... البحث عن المنتجات' }}" />  
                     <div class="absolute inset-y-0 left-0 flex items-center pl-4">
                         <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -30,7 +30,7 @@
                 <button type="submit"
                     class="ml-2 px-6 py-3 bg-white text-[#ec5793] font-serif 
                                rounded-lg transition-colors duration-200 shadow-sm  focus:ring-2 focus:ring-[#5f9e9d] focus:outline-none">
-                    Search
+                    {{session('lang') == 'en' ? 'Search' : 'بحث'}}
                 </button>
             </form>
 
@@ -130,31 +130,38 @@
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="lg:hidden mt-4 hidden">
         <div class="pt-4 border-t border-gray-800">
-            <form class="mb-6">
-                <div class="relative">
-                    <input type="text"
-                        class="w-full pl-10 pr-4 py-3 bg-gray-800 border border-gray-700 rounded-lg 
-                                      text-white placeholder-gray-400 focus:outline-none focus:ring-2 
-                                      focus:ring-blue-500 focus:border-transparent"
-                        placeholder="Search products...">
-                    <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+            <!-- Search Form -->
+            <form action="{{ route('filter.products') }}" method="POST" class="md:hidden flex flex-1 max-w-2xl  transition-all delay-75 hover:scale-90" data-animation="animate__bounceInDown" data-delay="100">
+                @csrf
+                <div class="relative w-full">
+                    <input type="text" name="search" id="simple-search"
+                        class="w-full pl-12 pr-4 py-3 bg-white border border-gray-700 rounded-lg 
+                               text-[#ec5793] font-serif placeholder-gray-400 hover:placeholder-[#ec5793]
+                                focus:ring-2 focus:ring-[#5f9e9d] focus:outline-none focus:border-transparent transition-all "
+                        placeholder=" {{ session('lang') == 'en' ? 'Search Products' : '... البحث عن المنتجات' }}" />  
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-4">
                         <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                     </div>
                 </div>
+                <button type="submit"
+                    class="ml-2 px-6 py-3 bg-white text-[#ec5793] font-serif 
+                               rounded-lg transition-colors duration-200 shadow-sm  focus:ring-2 focus:ring-[#5f9e9d] focus:outline-none">
+                    {{session('lang') == 'en' ? 'Search' : 'بحث'}}
+                </button>
             </form>
 
-            <nav class="grid gap-2">
+            <nav class="grid gap-2 mt-2 w-full">
                 @foreach ($categories as $item)
                     <form action="{{ route('filter.products') }}" method="POST">
                         @csrf
                         <input type="hidden" value="{{ $item->id }}" name="categories[]">
                         <button type="submit"
-                            class="w-full px-6 py-3 text-left text-white hover:bg-gray-800 rounded-lg 
-                                       transition-colors duration-200 flex items-center gap-3">
-                            <span class="flex-1">
+                            class="w-full text-left text-white hover:bg-gray-800 rounded-lg 
+                                       transition-colors duration-200 flex items-center gap-x-1">
+                            <span class="flex-1 border p-1">
                                 @if (session('lang') == 'en')
                                     {!! $item->name_en !!}
                                 @else

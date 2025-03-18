@@ -8,37 +8,37 @@
             </div>
             <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
                 <div>
-                    <h2 class="mb-6 text-sm font-semibold text-white uppercase">Support</h2>
+                    <h2 class="mb-6 text-sm font-semibold text-white uppercase"> {{session('lang') == 'en' ? 'Support' : 'دعم'}}</h2>
                     <ul class="text-[#ec5793]  font-medium">
                         <li class="mb-4 bg-white px-1 rounded-md">
-                            <a href="" class="hover:underline">About Us</a>
+                            <a href="" class="hover:underline">{{session('lang') == 'en' ? 'About us' : 'ملومات عنا'}}</a>
                         </li>
                         <li class="bg-white px-1 rounded-md">
-                            <a href="/contactUs" class="hover:underline">Contact Us</a>
+                            <a href="/contactUs" class="hover:underline">{{session('lang') == 'en' ? 'Contact Us' : 'تواصل معنا'}}</a>
                         </li>
                     </ul>
                 </div>
                 <div>
-                    <h2 class="mb-6 text-sm font-semibold  uppercase text-white">Follow us</h2>
+                    <h2 class="mb-6 text-sm font-semibold  uppercase text-white">{{session('lang') == 'en' ? 'Follow us' : 'تابعنا'}}</h2>
                     <ul class="text-[#ec5793]  font-medium">
                         <li class="mb-4 bg-white px-1 rounded-md">
                             <a href="https://www.instagram.com/jamesia.lb?igsh=ZGV2dTRpc3ZyeGNp&utm_source=qr"
-                                class="hover:underline ">Instagram</a>
+                                class="hover:underline ">{{session('lang') == 'en' ? 'Instagram' : 'انستغرام'}}</a>
                         </li>
                         <li class="bg-white px-1 rounded-md">
                             <a href="https://www.facebook.com/profile.php?id=61554391378322&mibextid=LQQJ4d"
-                                class="hover:underline">Facebook</a>
+                                class="hover:underline">{{session('lang') == 'en' ? 'Facebook' : 'فيسبوك'}}</a>
                         </li>
                     </ul>
                 </div>
                 <div>
-                    <h2 class="mb-6 text-sm font-semibold  uppercase text-white">Legal</h2>
+                    <h2 class="mb-6 text-sm font-semibold  uppercase text-white">{{session('lang') == 'en' ? 'Legal' : 'قانوني'}}</h2>
                     <ul class="text-[#ec5793]  font-medium">
                         <li class="mb-4 bg-white px-1 rounded-md">
-                            <a href="" class="hover:underline">Privacy Policy</a>
+                            <a href="" class="hover:underline">{{session('lang') == 'en' ? 'Privacy Policy' : 'سياسة الخصوصية'}}</a>
                         </li>
                         <li class="bg-white px-1 rounded-md">
-                            <a href="" class="hover:underline">Terms &amp; Conditions</a>
+                            <a href="" class="hover:underline">{{session('lang') == 'en' ? 'Terms & Conditions' : 'الشروط والأحكام'}}</a>
                         </li>
                     </ul>
                 </div>
