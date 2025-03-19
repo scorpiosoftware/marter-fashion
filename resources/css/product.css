@@ -28,9 +28,9 @@
 
 .product-grid .product-hot-label {
     color: #fff;
-    background: #3a3638;
-    font-size: 12px;
-    font-weight: 700;
+    background: #ddb2c7; 
+    font-size: 14px;
+    font-weight: 200;
     line-height: 30px;
     width: 65px;
     height: 30px;
@@ -42,7 +42,7 @@
 .product-grid .product-hot-label:before,
 .product-grid .product-hot-label:after {
     content: "";
-    background: linear-gradient(to top right, transparent 49%, #d33b00 50%);
+    /* background: linear-gradient(to top right, transparent 49%, #d33b00 50%); */
     width: 10px;
     height: 10px;
     position: absolute;
@@ -51,7 +51,7 @@
 }
 
 .product-grid .product-hot-label:before {
-    background: #44daff;
+    background: #44daff;    
     width: 10px;
     height: 100%;
     bottom: auto;

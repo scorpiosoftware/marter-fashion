@@ -1,4 +1,4 @@
-<div class="product-grid md:w-[250px] w-[100px] flex-shrink-0 transition-all delay-75 hover:scale-90 wowDiv" data-animation="animate__backInUp" data-min-delay='300' data-delay="1500">
+<div class="product-grid md:w-[250px] w-[250px] flex-shrink-0 transition-all delay-75 hover:scale-90 wowDiv" data-animation="animate__backInUp" data-min-delay='300' data-delay="1500">
     <!-- Include jQuery if not already loaded globally -->
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     
@@ -11,7 +11,7 @@
      
         </a>
         @if (!empty($item->offer_price))
-            <span class="product-hot-label absolute bg-red-500 text-white text-xs py-1 rounded">
+            <span class="product-hot-label absolute">
                 {{ session('lang') == 'en' ? 'Sale' : 'تخفيضات' }}
             </span>
         @endif
