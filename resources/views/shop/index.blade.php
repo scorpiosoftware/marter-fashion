@@ -97,7 +97,7 @@
     </div>
     <div class="border p-2">
         <div class="border p-2">
-            <h1>{{ session('lang') == 'en' ? 'Branches' : 'المتاجر' }}</h1>
+            <h1>{{ session('lang') == 'en' ? 'Branches' : 'الاقسام' }}</h1>
             <select name="branch" id="branches">
                 <option value=""></option>
                 @foreach ($branches as $branch)
@@ -113,7 +113,7 @@
     </div>
 
     <div class="border p-2">
-        <h1>{{ session('lang') == 'en' ? 'Price $' : 'السعر $' }}</h1>
+        <h1>{{ session('lang') == 'en' ? 'Price I.Q.D' : 'السعر د.ع' }}</h1>
         <div class="flex space-x-2 justify-between items-center ">
             <input type="number" step="any" min="0" class="w-24 h-8" name="min_price" placeholder="From 0 $"
                 @if (!empty(request()->input('min_price'))) value = {{ request()->input('min_price') }} @endif />
@@ -227,7 +227,7 @@
     </div>
     <div class="border p-2">
         <div class="border p-2">
-            <h1>{{ session('lang') == 'en' ? 'Branches' : 'المتاجر' }}</h1>
+            <h1>{{ session('lang') == 'en' ? 'Branches' : 'الاقسام' }}</h1>
             <select name="branch" id="branchesSelect">
                 <option value=""></option>
                 @foreach ($branches as $branch)
@@ -241,8 +241,8 @@
     </div>
 
     <div class="border p-2">
-        <h1>{{ session('lang') == 'en' ? 'Price $' : 'السعر $' }}</h1>
-        <div class="flex space-x-2 justify-between items-center ">
+        <h1>{{ session('lang') == 'en' ? 'Price I.Q.D' : 'السعر د.ع' }}</h1>
+        <div class="flex space-x-2 justify-between items-center">
             <input type="number" step="any" min="0" class="w-24 h-8" name="min_price"
                 placeholder="From 0 $"
                 @if (!empty(request()->input('min_price'))) value = {{ request()->input('min_price') }} @endif />

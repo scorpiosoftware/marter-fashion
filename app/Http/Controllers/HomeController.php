@@ -6,6 +6,7 @@ use App\Actions\Brand\ListBrand;
 use App\Actions\Category\ListCategory;
 use App\Actions\Product\ListProductsByCategory;
 use App\Models\Carousel;
+use App\Models\Color;
 use App\Models\ProductView;
 use Illuminate\Http\Request;
 use Masoudi\Laravel\Visitors\Models\Visitor;
@@ -41,8 +42,9 @@ class HomeController extends Controller
         $categories = ListCategory::execute();
         $brands = ListBrand::execute();
         $carousel = Carousel::with('images')->first();
+        $colors = Color::all();
         $productViews = ProductView::where('selected',true)->get();
-        return view('welcome', compact('bestSeller','perfumes','categories', 'brands','carousel','productViews'));
+        return view('welcome', compact('bestSeller','perfumes','categories', 'brands','carousel','productViews','colors'));
     
     }
 
