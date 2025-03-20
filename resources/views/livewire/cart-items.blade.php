@@ -6,7 +6,7 @@
                     <a href="#"
                         class="truncate text-sm font-semibold leading-none text-[#ec5793] text-wrap hover:underline">{{ $details['name'] }}</a>
                     <p class="mt-0.5 truncate text-sm font-normal text-[#ec5793]">
-                        ${{ $details['price'] }}</p>
+                        د.ع {{ $details['price'] }}</p>
                 </div>
 
                 <div class="flex items-end justify-end gap-6">

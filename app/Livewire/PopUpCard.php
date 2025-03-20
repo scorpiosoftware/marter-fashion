@@ -10,6 +10,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Colors;
 class PopUpCard extends Component
 {
     public $colors;
+    public $selectedColor = null;
     public $minPrice;
     public $maxPrice;
 
@@ -23,6 +24,9 @@ class PopUpCard extends Component
 
     public function close(){
         $this->show = false;
+    }
+    public function selectedOption($value){
+           $this->selectedColor = $value;
     }
     public function render()
     {

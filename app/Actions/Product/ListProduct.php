@@ -43,6 +43,12 @@ class ListProduct {
             $branch = $inputs['branch'];
             $records = $records->where('branch_id', $branch);
         }
+        if (!empty($inputs['color_id'])) {
+            $colorIds = $inputs['color_id'];
+            $records = $records->whereHas('colors', function ($query) use ($colorIds) {
+                $query->whereIn('colors.id', $colorIds);
+            });
+        }
         if(!empty($inputs['sorting'])) {
             switch ($inputs['sorting']) {
                 case 'asc': $records = $records->orderBy('id','ASC');break;

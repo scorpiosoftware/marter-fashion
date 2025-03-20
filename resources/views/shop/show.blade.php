@@ -101,7 +101,7 @@
                 <!-- Price and Availability -->
                 <div class="mb-8 flex items-center justify-between">
                     <div class="flex items-end space-x-4">
-                        <span class="text-3xl font-bold text-[#2B3467]">${{ $record->price }}</span>
+                        <span class="text-3xl font-bold text-[#2B3467]"> د.ع {{ $record->price }}</span>
                         @if ($record->compare_price)
                             <span class="text-xl text-gray-400 line-through">${{ $record->compare_price }}</span>
                         @endif

@@ -25,10 +25,11 @@ class Product extends Component
         if (!empty($product->offer_price) || $product->offer_price > 0) {
             $price = $product->offer_price;
         }
+        $p_name = session('lang') == 'en' ? $product->name_en : $product->name_ar;
         if (!$cart) {
             $cart = [
                 $id => [
-                    "name" => $product->name_en,
+                    "name" => $p_name,
                     "quantity" => 0,
                     "price" => $price,
                     "photo" => $product->main_image_url
@@ -53,7 +54,7 @@ class Product extends Component
         }
 
         $cart[$id] = [
-            "name" => $product->name_en,
+            "name" => $p_name,
             "quantity" => 1,
             "price" => $price,
             "photo" => $product->main_image_url

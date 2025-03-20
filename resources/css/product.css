@@ -29,8 +29,8 @@
 .product-grid .product-hot-label {
     color: #fff;
     background: #ddb2c7; 
-    font-size: 14px;
-    font-weight: 200;
+    font-size: 15px;
+    font-weight: 300;
     line-height: 30px;
     width: 65px;
     height: 30px;
@@ -51,7 +51,7 @@
 }
 
 .product-grid .product-hot-label:before {
-    background: #44daff;    
+    /* background: #44daff;     */
     width: 10px;
     height: 100%;
     bottom: auto;

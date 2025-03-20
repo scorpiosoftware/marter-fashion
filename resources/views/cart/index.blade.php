@@ -3,7 +3,7 @@
     @if (session('cart'))
         <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
             <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
-                <h2 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Shopping Cart</h2>
+                <h2 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl"> {{ \App\Helpers\TranslationHelper::translate('Shopping Cart','ar') }}</h2>
                 <div class="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8">
 
                     {{-- Items Side Left --}}
@@ -22,7 +22,7 @@
                                                 src="{{ URL::to('storage/' . $details['photo']) }}" alt="imac image" />
                                         </a>
 
-                                        <label for="counter-input" class="sr-only">Choose quantity:</label>
+                                        {{-- <label for="counter-input" class="sr-only">Choose quantity:</label> --}}
                                         <div class="flex items-center justify-between md:order-3 md:justify-end">
                                             <div class="flex items-center">
                                                 <a href="{{ route('cart.decrease', $id) }}"
@@ -42,7 +42,6 @@
                                                         placeholder="" onchange="this.form.submit()" name="qty"
                                                         value="{{ $details['quantity'] }}" required />
                                                 </form>
-                                                {{-- window.location.href ='{{ route('cart.add', $id) }}' --}}
                                                 <a href="{{ route('cart.add', $id) }}"
                                                     class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
                                                     <svg class="h-2.5 w-2.5 text-gray-900 dark:text-white"
@@ -55,7 +54,7 @@
                                             </div>
                                             <div class="text-end md:order-4 md:w-32">
                                                 <p class="text-base font-bold text-gray-900 dark:text-white">
-                                                    ${{ $details['price'] }}</p>
+                                                    د.ع {{ $details['price'] }}</p>
                                             </div>
                                         </div>
 
@@ -72,13 +71,13 @@
                                                             stroke-linejoin="round" stroke-width="2"
                                                             d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z" />
                                                     </svg>
-                                                    Add to Favorites
+                                                    {{ \App\Helpers\TranslationHelper::translate('Add to Favorites','ar') }}
                                                 </button>
                                                 <form action="{{ route('cart.remove', $id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit"
-                                                        class="inline-flex items-center text-sm font-medium text-red-600 hover:underline dark:text-red-500">
+                                                        class="inline-flex items-center text-sm font-medium pt-2 text-red-600 hover:underline dark:text-red-500">
                                                         <svg class="me-1.5 h-5 w-5" aria-hidden="true"
                                                             xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                             fill="none" viewBox="0 0 24 24">
@@ -86,7 +85,7 @@
                                                                 stroke-linejoin="round" stroke-width="2"
                                                                 d="M6 18 17.94 6M18 18 6.06 6" />
                                                         </svg>
-                                                        Remove
+                                                        {{ \App\Helpers\TranslationHelper::translate('Remov','ar') }}
                                                     </button>
 
                                                 </form>
@@ -106,7 +105,7 @@
                     <div class="mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full">
                         <div
                             class="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6">
-                            <p class="text-xl font-semibold text-gray-900 dark:text-white">Order summary</p>
+                            <p class="text-xl font-semibold text-gray-900 dark:text-white">{{ \App\Helpers\TranslationHelper::translate('Order summary','ar') }}</p>
 
                             <div class="space-y-4">
                                 <div class="space-y-2">
@@ -134,20 +133,19 @@
 
                                 <dl
                                     class="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
-                                    <dt class="text-base font-bold text-gray-900 dark:text-white">Total</dt>
-                                    <dd class="text-base font-bold text-gray-900 dark:text-white">${{ $totale }}</dd>
+                                    <dt class="text-base font-bold text-gray-900 dark:text-white"> {{ \App\Helpers\TranslationHelper::translate('Total','ar') }} </dt>
+                                    <dd class="text-base font-bold text-gray-900 dark:text-white">د.ع {{ $totale }}</dd>
                                 </dl>
                             </div>
 
                             <a href="{{ route('address') }}"
-                                class="flex w-full items-center justify-center rounded-lg bg-white border-2 px-5 py-2.5 text-sm font-medium text-black  focus:outline-none focus:ring-4">Proceed
-                                to Checkout</a>
+                                class="flex w-full items-center justify-center rounded-lg bg-white border-2 px-5 py-2.5 text-sm font-medium text-black  focus:outline-none focus:ring-4">{{ \App\Helpers\TranslationHelper::translate('Proceed to payment','ar') }}</a>
 
                             <div class="flex items-center justify-center gap-2">
-                                <span class="text-sm font-normal text-gray-500 dark:text-gray-400"> or </span>
+                                <span class="text-sm font-normal text-gray-500 dark:text-gray-400"> {{ \App\Helpers\TranslationHelper::translate('or','ar') }} </span>
                                 <a href="{{route('filter.products')}}" title=""
                                     class="inline-flex items-center gap-2 text-sm font-medium text-black underline hover:no-underline">
-                                    Continue Shopping
+                                     {{ \App\Helpers\TranslationHelper::translate('Continue Shopping','ar') }}
                                     <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                         fill="none" viewBox="0 0 24 24">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -157,7 +155,7 @@
                             </div>
                         </div>
 
-                        <div
+                        {{-- <div
                             class="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6">
                             <form class="space-y-4">
                                 <div>
@@ -172,7 +170,7 @@
                                     class="flex w-full items-center justify-center rounded-lg bg-white px-5 py-2.5 text-sm font-medium text-black border-2  focus:outline-none focus:ring-4">Apply
                                     Code</button>
                             </form>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

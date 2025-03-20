@@ -10,6 +10,7 @@ use App\Models\Branch;
 use App\Models\Brand;
 use App\Models\Carousel;
 use App\Models\Category;
+use App\Models\Color;
 use App\Models\Product;
 use App\Models\ProductComments;
 use App\Models\StoreSections;
@@ -30,8 +31,9 @@ class ShopController extends Controller
         $brands = Brand::all();
         $sections = StoreSections::all();
         $branches = Branch::all();
+        $colors = Color::all();
         $carousel = Carousel::with('images')->first();
-        return view('shop.index', compact('products', 'categories', 'brands', 'inputs', 'carousel','sections','branches'));
+        return view('shop.index', compact('products', 'categories', 'brands', 'inputs', 'carousel','sections','branches','colors'));
     }
 
     public function addComment(Request $request)
@@ -113,13 +115,15 @@ class ShopController extends Controller
     public function filter(Request $request)
     {
         $inputs = $request->all();
+        // dd($inputs);
         $products = ListProduct::execute($inputs);
         $categories = ListCategory::execute();
         $brands = Brand::all();
         $sections = StoreSections::all();
+        $colors = Color::all();
         $branches = Branch::all();
         $carousel = Carousel::with('images')->first();
         $request->visit();
-        return view('shop.index', compact('products', 'categories', 'brands', 'inputs','carousel','sections','branches'));
+        return view('shop.index', compact('products', 'categories', 'brands', 'inputs','carousel','sections','branches','colors'));
     }
 }

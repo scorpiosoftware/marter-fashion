@@ -13,7 +13,8 @@
                             <path
                                 d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
                         </svg>
-                        Review Order
+                            {{session('lang') == 'en' ? 'Review Order' : 'العودة'}}
+                        </label>
                     </a>
                 </li>
                 <li>
@@ -25,14 +26,17 @@
                         </svg>
                         <a href="#"
                             class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">
-                            Shipping
+                            {{session('lang') == 'en' ? 'ٍShipping' : 'التوصيل'}}
+                            
                         </a>
                     </div>
                 </li>
             </ol>
         </nav>
 
-        <div class="text-2xl font-extralight pt-3 ">Cash on Delivery</div>
+        <div class="text-2xl font-extralight pt-3 ">
+            {{session('lang') == 'en' ? 'Cash on Delivery' : 'الدفع عند الاستلام'}}
+        </div>
         <form action="{{ route('order.store') }}" method="POST" class=" md:mx-0 mx-auto md:px-0 px-4 pt-4 pb-4">
             @csrf
             @method('POST')
@@ -42,7 +46,8 @@
                     placeholder="" required />
                 <label for="full_name"
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                    Full name</label>
+                            {{session('lang') == 'en' ? 'Full Name' : 'الاسم الكامل'}}
+                        </label>
             </div>
 
             <div class="grid md:grid-cols-2 md:gap-6">
@@ -54,7 +59,8 @@
                         placeholder=" " required />
                     <label for="phone"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                        Phone</label>
+                            {{session('lang') == 'en' ? 'Phone' : 'هاتف'}}
+                             </label>
                 </div>
                 <div class="relative z-0 w-full mb-5 group">
                     <input type="text" name="street" id="street"
@@ -62,7 +68,7 @@
                         placeholder=" " required />
                     <label for="street"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                        Address</label>
+                        {{session('lang') == 'en' ? 'Address' : 'العنوان'}}</label>
                 </div>
                 <div class="relative z-0 w-full mb-5 group">
                     <input type="text" name="apartment" id="apartment"
@@ -70,22 +76,17 @@
                         placeholder=" " required />
                     <label for="apartment"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                        Apartment, suite, etc.</label>
+                         {{session('lang') == 'en' ? 'Apartment , suite , etc.' : 'شقة، جناح، الخ.'}}</label>
                 </div>
                 <div class="relative z-0 w-full mb-5 group">
                     <select required
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         name="country" id="country">
-                        <option value="LEBANON">LEBANON</option>
-                        <option value="DUBAI">DUBAI</option>
-                        <option value="KUWAIT">KUWAIT</option>
-                        <option value="JORDAN">JORDAN</option>
-                        <option value="IRAQ">IRAQ</option>
-                        <option value="AFRICA">AFRICA</option>
+                        <option value="IRAQ">{{session('lang') == 'en' ? 'IRAQ' : 'العراق'}}</option>
                     </select>
                     <label for="country"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                        Country</label>
+                        {{session('lang') == 'en' ? 'Country' : 'الدولة'}}</label>
                 </div>
 
                 {{-- <div class="relative z-0 w-full mb-5 group hidden">
@@ -106,10 +107,10 @@
                     placeholder=" " required />
                 <label for="city"
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                    City - State</label>
+                    {{session('lang') == 'en' ? 'City - State - province' : 'المدينة - الولاية - المقاطعة'}}</label>
             </div>
             <div class="flex justify-start items-center">
-                <button onclick="myFunction()" type="button" class="bg-white px-2.5 rounded-lg text-center text-black border-2">Add Your Email <span class="text-xl font-bold rounded-full">+</span></button>
+                <button onclick="myFunction()" type="button" class="bg-white px-2.5 rounded-lg text-center text-black border-2">    {{session('lang') == 'en' ? 'Add Email' : 'اضافة بريد الكتروني'}}</label> <span class="text-xl font-bold rounded-full">+</span></button>
   
             </div>
             <div class=" pb-4">
@@ -120,7 +121,7 @@
                         placeholder=" " />
                     <label for="email"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                        Email</label>
+                       {{session('lang') == 'en' ? 'Add Email' : 'اضافة بريد الكتروني'}}</label>
                 </div>
                 <script>
                     function myFunction() {
@@ -129,9 +130,9 @@
                     }
                 </script>
             </div>
-            <div class="md:flex md:justify-end">
+            <div class="md:flex md:justify-end w-full">
                 <button type="submit"
-                    class="text-black bg-whiet border-2 focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center ">Proceed</button>
+                    class="text-black bg-whiet border-2 focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center "> {{session('lang') == 'en' ? 'Proceed' : 'تأكيد'}}</button>
 
             </div>
 
