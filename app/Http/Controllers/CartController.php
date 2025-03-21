@@ -28,7 +28,6 @@ class CartController extends Controller
     public function decrementToCart($id)
     {
         $product = Product::find($id);
-
         if (!$product) {
 
             abort(404);
@@ -91,6 +90,7 @@ class CartController extends Controller
     {
         $inputs = $request->all();
         $product = Product::find($id);
+        $color = !empty($inputs['color']) ? $inputs['color'] : $product->colors->first();
         if (!$product) {
 
             abort(404);
@@ -107,6 +107,7 @@ class CartController extends Controller
                     "name" => $p_name,
                     "quantity" => 0,
                     "price" => $price,
+                    "color" => $color,
                     "photo" => $product->main_image_url
                 ]
             ];
@@ -134,16 +135,14 @@ class CartController extends Controller
             }
 
             session()->put('cart', $cart);
-            // redirect()->route('cart.show', compact('totale'));
             return redirect()->back()->with('success', 'Product added to cart successfully!');
-            // return redirect(url()->previous().'#'.$product->id);
-            // return view('cart.index',compact('totale'));
         }
 
         $cart[$id] = [
             "name" => $p_name,
             "quantity" => 1,
             "price" => $price,
+            "color" => $color,
             "photo" => $product->main_image_url
         ];
 

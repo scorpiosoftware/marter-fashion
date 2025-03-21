@@ -16,9 +16,7 @@
                                     class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
                                     <div class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
                                         <a href="#" class="shrink-0 md:order-1">
-                                            <img class="h-20 w-20 transition-all delay-0 hover:scale-125 dark:hidden"
-                                                src="{{ URL::to('storage/' . $details['photo']) }}" alt="imac image" />
-                                            <img class="hidden h-20 w-20 dark:block"
+                                            <img class="box-content object-cover size-60 mx-auto transition-all delay-0 hover:scale-95 dark:hidden"
                                                 src="{{ URL::to('storage/' . $details['photo']) }}" alt="imac image" />
                                         </a>
 
@@ -59,8 +57,12 @@
                                         </div>
 
                                         <div class="w-full min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md">
-                                            <a href="#"
+                                            <div class="flex justify-start items-center space-x-2">
+                                                <a href="#"
                                                 class="text-base font-medium text-gray-900 hover:underline dark:text-white">{{ $details['name'] }}</a>
+                                                <div class="px-2 py-2 rounded-full border box-border size-6" style="background-color: {{$details['color']->hex_code}};"></div>
+                                            </div>
+
                                             <div class="flex items-center gap-4">
                                                 <button type="button"
                                                     class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-900 hover:underline dark:text-gray-400 dark:hover:text-white">

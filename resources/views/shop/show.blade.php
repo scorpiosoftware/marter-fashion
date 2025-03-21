@@ -139,9 +139,9 @@
                     @csrf
                     <div class="flex justify-start items-center space-x-4 mb-4 ">
                         @foreach ($record->colors as $color)
-                            <input type="checkbox" name="color"
+                            <input type="radio" name="color" value="{{$color}}" required
                                 class="rounded-full box-border size-10 p-2 hover:border hove bg-[{!! $color->hex_code !!}]"
-                                style="background-color: {!! $color->hex_code !!}" />
+                                style="background-color: {!! $color->hex_code !!}" {{$color->id == $record->colors->first()->id ? 'checked' : ''}} />
                         @endforeach
                     </div>
                     <div class="md:flex items-center md:space-x-4">

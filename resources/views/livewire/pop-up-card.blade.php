@@ -14,7 +14,7 @@
         <div class="w-full md:col-start-1 md:col-end-3 pt-10">
             <label for="colors" class="block mb-2 text-sm font-medium text-center text-gray-900 d:text-white"> {{session('lang') == 'en' ? 'Choose
                 Colors' : ''}}</label>
-            <div class="grid grid-cols-3 items-center gap-4 justify-items-center max-w-60 mx-auto">
+            <div class="grid grid-cols-4 items-center gap-4 justify-items-center max-w-72 mx-auto">
                 @foreach ($colors as $color)
                 <div class="items-center flex justify-stretch gap-x-4">
                     <input type="checkbox" value="{{ $color->id }}" name="color_id[]"
