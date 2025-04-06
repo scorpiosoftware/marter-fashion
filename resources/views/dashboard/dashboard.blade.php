@@ -3,13 +3,14 @@
         <div class="py-6 group">
             <h1
                 class="text-3xl md:text-3xl font-extrabold bg-clip-text text-black bg-gradient-to-r from-blue-500 to-purple-600 inline-block transition-all duration-300 transform group-hover:scale-105 group-hover:translate-y-[-2px]">
-                Dashboard
+                {{-- {{ dd(App::getLocale())}} --}}
+                {{session('lang') == 'en' ? 'Dashboard' : 'احداثيات'}}
             </h1>
         </div>
         <br>
         <br>
         <div class="flex flex-col md:flex-row justify-center overflow-auto">
-            <div class="md:w-11/12  overflow-x-scroll">
+            <div class="">
                 <div class="flex md:flex-row space-x-8">
                     <div class="shadow-md p-4">
                         <div class="">
@@ -17,7 +18,7 @@
                                 <div class="flex space-x-8 w-56">
                                     <div class="">
                                         <div class="uppercase text-sm text-gray-400">
-                                            Applied Orders
+                                            {{session('lang') == 'en' ? 'Applied Orders' : 'الطلبيات المنجزة'}}
                                         </div>
                                         <div class="mt-1">
                                             <div class="flex space-x-2 items-center">
@@ -31,7 +32,7 @@
                                         </div>
                                     </div>
                                     <div class="">
-                                        <svg class="h-16 w-20 text-gray-300" xmlns="http://www.w3.org/2000/svg"
+                                        <svg class="w-8 text-gray-300" xmlns="http://www.w3.org/2000/svg"
                                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -47,12 +48,12 @@
                                 <div class="flex space-x-8 w-56">
                                     <div class="">
                                         <div class="uppercase text-sm text-gray-400">
-                                            Revenue
+                                            {{session('lang') == 'en' ? 'Revenue' : 'المبيع'}}
                                         </div>
                                         <div class="mt-1">
                                             <div class="flex space-x-2 items-center">
                                                 <div class="text-2xl">
-                                                    ${{ $revenue }}
+                                                    د.ع {{ $revenue }}
                                                 </div>
                                                 <div class="text-xs text-red-500 bg-red-200 rounded-md p-1">
                                                     -0.0%
@@ -61,7 +62,7 @@
                                         </div>
                                     </div>
                                     <div class="">
-                                        <svg class="h-16 w-20 text-gray-300" xmlns="http://www.w3.org/2000/svg"
+                                        <svg class="w-8 text-gray-300" xmlns="http://www.w3.org/2000/svg"
                                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -77,12 +78,12 @@
                                 <div class="flex space-x-8 w-56">
                                     <div class="">
                                         <div class="uppercase text-sm text-gray-400">
-                                            Unpaid
+                                            {{session('lang') == 'en' ? 'Unpaid' : 'الغير مدفوع'}}
                                         </div>
                                         <div class="mt-1">
                                             <div class="flex space-x-2 items-center">
                                                 <div class="text-2xl">
-                                                    ${{ $unpaid }}
+                                                    د.ع {{ $unpaid }}
                                                 </div>
                                                 <div class="text-xs text-green-800 bg-green-200 rounded-md p-1">
                                                     +0.0%
@@ -91,7 +92,7 @@
                                         </div>
                                     </div>
                                     <div class="">
-                                        <svg class="h-16 w-20 text-gray-300" xmlns="http://www.w3.org/2000/svg"
+                                        <svg class="w-8 text-gray-300" xmlns="http://www.w3.org/2000/svg"
                                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -107,12 +108,12 @@
                                 <div class="flex space-x-8 w-56">
                                     <div class="">
                                         <div class="uppercase text-sm text-gray-400">
-                                            Total
+                                            {{session('lang') == 'en' ? 'Totales' : 'المجموع'}}
                                         </div>
                                         <div class="mt-1">
                                             <div class="flex space-x-2 items-center">
                                                 <div class="text-2xl">
-                                                    ${{ $total }}
+                                                    د.ع {{ $total }}
                                                 </div>
                                                 <div class="text-xs text-green-800 bg-green-200 rounded-md p-1">
                                                     +0.0%
@@ -121,7 +122,7 @@
                                         </div>
                                     </div>
                                     <div class="">
-                                        <svg class="h-16 w-20 text-gray-300" xmlns="http://www.w3.org/2000/svg"
+                                        <svg class="w-8 text-gray-300" xmlns="http://www.w3.org/2000/svg"
                                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -147,10 +148,10 @@
                         </svg>
                     </div>
                     <input datepicker id="default-datepicker" datepicker-format="yyyy-mm-dd" name="date"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
-                        placeholder="Select date">
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-3"
+                        placeholder="{{session('lang') == 'en' ? 'select date' : 'التاريخ'}}">
                 </div>
-                <div><button class="rounded-lg bg-white px-6 py-2 font-bold shadow-lg" type="submit">Apply</button>
+                <div><button class="rounded-lg bg-white px-6 py-2 font-bold shadow-lg" type="submit">{{session('lang') == 'en' ? 'Apply' : 'بحث'}}</button>
                 </div>
             </form>
 

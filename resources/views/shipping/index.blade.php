@@ -109,7 +109,7 @@
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                     {{session('lang') == 'en' ? 'City - State - province' : 'المدينة - الولاية - المقاطعة'}}</label>
             </div>
-            <div class="flex justify-start items-center">
+            {{-- <div class="flex justify-start items-center">
                 <button onclick="myFunction()" type="button" class="bg-white px-2.5 rounded-lg text-center text-black border-2">    {{session('lang') == 'en' ? 'Add Email' : 'اضافة بريد الكتروني'}}</label> <span class="text-xl font-bold rounded-full">+</span></button>
   
             </div>
@@ -129,7 +129,7 @@
                         element.classList.toggle("hidden");
                     }
                 </script>
-            </div>
+            </div> --}}
             <div class="md:flex md:justify-end w-full">
                 <button type="submit"
                     class="text-black bg-whiet border-2 focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center "> {{session('lang') == 'en' ? 'Proceed' : 'تأكيد'}}</button>

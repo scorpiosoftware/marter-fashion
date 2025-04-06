@@ -22,6 +22,7 @@ class Product extends Component
         }
         $cart = session()->get('cart');
         $price = $product->price;
+        $color =  $product->colors->first();
         if (!empty($product->offer_price) || $product->offer_price > 0) {
             $price = $product->offer_price;
         }
@@ -32,6 +33,7 @@ class Product extends Component
                     "name" => $p_name,
                     "quantity" => 0,
                     "price" => $price,
+                    "color" => $color,
                     "photo" => $product->main_image_url
                 ]
             ];

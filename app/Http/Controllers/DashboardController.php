@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Dashboard\AppliedOrders;
+use App\Helpers\LocalizationControll;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +18,8 @@ class DashboardController extends Controller
         if(Auth::user()->role_id == 2){
             return redirect('/');
         }
+        $setlocal = new LocalizationControll();
+        $setlocal->setLocal();
         $inputs = $request->all();
         $date = !empty( $inputs['date'] ) ? $inputs['date'] : '';
         $applied_orders = AppliedOrders::execute();

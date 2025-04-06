@@ -52,12 +52,12 @@
                             <li>
                                 <a href="{{ route('dashboard.index') }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 d:text-gray-300 d:hover:bg-gray-600 d:hover:text-white"
-                                    role="menuitem">Dashboard</a>
+                                    role="menuitem">{{session('lang') == 'en' ? 'Dashboard' : 'احداثيات'}}</a>
                             </li>
                             <li>
                                 <a href="{{ route('profile.edit', Auth::user()->id) }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 d:text-gray-300 d:hover:bg-gray-600 d:hover:text-white"
-                                    role="menuitem">Settings</a>
+                                    role="menuitem">{{session('lang') == 'en' ? 'Settings' : 'اعدادات'}}</a>
                             </li>
                             <li class="">
                                 <form action="{{ route('logout') }}" method="POST" class="">
@@ -65,7 +65,7 @@
                                     @method('POST')
                                     <button
                                         class="block px-4 py-2 text-sm w-full text-start text-gray-700 hover:bg-gray-100 d:text-gray-300 d:hover:bg-gray-600 d:hover:text-white"
-                                        role="menuitem">Sign out</button>
+                                        role="menuitem">{{session('lang') == 'en' ? 'Sign out' : 'تسجيل خروج'}}</button>
                                 </form>
 
                             </li>
@@ -92,7 +92,7 @@
                         <path
                             d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
                     </svg>
-                    <span class="ms-3">Dashboard</span>
+                    <span class="ms-3">{{session('lang') == 'en' ? 'Dashboard' : 'احداثيات'}}</span>
                 </a>
             </li>
             <li class="bg-white rounded-lg">
@@ -105,7 +105,7 @@
                             d="m3 16 5-7 6 6.5m6.5 2.5L16 13l-4.286 6M14 10h.01M4 19h16a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Z" />
                     </svg>
 
-                    <span class="ms-3">Carousel</span>
+                    <span class="ms-3">{{session('lang') == 'en' ? 'Carousel' : 'قائمة الصور'}}</span>
                 </a>
             </li>
             <li class="bg-white rounded-lg">
@@ -119,7 +119,7 @@
                             clip-rule="evenodd" />
                     </svg>
 
-                    <span class="ms-3">Inbox</span>
+                    <span class="ms-3">{{session('lang') == 'en' ? 'Inbox' : 'البريد'}}</span>
                 </a>
             </li>
             <li class="bg-white rounded-lg">
@@ -132,7 +132,7 @@
                         <path
                             d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
                     </svg>
-                    <span class="ms-3">Product View</span>
+                    <span class="ms-3">{{session('lang') == 'en' ? 'Product Views' : 'عرض المنتجات'}}</span>
                 </a>
             </li>
             <li class="bg-white rounded-lg">
@@ -145,7 +145,7 @@
                         <path
                             d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z" />
                     </svg>
-                    <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">E-commerce</span>
+                    <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">{{session('lang') == 'en' ? 'Catalog' : 'قوائم التعديل'}}</span>
                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 10 6">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -158,33 +158,34 @@
                     class="hidden py-2 space-y-2">
                     <li class="bg-white rounded-lg">
                         <a href="{{ route('storeSections.index') }}"
-                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 d:text-white d:hover:bg-gray-700">Store
-                            Sections</a>
+                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 d:text-white d:hover:bg-gray-700">
+                            {{session('lang') == 'en' ? 'Stores' : 'المتاجر'}}
+                        </a>
                     </li>
                     <li class="bg-white rounded-lg">
                         <a href="{{ route('branch.index') }}"
-                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 d:text-white d:hover:bg-gray-700">Branch</a>
+                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 d:text-white d:hover:bg-gray-700">{{session('lang') == 'en' ? 'Branches' : 'افرع المتجر'}}</a>
                     </li>
                     <li class="bg-white rounded-lg">
                         <a href="{{ route('category.index') }}"
-                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 d:text-white d:hover:bg-gray-700">Categories</a>
+                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 d:text-white d:hover:bg-gray-700">{{session('lang') == 'en' ? 'Categories' : 'التصنيفات'}}</a>
                     </li>
 
                     <li class="bg-white rounded-lg">
                         <a href="{{ route('brand.index') }}"
-                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 d:text-white d:hover:bg-gray-700">Brands</a>
+                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 d:text-white d:hover:bg-gray-700">{{session('lang') == 'en' ? 'Brands' : 'العلامات التجارية'}}</a>
                     </li>
                     <li class="bg-white rounded-lg">
                         <a href="{{ route('color.index') }}"
-                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 d:text-white d:hover:bg-gray-700">Colors</a>
+                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 d:text-white d:hover:bg-gray-700">{{session('lang') == 'en' ? 'Colors' : 'الالوان'}}</a>
                     </li>
                     <li class="bg-white rounded-lg">
                         <a href="{{ route('product.index') }}"
-                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 d:text-white d:hover:bg-gray-700">Products</a>
+                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 d:text-white d:hover:bg-gray-700">{{session('lang') == 'en' ? 'Products' : 'المنتجات'}}</a>
                     </li>
                     <li class="bg-white rounded-lg">
                         <a href="{{ route('order.index') }}"
-                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 d:text-white d:hover:bg-gray-700">Invoice</a>
+                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 d:text-white d:hover:bg-gray-700">{{session('lang') == 'en' ? 'Orders' : 'الطلبات'}}</a>
                     </li>
                 </ul>
             </li>

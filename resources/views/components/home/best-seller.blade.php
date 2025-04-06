@@ -1,4 +1,4 @@
-<div class="pt-4 max-w-screen-2xl mx-auto bg-[#fce4ec] rounded-md p-4 shadow-xl transform transition-all duration-300 hover:scale-105 hover:shadow-2xl wowDiv"  data-animation="animate__fadeInDownBig" data-delay="300">
+<div class="pt-4 max-w-screen-2xl mx-auto bg-[#fce4ec] rounded-md p-4 shadow-xl transform transition-all duration-300 hover:scale-90 hover:shadow-2xl wowDiv"  data-animation="animate__fadeInDownBig" data-delay="300">
     <div class="flex justify-start items-center px-8">
         <div class="flex justify-between items-center space-x-3">
             <div class="font-bold text-2xl text-gray-800">{{ $title }}</div>

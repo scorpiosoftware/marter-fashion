@@ -22,7 +22,7 @@
 
                                         {{-- <label for="counter-input" class="sr-only">Choose quantity:</label> --}}
                                         <div class="flex items-center justify-between md:order-3 md:justify-end">
-                                            <div class="flex items-center">
+                                            {{-- <div class="flex items-center">
                                                 <a href="{{ route('cart.decrease', $id) }}"
                                                     class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
                                                     <svg class="h-2.5 w-2.5 text-gray-900 dark:text-white"
@@ -49,7 +49,7 @@
                                                             stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
                                                     </svg>
                                                 </a>
-                                            </div>
+                                            </div> --}}
                                             <div class="text-end md:order-4 md:w-32">
                                                 <p class="text-base font-bold text-gray-900 dark:text-white">
                                                     د.ع {{ $details['price'] }}</p>
@@ -141,7 +141,7 @@
                             </div>
 
                             <a href="{{ route('address') }}"
-                                class="flex w-full items-center justify-center rounded-lg bg-white border-2 px-5 py-2.5 text-sm font-medium text-black  focus:outline-none focus:ring-4">{{ \App\Helpers\TranslationHelper::translate('Proceed to payment','ar') }}</a>
+                                class="flex w-full items-center justify-center rounded-lg bg-green-400 border-2 px-5 py-2.5 text-sm font-medium text-white  focus:outline-none focus:ring-4">{{ \App\Helpers\TranslationHelper::translate('Confirm the order','ar') }}</a>
 
                             <div class="flex items-center justify-center gap-2">
                                 <span class="text-sm font-normal text-gray-500 dark:text-gray-400"> {{ \App\Helpers\TranslationHelper::translate('or','ar') }} </span>
