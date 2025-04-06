@@ -26,6 +26,7 @@
                     </a>
                 </div>
             </div>
+            <livewire:language>
             {{-- Profile DropDown --}}
             <div class="flex items-center">
                 <div class="flex items-center ms-3">

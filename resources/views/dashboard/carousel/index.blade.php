@@ -13,7 +13,7 @@
             </div>
         </div>
     @endif
-    <div class="text-2xl py-4 font-bold underline text-gray-900 d:text-white">Carousel</div>
+    <div class="text-2xl py-4 font-bold underline text-gray-900 d:text-white">{{session('lang') == 'en' ? 'Carousel' : 'قائمة الصور'}}</div>
     <!-- Breadcrumb -->
     <nav class="flex px-5 py-3 text-gray-700 border border-gray-200 rounded-lg bg-gray-50 d:bg-gray-800 d:border-gray-700"
         aria-label="Breadcrumb">
@@ -26,7 +26,7 @@
                         <path
                             d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
                     </svg>
-                    Dashboard
+                    {{session('lang') == 'en' ? 'Dashboard' : 'القائمة الرئيسية'}}
                 </a>
             </li>
             <li aria-current="page">
@@ -36,7 +36,7 @@
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="m1 9 4-4-4-4" />
                     </svg>
-                    <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 d:text-gray-400">Edit</span>
+                    <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 d:text-gray-400">{{session('lang') == 'en' ? 'Edit' : 'تعديل'}}</span>
                 </div>
             </li>
         </ol>
@@ -49,8 +49,7 @@
         <div class="grid gap-6 mb-6 md:grid-cols-1">
             <div class="grid grid-cols-1 gap-4 border-2 p-4 md:grid-cols-2">
                 <div class="grid grid-cols-1 gap-4 border-2 p-4 md:grid-cols-2 md:col-start-1 md:col-end-3">
-
-                    <div class="w-full mt-2">
+                    {{-- <div class="w-full mt-2">
                         <div class="flex justify-between items-center">
                             <label for="logo_url"
                                 class="block mb-2 text-sm font-medium text-gray-900 d:text-white">Logo</label>
@@ -62,13 +61,12 @@
                                 placeholder="choose image" />
                         </div>
 
-                    </div>
+                    </div> --}}
 
                     <div class="w-full mt-2">
                         <div class="flex justify-between items-center">
                             <label for="images"
-                                class="block mb-2 text-sm font-medium text-gray-900 d:text-white">Carousel 
-                                Images</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 d:text-white">{{session('lang') == 'en' ? 'Images' : 'الصور'}}</label>
                         </div>
                         <div class="mt-4">
                             <input type="file" multiple id="images" name="images[]" value="{{ $record->images }}"
@@ -81,7 +79,7 @@
 
                         <div aria-controls="gallery" data-collapse-toggle="gallery"
                             class="cursor-pointer transition-all w-full text-center bg-blue-300 container mx-auto delay-75 hover:scale-95">
-                            Toggle Gallery
+                            {{session('lang') == 'en' ? 'Gallery' : 'البوم الصور'}}
                         </div>
                     </div>
                     <div id="gallery"
@@ -107,6 +105,6 @@
             </div>
         </div>
         <button type="submit"
-            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center d:bg-blue-600 d:hover:bg-blue-700 d:focus:ring-blue-800">Submit</button>
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center d:bg-blue-600 d:hover:bg-blue-700 d:focus:ring-blue-800">{{session('lang') == 'en' ? 'Submit' : 'حفظ'}}</button>
     </form>
 </x-app-layout>

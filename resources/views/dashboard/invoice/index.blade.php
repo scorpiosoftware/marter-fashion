@@ -16,20 +16,20 @@
     <div class="py-6 group">
         <h1
             class="text-3xl md:text-3xl font-extrabold bg-clip-text text-black bg-gradient-to-r from-blue-500 to-purple-600 inline-block transition-all duration-300 transform group-hover:scale-105 group-hover:translate-y-[-2px]">
-            Orders Transaction
+            {{session('lang') == 'en' ? 'Orders' : 'الطلبات'}}
         </h1>
     </div>
     <div class="relative m-4 md:flex justify-between items-center space-y-4">
         <form action="{{ route('invoice.index', 'status') }}" class="w-full max-w-md " method="GET">
             <select id="status" onchange="this.form.submit()" name="status"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 d:bg-gray-700 d:border-gray-600 d:placeholder-gray-400 d:text-white d:focus:ring-blue-500 d:focus:border-blue-500">
-                <option value="pending" @if (!empty($inputs['status']) and $inputs['status'] == 'pending') selected @endif>Pending</option>
-                <option value="delivered" @if (!empty($inputs['status']) and $inputs['status'] == 'delivered') selected @endif>Delivered</option>
-                <option value="canceled" @if (!empty($inputs['status']) and $inputs['status'] == 'canceled') selected @endif>Canceled</option>
+                <option value="pending" @if (!empty($inputs['status']) and $inputs['status'] == 'pending') selected @endif>{{session('lang') == 'en' ? 'Pending' : 'قيد الانتظار'}}</option>
+                <option value="delivered" @if (!empty($inputs['status']) and $inputs['status'] == 'delivered') selected @endif>{{session('lang') == 'en' ? 'Delivered' : 'الطلبيات المنجزة'}}</option>
+                <option value="canceled" @if (!empty($inputs['status']) and $inputs['status'] == 'canceled') selected @endif>{{session('lang') == 'en' ? 'Canceled' : 'الملغات'}}</option>
             </select>
         </form>
         <form action="{{ route('invoice.index','search') }}" class="w-full max-w-md " method="GET">
-            <label for="search" class="mb-2 text-sm font-medium text-gray-900 sr-only d:text-white">Search</label>
+            <label for="search" class="mb-2 text-sm font-medium text-gray-900 sr-only d:text-white">{{session('lang') == 'en' ? 'Search' : 'بحث'}}</label>
             <div class="relative">
                 <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                     <svg class="w-4 h-4 text-gray-500 d:text-gray-400" aria-hidden="true"
@@ -41,14 +41,11 @@
                 <input type="search" id="search" name="search"
                     value="@if (!empty($inputs['search'])) {{ $inputs['search'] }} @endif"
                     class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 d:bg-gray-700 d:border-gray-600 d:placeholder-gray-400 d:text-white d:focus:ring-blue-500 d:focus:border-blue-500"
-                    placeholder="Search by category name ..." />
+                    placeholder="..." />
                 <button type="submit"
-                    class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 d:bg-blue-600 d:hover:bg-blue-700 d:focus:ring-blue-800">Search</button>
+                    class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 d:bg-blue-600 d:hover:bg-blue-700 d:focus:ring-blue-800">{{session('lang') == 'en' ? 'Search' : 'بحث'}}</button>
             </div>
         </form>
-
-
-
     </div>
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -56,30 +53,26 @@
             <thead class="text-xs text-gray-700 uppercase text-nowrap bg-gray-50 d:bg-gray-700 d:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
-                        ID
+                        {{session('lang') == 'en' ? 'ID' : 'الرقم التسلسلي'}}
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Customer Name
+                        {{session('lang') == 'en' ? 'Customer name' : 'الاسم'}}
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Customer Email
+                        {{session('lang') == 'en' ? 'Customer Phone' : 'رقم الهاتف'}}
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Customer Phone
+                        {{session('lang') == 'en' ? 'Totale Amount' : 'المجموع'}}
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Totle Amount
+                        {{session('lang') == 'en' ? 'Order Date' : 'التاريخ'}}
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Order Date
+                        {{session('lang') == 'en' ? 'Status' : 'الحالة'}}
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Status
+                        <span class="">{{session('lang') == 'en' ? 'Actions' : 'تعديل'}}</span>
                     </th>
-                    <th scope="col" class="px-6 py-3">
-                        <span class="">Actions</span>
-                    </th>
-
                 </tr>
             </thead>
             <tbody>
@@ -107,10 +100,6 @@
                         </td>
                         <td class="px-6 py-4 font-bold text-black text-base text-nowrap">
                             {{ $record->customer_name }}
-                        </td>
-
-                        <td class="px-6 py-4  text-black text-base text-nowrap">
-                            {{ $record->customer_email }}
                         </td>
                         <td class="px-6 py-4 text-black text-base text-nowrap">
                             {{ $record->phone }}

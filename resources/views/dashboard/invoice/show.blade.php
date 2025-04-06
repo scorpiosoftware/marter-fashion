@@ -4,19 +4,17 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 d:bg-gray-700 d:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3 text-nowrap">
-                        Customer name
+                        {{session('lang') == 'en' ? 'Customer name' : 'اسم المستخدم'}}
+                    </th>
+
+                    <th scope="col" class="px-6 py-3 text-nowrap">
+                        {{session('lang') == 'en' ? 'Phone nb' : 'رقم الهاتف'}}
                     </th>
                     <th scope="col" class="px-6 py-3 text-nowrap">
-                        Customer Email
+                        {{session('lang') == 'en' ? 'Full Address' : 'العنوان الكامل'}}
                     </th>
                     <th scope="col" class="px-6 py-3 text-nowrap">
-                        Phone
-                    </th>
-                    <th scope="col" class="px-6 py-3 text-nowrap">
-                        Full Address
-                    </th>
-                    <th scope="col" class="px-6 py-3 text-nowrap">
-                        Order Date
+                        {{session('lang') == 'en' ? 'Order date' : 'تارخ الطلب'}}
                     </th>
                 </tr>
             </thead>
@@ -26,9 +24,6 @@
                         class="px-6 py-4 font-medium text-gray-900  text-nowrap whitespace-nowrap d:text-white">
                         {{ $record->customer_name }}
                     </th>
-                    <td class="px-6 py-4 text-nowrap">
-                        {{ $record->customer_email }}
-                    </td>
                     <td class="px-6 py-4 text-nowrap">
                         {{ $record->phone }}
                     </td>
@@ -49,16 +44,16 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 d:bg-gray-700 d:text-gray-400">
                 <tr>
                     <th scope="col" class="px-16 py-3">
-                        <span class="">Image</span>
+                        <span class="">{{session('lang') == 'en' ? 'Image' : 'الصورة'}}</span>
                     </th>
                     <th scope="col" class="px-6 py-3 text-nowrap">
-                        Product
+                        {{session('lang') == 'en' ? 'Product' : 'المنتج'}}
                     </th>
                     <th scope="col" class="px-6 py-3 text-nowrap">
-                        Qty
+                        {{session('lang') == 'en' ? 'Quantity' : 'الكمية'}}
                     </th>
                     <th scope="col" class="px-6 py-3 text-nowrap">
-                        Price
+                        {{session('lang') == 'en' ? 'Price' : 'السعر'}}
                     </th>
                 </tr>
             </thead>
@@ -70,7 +65,7 @@
                                 class="w-16 md:w-24 max-w-full max-h-full" alt="Apple Watch">
                         </td>
                         <td class="px-6 py-4 font-semibold text-nowrap text-gray-900 d:text-white">
-                            {{ $item->product->name_en }}
+                           {{session('lang') == 'en' ? $item->product->name_en : $item->product->name_ar}}
                         </td>
                         <td class="px-6 py-4">
                             <div class="flex items-center text-nowrap">
@@ -78,7 +73,7 @@
                             </div>
                         </td>
                         <td class="px-6 py-4 font-semibold text-gray-900 text-nowrap d:text-white">
-                            {{ $item->subtotal }} $
+                            {{ $item->subtotal }} د.ع
                         </td>
 
                     </tr>
@@ -86,9 +81,8 @@
             </tbody>
         </table>
         <div class="w-full flex justify-between items-start text-black font-bold px-10 py-2">
-            <p>Status : {{ $record->status }}</p>
-            <p>Total : {{ $record->total_amount }} $</p>
-
+            <p>الحالة : {{ $record->status }}</p>
+            <p>المجموع : {{ $record->total_amount }} د.ع</p>
         </div>
     </div>
 

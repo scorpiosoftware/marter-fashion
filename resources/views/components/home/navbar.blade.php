@@ -33,7 +33,10 @@
                     {{session('lang') == 'en' ? 'Search' : 'بحث'}}
                 </button>
             </form>
-
+            <div class="hidden md:block">
+                <livewire:language>
+            </div>
+           
             <!-- Action Icons -->
             <div class="flex items-center gap-4 ">
                 <livewire:cart>
@@ -112,8 +115,10 @@
                                     </button>
                                 </form>
                             </div>
+
                         @endauth
                     </div>
+
                 </div>
         </div>
     </div>
@@ -176,6 +181,9 @@
                     </form>
                 @endforeach
             </nav>
+            <div class="md:hidden block mt-4">
+                <livewire:language>
+            </div>
         </div>
     </div>
 </div>
