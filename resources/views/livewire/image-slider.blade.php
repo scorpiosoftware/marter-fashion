@@ -1,7 +1,6 @@
-
 <div>
     @if ($show)
-    <div class="swiper-container fixed top-0 z-50 w-full bg-black bg-opacity-20 max-w-full min-h-screen content-center" wire:ignore>
+    <div class="swiper-container fixed top-0 z-50 w-full bg-black bg-opacity-70 max-w-full min-h-screen content-center" wire:ignore>
         <button wire:click="close" class="mt-2 bg-red-500 text-white px-2 py-1 rounded">
             Close
         </button>
@@ -22,9 +21,7 @@
         <div class="swiper-pagination"></div>
     </div>
     @endif
-
 </div>
-
 
 @push('styles')
     <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css">
@@ -35,23 +32,54 @@
     </style>
 @endpush
 
+@push('styles')
+    <style>
+        /* Disable selection globally for swiper elements */
+        .swiper-container * {
+            user-select: none !important;
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+        }
+        
+        /* Prevent blue highlight on mobile */
+        .swiper-button-next, .swiper-button-prev {
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+@endpush
+
 @push('scripts')
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            new Swiper('.swiper-container', {
-                loop: true,
-                autoplay: {
-                    delay: 3000,
-                },
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
+        document.addEventListener('livewire:init', () => {
+            let swiperInstance = null;
+            
+            Livewire.on('swiperUpdated', (show) => {
+                if (show) {
+                    // Destroy existing instance if any
+                    if (swiperInstance) {
+                        swiperInstance.destroy();
+                    }
+                    
+                    // Initialize new instance
+                    setTimeout(() => {
+                        swiperInstance = new Swiper('.swiper-container', {
+                            loop: true,
+                            autoplay: {
+                                delay: 3000,
+                            },
+                            pagination: {
+                                el: '.swiper-pagination',
+                                clickable: true,
+                            },
+                            navigation: {
+                                nextEl: '.swiper-button-next',
+                                prevEl: '.swiper-button-prev',
+                            },
+                        });
+                    }, 100);
+                }
             });
         });
     </script>

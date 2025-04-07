@@ -4,8 +4,8 @@
     
     <div class="product-image">
         <a name="{{ $item->id }}" href="{{ route('shop.show', $item->id) }}" class="image block">
-            <div class=" image-container box-border">
-                <div class="skeleton-loader min-h-32"></div>
+            <div class="box-border">
+                {{-- <div class="skeleton-loader min-h-32"></div> --}}
                 <img src="{{ URL::to('storage/' . $item->main_image_url) }}" class="w-full max-h-80 p-3 object-cover">
             </div>
      

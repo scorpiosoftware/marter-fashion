@@ -1,8 +1,8 @@
 @extends('layouts.home')
 @section('content')
-@livewire('image-slider', [
-    'images' => $record->images,
-])
+    @livewire('image-slider', [
+        'images' => $record->images,
+    ])
     <div
         class="mx-auto max-w-screen-xl p-4 mt-10 bg-[#ebcdd7] rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl">
 
@@ -10,7 +10,7 @@
             <!-- Image Gallery Section -->
             <div class="relative">
                 <!-- Main Image Modal -->
-                <div id="mainImageModal" tabindex="-1"
+                {{-- <div id="mainImageModal" tabindex="-1" 
                     class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                     <div class="relative p-4 ">
                         <div class="relative bg-white rounded-lg shadow">
@@ -24,17 +24,17 @@
                             </button>
                             <!-- Main Image in Modal -->
                             <img id="mainImageModalImg" src="{{ URL::to('storage/' . $record->main_image_url) }}"
-                                class="mx-auto object-contain" alt="Main product image">
+                                class="mx-auto object-contain" alt="Main product image" >
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div
                     class="group relative cursor-zoom-in overflow-hidden rounded-2xl shadow-xl transition-all duration-300 hover:shadow-2xl bg-white border border-gray-100">
                     <div class="skeleton-loader absolute inset-0 bg-gradient-to-r from-gray-50 to-gray-100 animate-pulse">
                     </div>
-                    <img id="mainImage" src="{{ URL::to('storage/' . $record->main_image_url) }}"
+                    <img id="mainImage" src="{{ URL::to('storage/' . $record->main_image_url) }}"  onclick="Livewire.dispatch('openGallery')"
                         class="relative z-10 h-full w-full object-cover transition-all duration-500 ease-out group-hover:scale-105 group-hover:brightness-110"
-                        alt="Main product image" data-modal-target="mainImageModal" data-modal-toggle="mainImageModal">
+                        alt="Main product image" >
                     <div
                         class="absolute inset-0 bg-gradient-to-t from-gray-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     </div>
@@ -139,9 +139,10 @@
                     @csrf
                     <div class="flex justify-start items-center space-x-4 mb-4 ">
                         @foreach ($record->colors as $color)
-                            <input type="radio" name="color" value="{{$color}}" required
+                            <input type="radio" name="color" value="{{ $color }}" required
                                 class="rounded-full box-border size-10 p-2 hover:border hove bg-[{!! $color->hex_code !!}]"
-                                style="background-color: {!! $color->hex_code !!}" {{$color->id == $record->colors->first()->id ? 'checked' : ''}} />
+                                style="background-color: {!! $color->hex_code !!}"
+                                {{ $color->id == $record->colors->first()->id ? 'checked' : '' }} />
                         @endforeach
                     </div>
                     <div class="md:flex items-center md:space-x-4">

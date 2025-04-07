@@ -28,7 +28,7 @@
     {{-- <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" /> --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast/dist/css/iziToast.min.css">
     <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
-    
+
     {{-- <script src="https://unpkg.com/@tailwindcss/browser@4"></script> --}}
 
     @vite('resources/css/app.css', 'resources/js/app.js')
@@ -38,6 +38,7 @@
 
 <body class="font-sans antialiased">
     {{-- <div data-wow-duration="2s" data-wow-iteration="100" class="wow bounce">bounce</div> --}}
+    <livewire:add-item-message>
     <x-home.speed-dial />
     <x-home.navbar :categories="$categories" :carousel="$carousel" />
     <x-home.category :categories="$categories" />

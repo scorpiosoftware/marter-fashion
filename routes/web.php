@@ -50,6 +50,11 @@ Route::group(['prefix' => ''], function () {
         $categories = ListCategory::execute();
         return view('support.contact',compact('categories','carousel'));
     });
+    Route::get('/privacy-policy',function (){
+        $carousel = Carousel::with('images')->first();
+        $categories = ListCategory::execute();
+        return view('support.privacy',compact('categories','carousel'));
+    });
 });
 
 Route::post('/shop/', [ShopController::class, 'filter'])->name('filter.products');

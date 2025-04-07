@@ -22,11 +22,11 @@
                     <h2 class="mb-6 text-sm font-semibold  uppercase text-white">{{session('lang') == 'en' ? 'Follow us' : 'تابعنا'}}</h2>
                     <ul class="text-[#ec5793]  font-medium">
                         <li class="mb-4 bg-white px-1 rounded-md">
-                            <a href="https://www.instagram.com/jamesia.lb?igsh=ZGV2dTRpc3ZyeGNp&utm_source=qr"
+                            <a href=""
                                 class="hover:underline ">{{session('lang') == 'en' ? 'Instagram' : 'انستغرام'}}</a>
                         </li>
                         <li class="bg-white px-1 rounded-md">
-                            <a href="https://www.facebook.com/profile.php?id=61554391378322&mibextid=LQQJ4d"
+                            <a href=""
                                 class="hover:underline">{{session('lang') == 'en' ? 'Facebook' : 'فيسبوك'}}</a>
                         </li>
                     </ul>
@@ -35,7 +35,7 @@
                     <h2 class="mb-6 text-sm font-semibold  uppercase text-white">{{session('lang') == 'en' ? 'Legal' : 'قانوني'}}</h2>
                     <ul class="text-[#ec5793]  font-medium">
                         <li class="mb-4 bg-white px-1 rounded-md">
-                            <a href="" class="hover:underline">{{session('lang') == 'en' ? 'Privacy Policy' : 'سياسة الخصوصية'}}</a>
+                            <a href="/privacy-policy" class="hover:underline">{{session('lang') == 'en' ? 'Privacy Policy' : 'سياسة الخصوصية'}}</a>
                         </li>
                         <li class="bg-white px-1 rounded-md">
                             <a href="" class="hover:underline">{{session('lang') == 'en' ? 'Terms & Conditions' : 'الشروط والأحكام'}}</a>
