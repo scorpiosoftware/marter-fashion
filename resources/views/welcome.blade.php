@@ -84,8 +84,9 @@
 
             @foreach ($productViews as $view)
                 <br>
-                <x-home.best-seller :bestSeller="$bestSeller" :view="$view"
-                    title="{{ session('lang') == 'en' ? $view->name : 'الاكثر مبيع' }} " />
+                {{-- <x-home.best-seller :bestSeller="$bestSeller" :view="$view"
+                    title="{{ session('lang') == 'en' ? $view->name : 'الاكثر مبيع' }} " /> --}}
+                <livewire:product-group :view="$view" :title="$view->name">
             @endforeach
             <br>
             <x-home.brands :brands="$brands" />
