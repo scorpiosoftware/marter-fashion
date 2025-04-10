@@ -59,6 +59,7 @@ class Product extends Component
             "name" => $p_name,
             "quantity" => 1,
             "price" => $price,
+            "color" => $color,
             "photo" => $product->main_image_url
         ];
 
