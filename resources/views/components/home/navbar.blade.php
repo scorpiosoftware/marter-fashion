@@ -6,7 +6,7 @@
                 <a href="/" class="flex items-center gap-2 group">
                     <span
                         class="text-xl font-bold tracking-tight   transition-colors">
-                        {{ env('APP_NAME') }}
+                       {{session('lang') == 'en' ? env('APP_NAME') : env('APP_NAME_AR')}}
                     </span>
                 </a>
             </div>
@@ -62,7 +62,7 @@
                             <span class="text-sm font-medium text-[#ec5793]">
                                 @auth{{ Auth::user()->name }}
                             @else
-                            Account @endauth
+                            {{session('lang') == 'en' ? 'Account' : 'الحساب'}} @endauth
                         </span>
                         <svg class="w-4 h-4 text-[#ec5793] transition-colors" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
@@ -81,12 +81,12 @@
                                 <a href="{{ route('login') }}"
                                     class="block px-4 py-2.5 text-sm border
                           transition-colors">
-                                    Sign In
+                                {{session('lang') == 'en' ? 'login' : 'تسجيل دخول'}}
                                 </a>
                                 <a href="{{ route('register') }}"
                                     class="block px-4 py-2.5 text-sm border
                           transition-colors">
-                                    Create Account
+                               {{session('lang') == 'en' ? 'sign up' : 'انشاء حساب'}}
                                 </a>
                             </div>
                         @endguest
@@ -97,13 +97,13 @@
                                     <a href="{{ route('dashboard.index') }}"
                                         class="block px-4 py-2.5 text-sm bg-[#ec5793] text-white border
                           transition-colors">
-                                        <i class="fas fa-tachometer-alt mr-2"></i>Dashboard
+                                        <i class="fas fa-tachometer-alt mr-2"></i>{{session('lang') == 'en' ? 'Dashboard' : 'لوحة التحكم'}}
                                     </a>
                                 @endif
                                 <a href="#"
                                     class="block px-4 py-2.5 text-sm bg-[#ec5793] text-white border
                           transition-colors">
-                                    <i class="fas fa-user-circle mr-2"></i>Profile
+                                    <i class="fas fa-user-circle mr-2"></i>{{session('lang') == 'en' ? 'Profile' : 'الملف الشخصي'}}
                                 </a>
                             </div>
                             <div class="py-1">
@@ -111,7 +111,7 @@
                                     @csrf
                                     <button type="submit"
                                         class="w-full text-left px-4 py-2.5 text-sm bg-[#ec5793] text-white border transition-colors">
-                                        <i class="fas fa-sign-out-alt mr-2"></i>Sign Out
+                                        <i class="fas fa-sign-out-alt mr-2"></i>{{session('lang') == 'en' ? 'Sign out' : 'تسجيل خروج'}}
                                     </button>
                                 </form>
                             </div>

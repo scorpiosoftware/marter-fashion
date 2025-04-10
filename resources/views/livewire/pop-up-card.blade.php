@@ -1,50 +1,58 @@
 <div class="fixed top-0 w-full min-h-screen  z-50 bg-opacity-60 content-center wowDiv"
     data-animation="animate__fadeInDown" data-delay="300" wire:show='show' x-transition.duration.500ms>
 
-    <form action="{{route('filter.products')}}" method="POST" class="border md:max-w-lg max-w-sm p-4 mx-auto bg-[#fce4ec] rounded-xl content-center">
+    <form action="{{ route('filter.products') }}" method="POST"
+        class="border md:max-w-lg max-w-sm p-4 mx-auto bg-[#fce4ec] rounded-xl content-center">
         @csrf
         @method('POST')
         <div class="w-full flex items-center justify-end">
             <button type="button"
                 class="rounded-full px-5 bg-white text-base border border-black text-red-700 hover:bg-[#f8578c] hover:text-white font-bold"
-                wire:click='close'>{{session('lang') == 'en' ? 'close' : 'اغلاق'}}</button>
+                wire:click='close'>{{ session('lang') == 'en' ? 'close' : 'اغلاق' }}</button>
         </div>
 
-        <p class="text-center w-full text-xl font-bold">{{session('lang') == 'en' ? 'Quick Search' : 'بحث سريع'}}</p>
+        <p class="text-center w-full text-xl font-bold">{{ session('lang') == 'en' ? 'Quick Search' : 'بحث سريع' }}</p>
         <div class="w-full md:col-start-1 md:col-end-3 pt-10">
-            <label for="colors" class="block mb-2 text-sm font-medium text-center text-gray-900 d:text-white"> {{session('lang') == 'en' ? 'Choose
-                Colors' : ''}}</label>
-            <div class="grid grid-cols-4 items-center gap-4 justify-items-center max-w-72 mx-auto">
+            <label for="colors" class="block mb-2 text-sm font-medium text-center text-gray-900 d:text-white">
+                {{ session('lang') == 'en'
+                    ? 'Choose
+                                Colors'
+                    : '' }}</label>
+            {{-- <div class="grid grid-cols-4 items-center gap-4 justify-items-center max-w-72 mx-auto">
                 @foreach ($colors as $color)
-                <div class="items-center flex justify-stretch gap-x-4">
-                    <input type="checkbox" value="{{ $color->id }}" name="color_id[]"
-                        class="rounded-full box-border size-12 p-2 hover:border bg-[{!! $color->hex_code !!}]"
-                        style="background-color: {!! $color->hex_code !!}"
-                        @if (!empty(request()->input('color_id'))) @foreach (request()->input('color_id') as $index)
+                    <div class="items-center flex justify-stretch gap-x-4">
+                        <input type="checkbox" value="{{ $color->id }}" name="color_id[]"
+                            class="rounded-full box-border size-12 p-2 hover:border bg-[{!! $color->hex_code !!}]"
+                            style="background-color: {!! $color->hex_code !!}"
+                            @if (!empty(request()->input('color_id'))) @foreach (request()->input('color_id') as $index)
                     @if ($index == $color->id)
                     checked
                     @break @endif
-                        @endforeach
-                    @endif
-            />
-                </div>
-        @endforeach
+                            @endforeach
+                @endif
+                />
             </div>
-        </div>
-        <div class="flex justify-between items-center py-4">
-            <div>
-                <label for="min_price" class="block mb-2 text-sm font-medium text-gray-900 d:text-white">{{session('lang') == 'en' ? 'Min Price' : 'الحد الأدنى للسعر'}}</label>
-                <input type="text" value="{{ $minPrice }}" class="block w-full rounded-sm cursor-pointer focus:outline-none" name="min_price"
-                    id="min_price" placeholder="{{ $minPrice }} د.ع">
-            </div>
-            <div>
-                <label for="max_price" class="block mb-2 text-sm font-medium text-gray-900 d:text-white">{{session('lang') == 'en' ? 'Max Price' : 'الحد الأقصى للسعر'}}</label>
-                <input type="text" value="{{ $maxPrice }}" class="block w-full rounded-sm cursor-pointer focus:outline-none" name="max_price"
-                    id="max_price" placeholder="{{ $maxPrice }} د.ع">
-            </div>
-        </div>
+            @endforeach
+        </div> --}}
+</div>
+<div class="flex justify-between items-center py-4">
+    <div>
+        <label for="min_price"
+            class="block mb-2 text-sm font-medium text-gray-900 d:text-white">{{ session('lang') == 'en' ? 'Min Price' : 'الحد الأدنى للسعر' }}</label>
+        <input type="text" 
+            class="block w-full rounded-sm cursor-pointer focus:outline-none" name="min_price" id="min_price"
+            placeholder=" د.ع">
+    </div>
+    <div>
+        <label for="max_price"
+            class="block mb-2 text-sm font-medium text-gray-900 d:text-white">{{ session('lang') == 'en' ? 'Max Price' : 'الحد الأقصى للسعر' }}</label>
+        <input type="text" 
+            class="block w-full rounded-sm cursor-pointer focus:outline-none" name="max_price" id="max_price"
+            placeholder="د.ع">
+    </div>
+</div>
 
-        <button
-            class="w-full border border-black  rounded-xl py-3 text-black font-bold hover:bg-white hover:text-[#f8578c]">{{session('lang') == 'en' ? 'Search' : 'ابحث'}}</button>
-    </form>
+<button
+    class="w-full border border-black  rounded-xl py-3 text-black font-bold hover:bg-white hover:text-[#f8578c]">{{ session('lang') == 'en' ? 'Search' : 'ابحث' }}</button>
+</form>
 </div>

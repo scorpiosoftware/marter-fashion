@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class StoreSections extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = ['name','name_ar'];
 
 
     public function products():HasMany{

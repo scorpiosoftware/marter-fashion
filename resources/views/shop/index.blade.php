@@ -12,7 +12,7 @@
                 @csrf
                 @method('POST')
                 <div class="border p-2">
-                    <h1>Sort by</h1>
+                    <h1> {{ session('lang') == 'en' ? 'Sort By' : 'ترتيب' }}</h1>
                     <select name="sorting" id="sorting">
                         <option value="asc">{{ session('lang') == 'en' ? 'Ascending' : 'تصاعدي' }}</option>
                         <option value="desc" @if (request()->input('sorting') == 'desc') selected @endif>
@@ -27,7 +27,7 @@
                 </div>
                 <div class="border p-2">
                     <div class="border p-2">
-                        <h1>Colors</h1>
+                        <h1> {{ session('lang') == 'en' ? 'colors' : 'ألوان' }}</h1>
                         <div class="grid grid-cols-3 gap-4 items-center justify-items-center max-w-40 mx-auto">
 
                             @foreach ($colors as $color)
@@ -113,7 +113,7 @@
             @endif>
 
             <label for="sections"
-                class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ \App\Helpers\TranslationHelper::translate($section->name,'ar')}}</label>
+                class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ session('lang') == 'en' ? $section->name : $section->name_ar }}</label>
         </div>
         @endforeach
     </div>
@@ -128,7 +128,9 @@
                     <option value="{{ $branch->id }}"
                         @if (!empty(request()->input('branch'))) @if (request()->input('branch') == $branch->id)
                     selected @endif
-                        @endif>   {{ \App\Helpers\TranslationHelper::translate($branch->name,'ar')}}</option>
+                        @endif> 
+                        {{ session('lang') == 'en' ? $branch->name : $branch->name_ar }}
+                        </option>
                 @endforeach
             </select>
         </div>
@@ -139,15 +141,15 @@
     <div class="border p-2">
         <h1>{{ session('lang') == 'en' ? 'Price I.Q.D' : 'السعر د.ع' }}</h1>
         <div class="flex space-x-2 justify-between items-center ">
-            <input type="number" step="any" min="0" class="w-24 h-8" name="min_price" placeholder="From 0 $"
+            <input type="number" step="any" min="0" class="w-24 h-8" name="min_price" placeholder="{{ session('lang') == 'en' ? 'From' : 'من' }}"
                 @if (!empty(request()->input('min_price'))) value = {{ request()->input('min_price') }} @endif />
-            <input type="number" step="any" min="0" class="w-24 h-8" name="max_price" placeholder="To Max $"
+            <input type="number" step="any" min="0" class="w-24 h-8" name="max_price" placeholder="{{ session('lang') == 'en' ? 'To' : 'الى' }}"
                 @if (!empty(request()->input('max_price'))) value = {{ request()->input('max_price') }} @endif />
         </div>
     </div>
     <div class="flex justify-end text-sm pt-2">
         <button type="submit"
-            class="p-2 rounded-md bg-white text-[#ec5793] border w-full font-bold transition-all delay-75 hover:text-white hover:bg-[#ec5793]">Apply</button>
+            class="p-2 rounded-md bg-white text-[#ec5793] border w-full font-bold transition-all delay-75 hover:text-white hover:bg-[#ec5793]"> {{ session('lang') == 'en' ? 'Apply' : 'تأكيد' }}</button>
     </div>
     </form>
 
@@ -168,7 +170,7 @@
                 @csrf
                 @method('POST')
                 <div class="border p-2">
-                    <h1>Sort by</h1>
+                    <h1>{{ session('lang') == 'en' ? 'sorting' :  'ترتيب' }}</h1>
                     <select name="sorting" id="sorting">
                         <option value="asc">{{ session('lang') == 'en' ? 'Ascending' : 'تصاعدي' }}</option>
                         <option value="desc" @if (request()->input('sorting') == 'desc') selected @endif>
@@ -183,7 +185,7 @@
                 </div>
                 <div class="border p-2">
                     <div class="border p-2">
-                        <h1>Colors</h1>
+                        <h1>{{ session('lang') == 'en' ? 'colors' : 'الوان'  }}</h1>
                         <div class="grid grid-cols-3 gap-4 items-center justify-items-center max-w-40 mx-auto">
 
                             @foreach ($colors as $color)
@@ -268,8 +270,7 @@
 
             <label for="section_id-{{ $section->id }}"
                 class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                {{-- {{ $section->name }} --}}
-                {{ \App\Helpers\TranslationHelper::translate($section->name,'ar')}}
+                {{ session('lang') == 'en' ? $section->name : $section->name_ar }}
             </label>
         </div>
         @endforeach
@@ -286,8 +287,7 @@
                         @if (!empty(request()->input('branch'))) @if (request()->input('branch') == $branch->id)
                     selected @endif
                         @endif>
-                        {{ \App\Helpers\TranslationHelper::translate($branch->name,'ar')}}
-                        {{-- {{ \App\Helpers\TranslationHelper::translate('Hello World', app()->getLocale()) }} --}}
+                        {{ session('lang') == 'en' ? $branch->name : $branch->name_ar }}
                     </option>
                 @endforeach
             </select>
@@ -298,16 +298,16 @@
         <h1>{{ session('lang') == 'en' ? 'Price I.Q.D' : 'السعر د.ع' }}</h1>
         <div class="flex space-x-2 justify-between items-center">
             <input type="number" step="any" min="0" class="w-24 h-8" name="min_price"
-                placeholder="From 0 $"
+                placeholder=""
                 @if (!empty(request()->input('min_price'))) value = {{ request()->input('min_price') }} @endif />
             <input type="number" step="any" min="0" class="w-24 h-8" name="max_price"
-                placeholder="To Max $"
+                placeholder=""
                 @if (!empty(request()->input('max_price'))) value = {{ request()->input('max_price') }} @endif />
         </div>
     </div>
     <div class="flex justify-end text-sm pt-2">
         <button type="submit"
-            class="p-2 rounded-md bg-white text-[#ec5793] border w-full font-bold transition-all delay-75 hover:text-white hover:bg-[#ec5793]">Apply</button>
+            class="p-2 rounded-md bg-white text-[#ec5793] border w-full font-bold transition-all delay-75 hover:text-white hover:bg-[#ec5793]"> {{ session('lang') == 'en' ? 'Apply' : 'تأكيد' }}</button>
     </div>
     </form>
     </div>
@@ -317,7 +317,7 @@
                 class="p-2 rounded-md bg-white text-[#ec5793] border font-bold transition-all delay-75 hover:text-white hover:bg-[#ec5793]"
                 type="button" data-drawer-target="drawer-disabled-backdrop" data-drawer-show="drawer-disabled-backdrop"
                 data-drawer-backdrop="false" aria-controls="drawer-disabled-backdrop">
-                {{ session('lang') == 'en' ? 'Filter' : 'تنقية' }}
+                {{ session('lang') == 'en' ? 'Filter' : 'بحث مفصل' }}
             </button>
         </div>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 px-10 md:px-0">

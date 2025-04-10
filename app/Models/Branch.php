@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Branch extends Model
 {
-    protected $fillable = ['name','section_id'];
+    protected $fillable = ['name','name_ar','section_id'];
     public function section():BelongsTo
     {
         return $this->belongsTo(StoreSections::class);

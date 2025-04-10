@@ -42,33 +42,12 @@
                 <!-- Thumbnail Carousel -->
                 <div class="mt-4 flex justify-start space-x-4 overflow-x-auto p-2 border bg-white ">
                     @foreach ($record->images as $image)
-                        <!-- Thumbnail Modal -->
-                        <div id="modal-{{ $image->id }}" tabindex="-1"
-                            class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                            <div class="relative p-4 w-full max-w-4xl">
-                                <div class="bg-white rounded-lg shadow image-container">
-                                    <button onclick="() => console.log('image clicked')" type="button"
-                                        class="absolute top-2 right-2 text-gray-400 bg-transparent hover:bg-gray-200 rounded-lg text-sm p-1.5"
-                                        data-modal-hide="modal-{{ $image->id }}">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M6 18L18 6M6 6l12 12" />
-                                        </svg>
-                                    </button>
-                                    <div class="skeleton-loader"></div>
-                                    <img src="{{ URL::to('storage/' . $image->image_url) }}"
-                                        class="w-full h-auto max-h-[80vh] object-contain" alt="Product image">
-                                </div>
-                            </div>
-                        </div>
-
                         <!-- Thumbnail Image -->
-                        <div class="flex-shrink-0 relative group ">
+                        <div class="flex-shrink-0 relative group" onclick="Livewire.dispatch('openGallery')">
                             <img src="{{ URL::to('storage/' . $image->image_url) }}"
                                 class="w-24 h-24 object-cover rounded-lg border-2 border-transparent group-hover:border-[#71C9CE] transition-all duration-200 cursor-zoom-in"
                                 alt="Product thumbnail"
-                                onclick="changeMainImage('{{ URL::to('storage/' . $image->image_url) }}')"
-                                data-modal-target="modal-{{ $image->id }}" data-modal-toggle="modal-{{ $image->id }}">
+                                >
                             <div
                                 class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-lg">
                             </div>
@@ -82,9 +61,7 @@
                 <h1 class="text-4xl font-bold text-[#2B3467] mb-4">
                     {!! session('lang') == 'en' ? $record->name_en : $record->name_ar !!}
                 </h1>
-
-
-
+                
                 <!-- Rating Badge -->
                 <div class="mb-6 flex items-center space-x-2 bg-[#F8F5F1] px-4 py-2 rounded-full w-fit">
                     <div class="flex text-[#FFD700]">

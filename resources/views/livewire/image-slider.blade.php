@@ -2,7 +2,7 @@
     @if ($show)
     <div class="swiper-container fixed top-0 z-50 w-full bg-black bg-opacity-70 max-w-full min-h-screen content-center" wire:ignore>
         <button wire:click="close" class="mt-2 bg-red-500 text-white px-2 py-1 rounded">
-            Close
+            {{ session('lang') == 'en' ? 'close' : 'اغلاق' }}
         </button>
         <div class="swiper-wrapper">
             @foreach($images as $image)

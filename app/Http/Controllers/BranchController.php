@@ -65,7 +65,7 @@ class BranchController extends Controller
         $inputs = $request->all();
         $record = $this->crud->create($inputs);
         if ($record) {
-            return $this->index();
+            return redirect()->back()->with('success',"record created successfully");
         } else {
             return redirect()->back()->with("error", "Check requirments error on validation !");
         }
