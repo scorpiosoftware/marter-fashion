@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Carousel;
 use App\Models\Category;
+use App\Models\Color;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -90,7 +91,7 @@ class CartController extends Controller
     {
         $inputs = $request->all();
         $product = Product::find($id);
-        $color = !empty($inputs['color']) ? $inputs['color'] : $product->colors->first();
+        $color = !empty($inputs['color']) ? Color::find($inputs['color']) : $product->colors->first();
         if (!$product) {
 
             abort(404);

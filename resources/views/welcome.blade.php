@@ -12,12 +12,13 @@
     <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="{{URL::to('assets-vite/assets/app-CMJv2OJn.css')}}">
+    <link rel="stylesheet" href="{{URL::to('assets-vite/assets/app-DPaHq_65.css')}}">
     <script href="{{URL::to('assets-vite/assets/app-CnKQ0RRM.js')}}"></script>
 
 
-    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+
     @livewireStyles
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 </head>
 
 <body class="font-sans antialiased">

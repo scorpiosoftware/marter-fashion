@@ -22,7 +22,7 @@
         </div>
         
         <button id="prevBtn-{{ $products->first()->categories()->first()->id }}"
-            class="absolute left-0 top-1/2 -translate-y-1/2 bg-gray-800 text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-gray-900 transform hover:scale-110 shadow-lg">
+            class="absolute left-0 top-1/2 -translate-y-1/2 bg-[#fce4ec] text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-gray-900 transform hover:scale-110 shadow-lg">
             ◀
         </button>
         <button id="nextBtn-{{ $products->first()->categories()->first()->id }}"

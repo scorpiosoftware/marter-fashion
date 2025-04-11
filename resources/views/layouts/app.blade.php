@@ -19,7 +19,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     {{-- <script src="https://unpkg.com/@tailwindcss/browser@4"></script> --}}
     <!-- Scripts -->
-    <link rel="stylesheet" href="{{URL::to('assets-vite/assets/app-CMJv2OJn.css')}}">
+    <link rel="stylesheet" href="{{URL::to('assets-vite/assets/app-DPaHq_65.css')}}">
     <script href="{{URL::to('assets-vite/assets/app-CnKQ0RRM.js')}}"></script>
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 </head>

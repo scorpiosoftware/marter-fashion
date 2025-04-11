@@ -1,4 +1,4 @@
-<div class="pt-4 max-w-screen-2xl mx-auto bg-[#fce4ec] rounded-md p-4 shadow-xl transform transition-all duration-300 hover:scale-90 hover:shadow-2xl wowDiv"  data-animation="animate__fadeInDownBig" data-delay="300">
+<div class="pt-4 max-w-screen-2xl mx-auto bg-[#fce4ec] rounded-md p-4 shadow-xl transform transition-all duration-1000 hover:scale-95 hover:shadow-2xl wowDiv"  data-animation="animate__fadeInDownBig" data-delay="300">
     <div class="flex justify-start items-center px-8">
         <div class="flex justify-between items-center space-x-3">
             <div class="font-bold text-2xl text-gray-800">{{ $title }}</div>
@@ -22,12 +22,18 @@
         </div>
         
         <button id="prevBtn-{{ $products->first()->categories()->first()->id }}"
-            class="absolute left-0 top-1/2 -translate-y-1/2 bg-gray-800 text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-gray-900 transform hover:scale-110 shadow-lg">
-            ◀
+            class="absolute left-0 top-1/2 -translate-y-1/2 bg-[#fce4ec] text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300  shadow-lg">
+            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12l4-4m-4 4 4 4"/>
+              </svg>
+              
         </button>
         <button id="nextBtn-{{ $products->first()->categories()->first()->id }}"
-            class="absolute right-0 top-1/2 -translate-y-1/2 bg-gray-800 text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-gray-900 transform hover:scale-110 shadow-lg">
-            ▶
+            class="absolute right-0 top-1/2 -translate-y-1/2 bg-[#fce4ec] text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg">
+            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4"/>
+              </svg>
+              
         </button>
     </div>
     <script>

@@ -30,7 +30,7 @@
     <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
 
     {{-- <script src="https://unpkg.com/@tailwindcss/browser@4"></script> --}}
-    <link rel="stylesheet" href="{{URL::to('assets-vite/assets/app-CMJv2OJn.css')}}">
+    <link rel="stylesheet" href="{{URL::to('assets-vite/assets/app-DPaHq_65.css')}}">
     <script href="{{URL::to('assets-vite/assets/app-CnKQ0RRM.js')}}"></script>
     {{-- @vite('resources/css/app.css', 'resources/js/app.js') --}}
     @livewireStyles
