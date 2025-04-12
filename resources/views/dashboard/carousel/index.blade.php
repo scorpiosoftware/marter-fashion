@@ -49,10 +49,10 @@
         <div class="grid gap-6 mb-6 md:grid-cols-1">
             <div class="grid grid-cols-1 gap-4 border-2 p-4 md:grid-cols-2">
                 <div class="grid grid-cols-1 gap-4 border-2 p-4 md:grid-cols-2 md:col-start-1 md:col-end-3">
-                    {{-- <div class="w-full mt-2">
+                    <div class="w-full mt-2">
                         <div class="flex justify-between items-center">
                             <label for="logo_url"
-                                class="block mb-2 text-sm font-medium text-gray-900 d:text-white">Logo</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 d:text-white">{{session('lang') == 'en' ? 'Logo' : 'الشعار'}}</label>
                         </div>
                         <div class="mt-4">
                             <input type="file" id="logo_url" name="logo_url"
@@ -61,7 +61,7 @@
                                 placeholder="choose image" />
                         </div>
 
-                    </div> --}}
+                    </div>
 
                     <div class="w-full mt-2">
                         <div class="flex justify-between items-center">
@@ -88,14 +88,14 @@
                         <input class="hidden" type="text" name="image" value="{{ $record->logo_url }}">
                         @if (!empty($record->logo_url))
                         <div class="relative">
-                            <img class="max-w-32 object-cover rounded-lg transition-all delay-100 hover:scale-105"
+                            <img class="max-w-sm object-cover rounded-lg transition-all delay-100 hover:scale-105"
                                 src="{{ URL::to('storage/' . $record->logo_url) }}" alt="">
                         </div> 
                         @endif
                         {{-- Other Images --}}
                         @foreach ($record->images as $image)
                         <div class="relative">
-                            <img class="max-w-32 rounded-lg transition-all delay-100 hover:scale-105"
+                            <img class="max-w-sm rounded-lg transition-all delay-100 hover:scale-105"
                                 src="{{ URL::to('storage/' . $image->url) }}" alt="">
                         </div>
                         @endforeach
@@ -104,7 +104,9 @@
 
             </div>
         </div>
-        <button type="submit"
+        <div class="flex justify-end items-center">
+            <button type="submit"
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center d:bg-blue-600 d:hover:bg-blue-700 d:focus:ring-blue-800">{{session('lang') == 'en' ? 'Submit' : 'حفظ'}}</button>
-    </form>
+        </div>
+        </form>
 </x-app-layout>

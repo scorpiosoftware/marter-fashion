@@ -21,7 +21,7 @@
     <!-- Scripts -->
     <link rel="stylesheet" href="{{URL::to('assets-vite/assets/app-DPaHq_65.css')}}">
     <script href="{{URL::to('assets-vite/assets/app-CnKQ0RRM.js')}}"></script>
-    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="font-sans antialiased">

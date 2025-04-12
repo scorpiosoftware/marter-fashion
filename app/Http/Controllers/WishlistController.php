@@ -77,9 +77,8 @@ class WishlistController extends Controller
         return redirect()->back();
     }
 
-    public function addFav($id, Request $request)
+    public function addFav($id)
     {
-        $inputs = $request->all();
         $product = Product::find($id);
 
         if (!$product) {

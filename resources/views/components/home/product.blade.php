@@ -43,7 +43,7 @@
                                     @if ($details['name'] == $item->name_en)
                                      text-red-600
                                         @break @endif
-                                        
+                                       
                                  @endforeach
                                  @endif 
                        "></i></a>

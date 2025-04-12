@@ -3,38 +3,39 @@
     @livewire('image-slider', [
         'images' => $record->images,
     ])
+    <div class="mx-auto max-w-screen-xl mt-4">
+        <livewire:breadcrumb :links="[
+            [
+                'path' => '/',
+                'name_en' => 'Home',
+                'name_ar' => 'الصفحة الرئيسية',
+            ],
+            [
+                'path' => '/shop',
+                'name_en' => 'Catalog',
+                'name_ar' => 'المنتجات',
+            ],
+            [
+                'path' => '',
+                'name_en' => $record->name_en,
+                'name_ar' => $record->name_ar,
+            ],
+        ]">
+    </div>
     <div
-        class="mx-auto max-w-screen-xl p-4 mt-10 bg-[#ebcdd7] rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl">
+        class="mx-auto max-w-screen-xl p-4 mt-4 bg-[#ebcdd7] rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl">
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
             <!-- Image Gallery Section -->
             <div class="relative">
-                <!-- Main Image Modal -->
-                {{-- <div id="mainImageModal" tabindex="-1" 
-                    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                    <div class="relative p-4 ">
-                        <div class="relative bg-white rounded-lg shadow">
-                            <button type="button"
-                                class="absolute top-2 right-2 text-gray-400 bg-transparent hover:bg-gray-200 rounded-lg text-sm p-1.5"
-                                data-modal-hide="mainImageModal">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            </button>
-                            <!-- Main Image in Modal -->
-                            <img id="mainImageModalImg" src="{{ URL::to('storage/' . $record->main_image_url) }}"
-                                class="mx-auto object-contain" alt="Main product image" >
-                        </div>
-                    </div>
-                </div> --}}
                 <div
                     class="group relative cursor-zoom-in overflow-hidden rounded-2xl shadow-xl transition-all duration-300 hover:shadow-2xl bg-white border border-gray-100">
                     <div class="skeleton-loader absolute inset-0 bg-gradient-to-r from-gray-50 to-gray-100 animate-pulse">
                     </div>
-                    <img id="mainImage" src="{{ URL::to('storage/' . $record->main_image_url) }}"  onclick="Livewire.dispatch('openGallery')"
+                    <img id="mainImage" src="{{ URL::to('storage/' . $record->main_image_url) }}"
+                        onclick="Livewire.dispatch('openGallery')"
                         class="relative z-10 h-full w-full object-cover transition-all duration-500 ease-out group-hover:scale-105 group-hover:brightness-110"
-                        alt="Main product image" >
+                        alt="Main product image">
                     <div
                         class="absolute inset-0 bg-gradient-to-t from-gray-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     </div>
@@ -46,8 +47,7 @@
                         <div class="flex-shrink-0 relative group" onclick="Livewire.dispatch('openGallery')">
                             <img src="{{ URL::to('storage/' . $image->image_url) }}"
                                 class="w-24 h-24 object-cover rounded-lg border-2 border-transparent group-hover:border-[#71C9CE] transition-all duration-200 cursor-zoom-in"
-                                alt="Product thumbnail"
-                                >
+                                alt="Product thumbnail">
                             <div
                                 class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-lg">
                             </div>
@@ -61,26 +61,32 @@
                 <h1 class="text-4xl font-bold text-[#2B3467] mb-4">
                     {!! session('lang') == 'en' ? $record->name_en : $record->name_ar !!}
                 </h1>
-                
-                <!-- Rating Badge -->
-                <div class="mb-6 flex items-center space-x-2 bg-[#F8F5F1] px-4 py-2 rounded-full w-fit">
-                    <div class="flex text-[#FFD700]">
-                        @for ($i = 1; $i <= 5; $i++)
-                            <svg class="w-6 h-6 {{ $product_rate >= $i ? 'fill-current' : 'fill-gray-300' }}"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                <path
-                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
-                        @endfor
-                    </div>
-                </div>
 
+                <div class="flex justify-between items-center mb-6">
+                    <!-- Rating Badge -->
+                    <div class="flex items-center space-x-2 bg-[#F8F5F1] px-4 py-2 rounded-full w-fit">
+                        <div class="flex text-[#FFD700]">
+                            @for ($i = 1; $i <= 5; $i++)
+                                <svg class="w-6 h-6 {{ $product_rate >= $i ? 'fill-current' : 'fill-gray-300' }}"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path
+                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+                            @endfor
+                        </div>
+
+                    </div>
+                    <livewire:heart :record="$record">
+                </div>
                 <!-- Price and Availability -->
                 <div class="mb-8 flex items-center justify-between">
+
                     <div class="flex items-end space-x-4">
-                        <span class="text-3xl font-bold text-[#2B3467]"> د.ع {{ $record->price }}</span>
-                        @if ($record->compare_price)
-                            <span class="text-xl text-gray-400 line-through">${{ $record->compare_price }}</span>
+                        @if ($record->offer_price)
+                        <span class="text-3xl font-bold text-[#2B3467]"> {{session('lang') == 'en' ? 'IQD' : 'د.ع'}} {{ $record->offer_price }}</span>
+                        <span class="text-xl text-gray-400 line-through"> {{session('lang') == 'en' ? 'IQD' : 'د.ع'}} {{ $record->price }}</span>
+                        @else
+                        <span class="text-3xl font-bold text-[#2B3467]"> {{session('lang') == 'en' ? 'IQD' : 'د.ع'}} {{ $record->price }}</span>
                         @endif
                     </div>
                     <span
