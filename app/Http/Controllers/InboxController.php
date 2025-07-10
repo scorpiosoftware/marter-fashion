@@ -7,6 +7,7 @@ use App\Actions\Inbox\GetInbox;
 use App\Actions\Inbox\ListInbox;
 use App\Actions\Inbox\StoreInbox;
 use App\Models\Carousel;
+use App\Notifications\NewContactMessageNotification;
 use Illuminate\Http\Request;
 
 class InboxController extends Controller
@@ -34,13 +35,11 @@ class InboxController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'name_en' => 'required',
-        // ]);
-
         $inputs = $request->all();
 
         $record = StoreInbox::execute($inputs);
+
+        auth()->user()->notify(new NewContactMessageNotification($record));
 
         if($record){
             return redirect()->back()->with("success","Append Record Success !");

@@ -16,7 +16,7 @@
     <div class="py-6 group">
         <h1
             class="text-3xl md:text-3xl font-extrabold bg-clip-text text-black bg-gradient-to-r from-blue-500 to-purple-600 inline-block transition-all duration-300 transform group-hover:scale-105 group-hover:translate-y-[-2px]">
-            {{session('lang') == 'en' ? 'Products' : 'المنتجات'}}
+            {{ session('lang') == 'en' ? 'Products' : 'المنتجات' }}
 
         </h1>
     </div>
@@ -32,7 +32,7 @@
                         <path
                             d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
                     </svg>
-                    {{session('lang') == 'en' ? 'Home' : 'القائمة الرئيسية'}}
+                    {{ session('lang') == 'en' ? 'Home' : 'القائمة الرئيسية' }}
                 </a>
             </li>
             <li aria-current="page">
@@ -42,7 +42,8 @@
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="m1 9 4-4-4-4" />
                     </svg>
-                    <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 d:text-gray-400">{{session('lang') == 'en' ? 'create' : 'انشاء'}}</span>
+                    <span
+                        class="ms-1 text-sm font-medium text-gray-500 md:ms-2 d:text-gray-400">{{ session('lang') == 'en' ? 'create' : 'انشاء' }}</span>
                 </div>
             </li>
         </ol>
@@ -54,39 +55,43 @@
         <div class="grid gap-6 mb-6 md:grid-cols-1">
             <div class="grid grid-cols-1 gap-4 border-2 p-4 md:grid-cols-2">
                 <div>
-                    <label for="code" class="block mb-2 text-sm font-medium text-gray-900 d:text-white">{{session('lang') == 'en' ? 'code' : 'الرمز'}}</label>
-                    <input type="text" id="code" value="" name="code"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 d:bg-gray-700 d:border-gray-600 d:placeholder-gray-400 d:text-white d:focus:ring-blue-500 d:focus:border-blue-500"
-                        placeholder="" required />
+                    <label for="code"
+                        class="block mb-2 text-sm font-medium text-gray-900 d:text-white">{{ session('lang') == 'en' ? 'code' : 'الرمز' }}</label>
+                    <input type="text" id="code" value="{{ $randomCode }}" name="code"
+                        class="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 d:bg-gray-700 d:border-gray-600 d:placeholder-gray-400 d:text-white d:focus:ring-blue-500 d:focus:border-blue-500"
+                        placeholder="" required disabled/>
                 </div>
                 <div>
-                    <label for="name_en" class="block mb-2 text-sm font-medium text-gray-900 d:text-white">{{session('lang') == 'en' ? 'name en' : 'الاسم الاجنبي'}}</label>
+                    <label for="name_en"
+                        class="block mb-2 text-sm font-medium text-gray-900 d:text-white">{{ session('lang') == 'en' ? 'name en' : 'الاسم الاجنبي' }}</label>
                     <input type="text" id="name_en" value="" name="name_en"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 d:bg-gray-700 d:border-gray-600 d:placeholder-gray-400 d:text-white d:focus:ring-blue-500 d:focus:border-blue-500"
                         placeholder="" />
                 </div>
                 <div>
-                    <label for="name_ar" class="block mb-2 text-sm font-medium text-gray-900 d:text-white">{{session('lang') == 'en' ? 'name ar' : 'الاسم العربي'}}</label>
+                    <label for="name_ar"
+                        class="block mb-2 text-sm font-medium text-gray-900 d:text-white">{{ session('lang') == 'en' ? 'name ar' : 'الاسم العربي' }}</label>
                     <input type="text" id="name_ar" value="" name="name_ar"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 d:bg-gray-700 d:border-gray-600 d:placeholder-gray-400 d:text-white d:focus:ring-blue-500 d:focus:border-blue-500"
                         placeholder="" />
                 </div>
                 <div>
                     <label for="brand_id"
-                        class="block mb-2 text-sm font-medium text-gray-900 d:text-white">{{session('lang') == 'en' ? 'brand' : 'العلامة التجارية'}}</label>
+                        class="block mb-2 text-sm font-medium text-gray-900 d:text-white">{{ session('lang') == 'en' ? 'brand' : 'العلامة التجارية' }}</label>
                     <select id="brand_id" name="brand_id"
                         class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 d:bg-gray-700 d:border-gray-600 d:placeholder-gray-400 d:text-white d:focus:ring-blue-500 d:focus:border-blue-500">
                         @foreach ($brands as $brand)
-                            <option value="{{ $brand->id }}">{{session('lang') == 'en' ? $brand->name_en : $brand->name_ar}}</option>
+                            <option value="{{ $brand->id }}">
+                                {{ session('lang') == 'en' ? $brand->name_en : $brand->name_ar }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div>
                     <label for="section_id"
-                        class="block mb-2 text-sm font-medium text-gray-900 d:text-white">{{session('lang') == 'en' ? 'section' : 'القسم'}}</label>
+                        class="block mb-2 text-sm font-medium text-gray-900 d:text-white">{{ session('lang') == 'en' ? 'section' : 'القسم' }}</label>
                     <select id="section_id" name="section_id"
                         class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 d:bg-gray-700 d:border-gray-600 d:placeholder-gray-400 d:text-white d:focus:ring-blue-500 d:focus:border-blue-500">
-                         <option value=""></option>
+                        <option value=""></option>
                         @foreach ($sections as $section)
                             <option value="{{ $section->id }}">{{ $section->name }}</option>
                         @endforeach
@@ -94,7 +99,7 @@
                 </div>
                 <div>
                     <label for="branch_id"
-                        class="block mb-2 text-sm font-medium text-gray-900 d:text-white">{{session('lang') == 'en' ? 'branch' : 'الفرع'}}</label>
+                        class="block mb-2 text-sm font-medium text-gray-900 d:text-white">{{ session('lang') == 'en' ? 'branch' : 'الفرع' }}</label>
                     <select id="branchesSelect" name="branch_id"
                         class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 d:bg-gray-700 d:border-gray-600 d:placeholder-gray-400 d:text-white d:focus:ring-blue-500 d:focus:border-blue-500">
                     </select>
@@ -123,7 +128,8 @@
                                         if (data.length > 0) {
                                             $.each(data, function(key, branch) {
                                                 $('#branchesSelect').append(
-                                                "<option value='" + branch.id + "'>" + branch.name + "</option>"
+                                                    "<option value='" + branch.id + "'>" +
+                                                    branch.name + "</option>"
                                                 );
                                             });
                                             $('#branchesSelect').show();
@@ -147,18 +153,39 @@
                 </script>
                 <div>
                     <label for="status"
-                        class="block mb-2 text-sm font-medium text-gray-900 d:text-white">{{session('lang') == 'en' ? 'status' : 'الحالة'}}</label>
+                        class="block mb-2 text-sm font-medium text-gray-900 d:text-white">{{ session('lang') == 'en' ? 'status' : 'الحالة' }}</label>
                     <select id="status" name="status"
                         class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 d:bg-gray-700 d:border-gray-600 d:placeholder-gray-400 d:text-white d:focus:ring-blue-500 d:focus:border-blue-500">
-                        <option value="in_stock">{{session('lang') == 'en' ? 'in stock' : 'متوفر'}}</option>
-                        <option value="out_of_stock">{{session('lang') == 'en' ? 'out of stock' : 'غير متوفر'}}</option>
+                        <option value="in_stock">{{ session('lang') == 'en' ? 'in stock' : 'متوفر' }}</option>
+                        <option value="out_of_stock">{{ session('lang') == 'en' ? 'out of stock' : 'غير متوفر' }}
+                        </option>
                     </select>
+                </div>
+                <div class="w-full">
+                    <label for="sizes"
+                        class="block mb-2 text-sm font-medium text-gray-900 d:text-white">{{ session('lang') == 'en' ? 'sizes' : 'المقاسات' }}</label>
+                    <div class="relative flex w-full">
+                        <select id="sizes" name="sizes[]" multiple placeholder="..." autocomplete="off"
+                            class="block w-full rounded-sm cursor-pointer focus:outline-none" multiple>
+                            @foreach ($sizes as $size)
+                                <option value="{{ $size->id }}">
+                                    {{ $size->name }}
+                                </option>
+                            @endforeach
+
+                        </select>
+                    </div>
+                    <script>
+                        new TomSelect('#sizes', {
+                            maxItems: 10,
+                        });
+                    </script>
                 </div>
                 <div class="grid grid-cols-1 gap-4 border-2 p-4 md:grid-cols-2 md:col-start-1 md:col-end-3">
                     <div class="w-full mt-2">
                         <div class="flex justify-between items-center">
                             <label for="main_image_url"
-                                class="block mb-2 text-sm font-medium text-gray-900 d:text-white">{{session('lang') == 'en' ? 'main image' : 'الصورة الرئيسية'}}</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 d:text-white">{{ session('lang') == 'en' ? 'main image' : 'الصورة الرئيسية' }}</label>
                         </div>
                         <div class="mt-4">
                             <input type="file" id="main_image_url" name="main_image_url" value=""
@@ -170,7 +197,7 @@
                     <div class="w-full mt-2">
                         <div class="flex justify-between items-center">
                             <label for="images"
-                                class="block mb-2 text-sm font-medium text-gray-900 d:text-white">{{session('lang') == 'en' ? 'other images' : 'صور ثانوية'}}</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 d:text-white">{{ session('lang') == 'en' ? 'other images' : 'صور ثانوية' }}</label>
                         </div>
                         <div class="mt-4">
                             <input type="file" multiple id="images" name="images[]" value=""
@@ -182,20 +209,22 @@
 
                     <div class="w-full md:col-start-1 md:col-end-3">
                         <label for="categories"
-                            class="block mb-2 text-sm font-medium text-gray-900 d:text-white">{{session('lang') == 'en' ? 'categories' : 'الاصناف'}}</label>
+                            class="block mb-2 text-sm font-medium text-gray-900 d:text-white">{{ session('lang') == 'en' ? 'categories' : 'الاصناف' }}</label>
                         <div class="relative flex w-full">
                             <select id="categories" name="categories[]" multiple placeholder="..."
                                 autocomplete="off" class="block w-full rounded-sm cursor-pointer focus:outline-none"
                                 multiple>
                                 @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">{{session('lang') == 'en' ? $category->name_en : $category->name_ar}}</option>
+                                    <option value="{{ $category->id }}">
+                                        {{ session('lang') == 'en' ? $category->name_en : $category->name_ar }}
+                                    </option>
                                 @endforeach
 
                             </select>
                         </div>
                         <script>
                             new TomSelect('#categories', {
-                                maxItems: 100,
+                                maxItems: 10,
                             });
                         </script>
                     </div>
@@ -203,7 +232,7 @@
 
                     <div class="w-full md:col-start-1 md:col-end-3">
                         <label for="colors"
-                            class="block mb-2 text-sm font-medium text-gray-900 d:text-white">{{session('lang') == 'en' ? 'colors' : 'الالوان'}}</label>
+                            class="block mb-2 text-sm font-medium text-gray-900 d:text-white">{{ session('lang') == 'en' ? 'colors' : 'الالوان' }}</label>
                         <div class="relative flex w-full">
                             <select id="colors" name="colors[]" multiple placeholder="Select colors..."
                                 autocomplete="off" class="block w-full rounded-sm cursor-pointer focus:outline-none"
@@ -223,11 +252,11 @@
                 </div>
 
             </div>
-{{-- Prices and qty's --}}
+            {{-- Prices and qty's --}}
             <div class="grid grid-cols-1 gap-4 border-2 p-4 md:grid-cols-2">
                 <div>
                     <label for="price"
-                        class="block mb-2 text-sm font-medium text-gray-900  d:text-white">{{session('lang') == 'en' ? 'price' : 'السعر'}}</label>
+                        class="block mb-2 text-sm font-medium text-gray-900  d:text-white">{{ session('lang') == 'en' ? 'price' : 'السعر' }}</label>
 
                     <input type="number" id="price" value="" name="price" step=".01"
                         class="bg-gray-50 h-12 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 d:bg-gray-700 d:border-gray-600 d:placeholder-gray-400 d:text-white d:focus:ring-blue-500 d:focus:border-blue-500"
@@ -235,7 +264,7 @@
                 </div>
                 <div>
                     <label for="offer_price"
-                        class="block mb-2 text-sm font-medium text-gray-900  d:text-white">{{session('lang') == 'en' ? 'offer price' : 'سعر بعد الحسم'}}</label>
+                        class="block mb-2 text-sm font-medium text-gray-900  d:text-white">{{ session('lang') == 'en' ? 'offer price' : 'سعر بعد الحسم' }}</label>
 
                     <input type="number" id="offer_price" value="" name="offer_price" step=".01"
                         class="bg-gray-50 h-12 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 d:bg-gray-700 d:border-gray-600 d:placeholder-gray-400 d:text-white d:focus:ring-blue-500 d:focus:border-blue-500"
@@ -243,7 +272,7 @@
                 </div>
                 <div>
                     <label for="stock_quantity"
-                        class="block mb-2 text-sm font-medium text-gray-900  d:text-white">{{session('lang') == 'en' ? 'quantity' : 'الكمية'}}</label>
+                        class="block mb-2 text-sm font-medium text-gray-900  d:text-white">{{ session('lang') == 'en' ? 'quantity' : 'الكمية' }}</label>
 
                     <input type="number" id="stock_quantity" value="" name="stock_quantity"
                         class="bg-gray-50 h-12 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 d:bg-gray-700 d:border-gray-600 d:placeholder-gray-400 d:text-white d:focus:ring-blue-500 d:focus:border-blue-500"
@@ -251,7 +280,7 @@
                 </div>
                 <div class="">
                     <label for="minimum_quantity"
-                        class="block mb-2 text-sm font-medium text-gray-900  d:text-white">{{session('lang') == 'en' ? 'min quantity' : 'الحد الأدنى للكمية'}}</label>
+                        class="block mb-2 text-sm font-medium text-gray-900  d:text-white">{{ session('lang') == 'en' ? 'min quantity' : 'الحد الأدنى للكمية' }}</label>
 
                     <input type="number" id="minimum_quantity" value="1" name="minimum_quantity"
                         class="bg-gray-50 h-12 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 d:bg-gray-700 d:border-gray-600 d:placeholder-gray-400 d:text-white d:focus:ring-blue-500 d:focus:border-blue-500"
@@ -259,7 +288,7 @@
                 </div>
                 <div class="">
                     <label for="maximum_quantity"
-                        class="block mb-2 text-sm font-medium text-gray-900  d:text-white">{{session('lang') == 'en' ? 'max quantity' : 'الكمية القصوى'}}</label>
+                        class="block mb-2 text-sm font-medium text-gray-900  d:text-white">{{ session('lang') == 'en' ? 'max quantity' : 'الكمية القصوى' }}</label>
 
                     <input type="number" id="maximum_quantity" value="5" name="maximum_quantity"
                         class="bg-gray-50 h-12 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 d:bg-gray-700 d:border-gray-600 d:placeholder-gray-400 d:text-white d:focus:ring-blue-500 d:focus:border-blue-500"
@@ -270,7 +299,7 @@
             <div class="grid grid-cols-1 gap-4 border-2 p-4 md:grid-cols-2">
                 <div class="">
                     <label for="description_en" class="block mb-2 text-sm font-medium text-gray-900 d:text-white">
-                        {{session('lang') == 'en' ? 'description en' : 'الوصف بالاجنبي'}}</label>
+                        {{ session('lang') == 'en' ? 'description en' : 'الوصف بالاجنبي' }}</label>
                     <section>
                         <div
                             class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 d:bg-gray-700 d:border-gray-600">
@@ -299,7 +328,7 @@
                 </div>
                 <div class="">
                     <label for="description_ar" class="block mb-2 text-sm font-medium text-gray-900 d:text-white">
-                        {{session('lang') == 'en' ? 'description ar' : 'الوصف بالعربية'}}</label>
+                        {{ session('lang') == 'en' ? 'description ar' : 'الوصف بالعربية' }}</label>
                     <section>
                         <div
                             class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 d:bg-gray-700 d:border-gray-600">
@@ -330,9 +359,9 @@
         </div>
         <div class="flex justify-end">
             <button type="submit"
-            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center d:bg-blue-600 d:hover:bg-blue-700 d:focus:ring-blue-800">{{session('lang') == 'en' ? 'save' : 'حفظ'}}</button>
-   
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center d:bg-blue-600 d:hover:bg-blue-700 d:focus:ring-blue-800">{{ session('lang') == 'en' ? 'save' : 'حفظ' }}</button>
+
         </div>
 
-        </form>
+    </form>
 </x-app-layout>

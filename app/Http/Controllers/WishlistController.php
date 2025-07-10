@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Carousel;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductView;
 use Illuminate\Http\Request;
 
 class WishlistController extends Controller
@@ -16,7 +17,8 @@ class WishlistController extends Controller
     {
         $categories = Category::all();
         $carousel = Carousel::with('images')->first();
-        return view('wishlist.index',compact('categories','carousel'));
+        $productViews = ProductView::where('selected',true)->get();
+        return view('wishlist.index',compact('categories','carousel','productViews'));
     }
 
     /**

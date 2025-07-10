@@ -7,6 +7,7 @@ use Livewire\Component;
 class ImageSlider extends Component
 {
     public $images;
+    public $currentImageUrl;
     public $show = false;
     protected $listeners = ['openGallery' => 'open'];
     public function mount($images = [])
@@ -16,7 +17,9 @@ class ImageSlider extends Component
     public function open()
     {
         $this->show = true;
-        $this->dispatch('swiperUpdated', show: true); // Trigger Swiper initialization
+        $this->dispatch('swiperUpdated', [
+            'show' => true,
+        ]);
     }
     public function close(){
         $this->show = false;

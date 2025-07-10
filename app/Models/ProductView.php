@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class ProductView extends Model
 {
     use HasFactory;
-    protected $fillable = ['name','category_id','section_id','branch_id','selected'];
+    protected $fillable = ['name','name_ar','category_id','section_id','branch_id','selected'];
 
     public function category() {
         return $this->belongsTo(Category::class);

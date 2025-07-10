@@ -105,6 +105,11 @@ class BranchController extends Controller
      */
     public function destroy(string $id)
     {
+        $record = Branch::find($id);
+
+        if($record->products()->exists()){
+            return redirect()->back()->with("error","Cannot delete this record for the relations !");
+        }
         $deleted = $this->crud->delete($id);
         if($deleted){
             return redirect()->back()->with("success","Delete Record Success !");

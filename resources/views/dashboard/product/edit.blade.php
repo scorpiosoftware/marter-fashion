@@ -168,6 +168,26 @@
                         </option>
                     </select>
                 </div>
+                <div class="w-full">
+                    <label for="sizes"
+                        class="block mb-2 text-sm font-medium text-gray-900 d:text-white">{{ session('lang') == 'en' ? 'sizes' : 'المقاسات' }}</label>
+                    <div class="relative flex w-full">
+                        <select id="sizes" name="sizes[]" multiple placeholder="..." autocomplete="off"
+                            class="block w-full rounded-sm cursor-pointer focus:outline-none" multiple>
+                            @foreach ($sizes as $size)
+                                <option value="{{ $size->id }}" @if ($record->sizes()->Where('id', '=', $size->id)->find($size->id)) selected @endif>
+                                 {{ $size->name }}
+                                </option>
+                            @endforeach
+
+                        </select>
+                    </div>
+                    <script>
+                        new TomSelect('#sizes', {
+                            maxItems: 10,
+                        });
+                    </script>
+                </div>
 
                 <div class="grid grid-cols-1 gap-4 border-2 p-4 md:grid-cols-2 md:col-start-1 md:col-end-3">
 

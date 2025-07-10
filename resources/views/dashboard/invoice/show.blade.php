@@ -59,24 +59,27 @@
             </thead>
             <tbody>
                 @foreach ($items as $item)
-                    <tr class="bg-white border-b d:bg-gray-800 d:border-gray-700 hover:bg-gray-50 d:hover:bg-gray-600">
-                        <td class="p-4 text-nowrap">
-                            <img src="{{ URL::to('storage/' . $item->product->main_image_url) }}"
-                                class="w-16 md:w-24 max-w-full max-h-full" alt="Apple Watch">
-                        </td>
-                        <td class="px-6 py-4 font-semibold text-nowrap text-gray-900 d:text-white">
-                           {{session('lang') == 'en' ? $item->product->name_en : $item->product->name_ar}}
-                        </td>
-                        <td class="px-6 py-4">
-                            <div class="flex items-center text-nowrap">
-                                {{ $item->quantity }}
-                            </div>
-                        </td>
-                        <td class="px-6 py-4 font-semibold text-gray-900 text-nowrap d:text-white">
-                            {{ $item->subtotal }} د.ع
-                        </td>
+                @if (!empty($item->product))
+                <tr class="bg-white border-b d:bg-gray-800 d:border-gray-700 hover:bg-gray-50 d:hover:bg-gray-600">
+                    <td class="p-4 text-nowrap">
+                        <img src="{{ URL::to('storage/' . $item->product->main_image_url) }}"
+                            class="w-16 md:w-24 max-w-full max-h-full" alt="Apple Watch">
+                    </td>
+                    <td class="px-6 py-4 font-semibold text-nowrap text-gray-900 d:text-white">
+                       {{session('lang') == 'en' ? $item->product->name_en : $item->product->name_ar}}
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center text-nowrap">
+                            {{ $item->quantity }}
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 font-semibold text-gray-900 text-nowrap d:text-white">
+                        {{ $item->subtotal }} د.ع
+                    </td>
 
-                    </tr>
+                </tr>
+                @endif
+ 
                 @endforeach
             </tbody>
         </table>

@@ -53,14 +53,8 @@
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 d:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase text-nowrap bg-gray-50 d:bg-gray-700 d:text-gray-400">
                 <tr>
-                    <th scope="col" class="px-6 py-3 ">
-                        {{session('lang') == 'en' ? 'image' : 'صورة'}}
-                    </th>
                     <th scope="col" class="px-6 py-3">
-                        {{session('lang') == 'en' ? 'name en' : 'الاسم بالانجليزية'}}
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        {{session('lang') == 'en' ? 'name ar' : 'الاسم العربي'}}
+                        {{session('lang') == 'en' ? 'name' : 'الاسم '}}
                     </th>
                     <th scope="col" class="px-6 py-3">
                         <span class="">{{session('lang') == 'en' ? 'Options' : 'اعدادات'}}</span>
@@ -71,18 +65,9 @@
             <tbody>
                 @foreach ($records as $record)
                     <tr class="bg-white border-b d:bg-gray-800 d:border-gray-700">
-                        <th scope="row" class="p-2  text-gray-900 whitespace-nowrap d:text-white">
-                            <img src="{{ URL::to('storage/' . $record->image_url) }}" alt=""
-                                class="rounded-full w-16 h-16 shadow-lg ">
-                        </th>
-
                         <td class="px-6 py-4 font-extrabold text-black text-base">
-                            {{ $record->name_en }}
+                           {{session('lang') == 'en' ? $record->name_en : $record->name_ar}}
                         </td>
-                        <td class="px-6 py-4 font-extrabold text-black text-base">
-                            {{ $record->name_ar }}
-                        </td>
-
                         <td class="px-6 py-3 text-right flex justify-start items-center pt-[30px] space-x-4">
                             <a href="{{ route('category.edit', $record->id) }}"
                                 class="font-medium text-blue-600 d:text-blue-500 hover:underline">{{session('lang') == 'en' ? 'edit' : 'تعديل'}}</a>

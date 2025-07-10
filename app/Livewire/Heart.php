@@ -54,6 +54,10 @@ class Heart extends Component
                     "photo" => $product->main_image_url
                 ];
             $this->isFavorited = true;
+            $this->dispatch('toast:added', [
+                'message' => 'Product added to wishlist!',
+                'icon' => 'success'
+            ]);
             session()->put('wishlist', $wishlist);
         } else {
             if (isset($wishlist[$id])) {
@@ -62,6 +66,10 @@ class Heart extends Component
 
                 session()->put('wishlist', $wishlist);
                 $this->isFavorited = false;
+                $this->dispatch('toast:removed', [
+                    'message' => 'Product removed from wishlist!',
+                    'icon' => 'success'
+                ]);
             }
         }
     }

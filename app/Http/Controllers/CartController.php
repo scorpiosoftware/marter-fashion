@@ -6,6 +6,7 @@ use App\Models\Carousel;
 use App\Models\Category;
 use App\Models\Color;
 use App\Models\Product;
+use App\Models\Size;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -24,7 +25,7 @@ class CartController extends Controller
         }
 
         // return 
-        return view('cart.index', compact('categories', 'totale','carousel'));
+        return view('cart.index', compact('categories', 'totale', 'carousel'));
     }
     public function decrementToCart($id)
     {
@@ -92,12 +93,14 @@ class CartController extends Controller
         $inputs = $request->all();
         $product = Product::find($id);
         $color = !empty($inputs['color']) ? Color::find($inputs['color']) : $product->colors->first();
+        $size = !empty($inputs['size']) ? Size::find($inputs['size']) : $product->sizes->first();
         if (!$product) {
 
             abort(404);
         }
         $cart = session()->get('cart');
         $price = $product->price;
+
         if (!empty($product->offer_price) || $product->offer_price > 0) {
             $price = $product->offer_price;
         }
@@ -109,6 +112,7 @@ class CartController extends Controller
                     "quantity" => 0,
                     "price" => $price,
                     "color" => $color,
+                    "size" => $size,
                     "photo" => $product->main_image_url
                 ]
             ];
@@ -144,6 +148,7 @@ class CartController extends Controller
             "quantity" => 1,
             "price" => $price,
             "color" => $color,
+            "size" => $size,
             "photo" => $product->main_image_url
         ];
 

@@ -2,7 +2,7 @@
     font-family: 'Lato', sans-serif;
     text-align: center;
     border-radius: 30px;
-    border: 1px dashed #000000;
+    /* border: 1px dashed #000000; */
     width: 100%;
 }
 
@@ -28,15 +28,17 @@
 
 .product-grid .product-hot-label {
     color: #fff;
-    background: #ddb2c7; 
+    background: #9e01a1; 
+    
     font-size: 15px;
     font-weight: 300;
     line-height: 30px;
-    width: 65px;
-    height: 30px;
+    width: 50%;
+    border-radius: 10%;
+    height: auto;
     position: absolute;
-    top: 20px;
-    left: -10px;
+    top: -10px;
+    left: 25%;
 }
 
 .product-grid .product-hot-label:before,
@@ -162,7 +164,9 @@
 }
 
 .product-grid .price {
-    color: #ff7844;
+    color: #28a03c;
+    background: #ffffff;
+    padding: 5px;
     font-size: 18px;
     font-weight: 700;
 }

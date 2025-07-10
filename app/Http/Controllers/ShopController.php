@@ -16,6 +16,7 @@ use App\Models\ProductComments;
 use App\Models\StoreSections;
 use App\View\Components\home\brands;
 use Illuminate\Http\Request;
+use Str;
 
 class ShopController extends Controller
 {
@@ -26,14 +27,14 @@ class ShopController extends Controller
     {
         $inputs = $request->all();
         $request->visit();
-        $products = ListProduct::execute($inputs);
         $categories = ListCategory::execute();
+        $products = ListProduct::execute($inputs);
         $brands = Brand::all();
         $sections = StoreSections::all();
         $branches = Branch::all();
         $colors = Color::all();
         $carousel = Carousel::with('images')->first();
-        return view('shop.index', compact('products', 'categories', 'brands', 'inputs', 'carousel','sections','branches','colors'));
+        return view('shop.index', compact('categories', 'brands', 'inputs', 'carousel', 'sections', 'branches', 'colors','products'));
     }
 
     public function addComment(Request $request)
@@ -72,21 +73,31 @@ class ShopController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        $record = GetProduct::execute($id);
-        $comments = new ProductComments();
-        $comments = $comments->where('product_id', $record->id)->get();
+public function show(string $id, string $slug)
+{
+    $record = GetProduct::execute($id);
+    
+    // Optional: Verify the slug matches
+    // if ($slug !== Str::slug($record->name)) {
+    //     return redirect()->route('shop.show', [
+    //         'id' => $record->id, 
+    //         'slug' => Str::slug($record->name)
+    //     ], 301);
+    // }
 
-        $total_rates = $comments->sum('rate');
+    // Rest of your existing code...
+    $comments = new ProductComments();
+    $comments = $comments->where('product_id', $record->id)->get();
 
-
-        $product_rate = $comments->count() > 0 ? ($total_rates / $comments->count()) : 0;
-        $cart = session()->get('cart');
-        $categories = Category::all();
-        $carousel = Carousel::with('images')->first();
-        return view("shop.show", compact("record", 'categories', 'cart', 'comments', 'product_rate','carousel'));
-    }
+    $total_rates = $comments->sum('rate');
+    $product_rate = $comments->count() > 0 ? ($total_rates / $comments->count()) : 0;
+    
+    $cart = session()->get('cart');
+    $categories = Category::all();
+    $carousel = Carousel::with('images')->first();
+    
+    return view("shop.show", compact("record", 'categories', 'cart', 'comments', 'product_rate', 'carousel'));
+}
 
 
     /**
@@ -115,7 +126,7 @@ class ShopController extends Controller
     public function filter(Request $request)
     {
         $inputs = $request->all();
-        // dd($inputs);
+
         $products = ListProduct::execute($inputs);
         $categories = ListCategory::execute();
         $brands = Brand::all();
@@ -124,6 +135,6 @@ class ShopController extends Controller
         $branches = Branch::all();
         $carousel = Carousel::with('images')->first();
         $request->visit();
-        return view('shop.index', compact('products', 'categories', 'brands', 'inputs','carousel','sections','branches','colors'));
+        return view('shop.index', compact('categories', 'brands', 'inputs', 'carousel', 'sections', 'branches', 'colors', 'products'));
     }
 }

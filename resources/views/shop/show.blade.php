@@ -22,155 +22,162 @@
             ],
         ]">
     </div>
-    <div
-        class="mx-auto max-w-screen-xl p-4 mt-4 bg-[#ebcdd7] rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl">
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+    <div class="mx-auto max-w-screen-xl p-4 mt-4  rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
             <!-- Image Gallery Section -->
             <div class="relative">
-                <div
-                    class="group relative cursor-zoom-in overflow-hidden rounded-2xl shadow-xl transition-all duration-300 hover:shadow-2xl bg-white border border-gray-100">
-                    <div class="skeleton-loader absolute inset-0 bg-gradient-to-r from-gray-50 to-gray-100 animate-pulse">
-                    </div>
+                <!-- Main Image Container -->
+                <div class="relative aspect-square w-full max-w-2xl mx-auto bg-gradient-to-b from-pink-500/20 via-purple-600/20 to-white/20 rounded-2xl overflow-hidden shadow-xl" id="imageContainer">
+                    <div class="skeleton-loader absolute inset-0 bg-gradient-to-r from-gray-50/50 to-gray-100/50 animate-pulse"></div>
                     <img id="mainImage" src="{{ URL::to('storage/' . $record->main_image_url) }}"
                         onclick="Livewire.dispatch('openGallery')"
-                        class="relative z-10 h-full w-full object-cover transition-all duration-500 ease-out group-hover:scale-105 group-hover:brightness-110"
-                        alt="Main product image">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-gray-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        class="relative z-10 w-full h-full object-contain transition-transform duration-100 ease-out"
+                        alt="Main product image" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#2B3467]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    
+                    <!-- Zoom Indicator -->
+                    <div class="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-sm text-[#2B3467] flex items-center gap-2 shadow-lg z-20">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+                        </svg>
+                        Hover to zoom
                     </div>
                 </div>
-                <!-- Thumbnail Carousel -->
-                <div class="mt-4 flex justify-start space-x-4 overflow-x-auto p-2 border bg-white ">
-                    @foreach ($record->images as $image)
-                        <!-- Thumbnail Image -->
-                        <div class="flex-shrink-0 relative group" onclick="Livewire.dispatch('openGallery')">
-                            <img src="{{ URL::to('storage/' . $image->image_url) }}"
-                                class="w-24 h-24 object-cover rounded-lg border-2 border-transparent group-hover:border-[#71C9CE] transition-all duration-200 cursor-zoom-in"
-                                alt="Product thumbnail">
-                            <div
-                                class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-lg">
+
+                <!-- Thumbnail Grid -->
+                <div class="mt-6 max-w-2xl mx-auto">
+                    <div class="grid grid-cols-4 sm:grid-cols-5 gap-4">
+                        @foreach ($record->images as $image)
+                            <div class="relative aspect-square group cursor-pointer transform transition-all duration-300 hover:scale-105 bg-white p-1 rounded-lg shadow-md" 
+                                 onclick="changeMainImage('{{ URL::to('storage/' . $image->image_url) }}')">
+                                <div class="relative w-full h-full rounded-lg overflow-hidden">
+                                    <img src="{{ URL::to('storage/' . $image->image_url) }}"
+                                        class="w-full h-full object-cover transition-all duration-300 group-hover:brightness-110"
+                                        alt="Product thumbnail">
+                                    <div class="absolute inset-0 bg-[#2B3467] opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-lg"></div>
+                                </div>
+                                <!-- Active Indicator -->
+                                <div class="absolute inset-0 border-2 border-transparent group-hover:border-[#2B3467] rounded-lg transition-all duration-300"></div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
+                </div>
+
+                <!-- Image Navigation -->
+                <div class="absolute top-[40%] -translate-y-1/2 left-0 right-0 flex justify-between px-4 pointer-events-none z-20">
+                    <button id="scrollPrev"
+                        class="bg-white/90 hover:bg-white p-3 rounded-full shadow-lg pointer-events-auto transform transition-all duration-300 hover:scale-110 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#2B3467]" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                    <button id="scrollNext"
+                        class="bg-white/90 hover:bg-white p-3 rounded-full shadow-lg pointer-events-auto transform transition-all duration-300 hover:scale-110 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#2B3467]" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
                 </div>
             </div>
 
             <!-- Product Info Section -->
-            <div class="bg-white p-8 rounded-xl shadow-lg">
-                <h1 class="text-4xl font-bold text-[#2B3467] mb-4">
+            <div class="bg-white/90 backdrop-blur-sm p-8 rounded-xl shadow-lg transform transition-all duration-300 hover:shadow-2xl" x-data="{ open: true }">
+                <div class="md:text-4xl text-xl font-bold flex justify-between text-[#2B3467] mb-4 cursor-pointer hover:text-[#1a1f3d] transition-colors duration-300" @click="open = !open">
                     {!! session('lang') == 'en' ? $record->name_en : $record->name_ar !!}
-                </h1>
+                    <span class="cursor-pointer transform transition-transform duration-300 hover:scale-110" x-show="!open">+</span>
+                    <span class="cursor-pointer transform transition-transform duration-300 hover:scale-110" x-show="open">−</span>
+                </div>
 
-                <div class="flex justify-between items-center mb-6">
-                    <!-- Rating Badge -->
-                    <div class="flex items-center space-x-2 bg-[#F8F5F1] px-4 py-2 rounded-full w-fit">
-                        <div class="flex text-[#FFD700]">
-                            @for ($i = 1; $i <= 5; $i++)
-                                <svg class="w-6 h-6 {{ $product_rate >= $i ? 'fill-current' : 'fill-gray-300' }}"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path
-                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                </svg>
-                            @endfor
+                <div x-show="open" x-transition:enter="transition ease-out duration-500"
+                    x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+                    x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 scale-100"
+                    x-transition:leave-end="opacity-0 scale-95">
+                    <div class="flex justify-between items-center mb-6">
+                        <!-- Rating Badge -->
+                        <div class="flex items-center space-x-2 bg-[#F8F5F1] px-4 py-2 rounded-full w-fit transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                            <div class="flex text-[#FFD700]">
+                                @for ($i = 1; $i <= 5; $i++)
+                                    <svg class="w-6 h-6 {{ $product_rate >= $i ? 'fill-current' : 'fill-gray-300' }} transform transition-transform duration-300 hover:scale-110"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path
+                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg>
+                                @endfor
+                            </div>
                         </div>
 
+                        <livewire:heart :record="$record">
                     </div>
-                    <livewire:heart :record="$record">
-                </div>
-                <!-- Price and Availability -->
-                <div class="mb-8 flex items-center justify-between">
-
-                    <div class="flex items-end space-x-4">
-                        @if ($record->offer_price)
-                        <span class="text-3xl font-bold text-[#2B3467]"> {{session('lang') == 'en' ? 'IQD' : 'د.ع'}} {{ $record->offer_price }}</span>
-                        <span class="text-xl text-gray-400 line-through"> {{session('lang') == 'en' ? 'IQD' : 'د.ع'}} {{ $record->price }}</span>
-                        @else
-                        <span class="text-3xl font-bold text-[#2B3467]"> {{session('lang') == 'en' ? 'IQD' : 'د.ع'}} {{ $record->price }}</span>
-                        @endif
-                    </div>
-                    <span
-                        class="px-4 py-2 rounded-full {{ $record->status == 'in_stock' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
-                        {{ session('lang') == 'en' ? ($record->status == 'in_stock' ? 'In Stock' : 'Out of Stock') : ($record->status == 'in_stock' ? 'متوفر' : 'إنتهى') }}
-                    </span>
-                </div>
-
-                <!-- Product Description -->
-                <div class="mb-8">
-                    <h3 class="text-xl font-semibold text-[#2B3467] mb-3">
-                        {{ session('lang') == 'en' ? 'Description' : 'وصف' }}</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        {!! session('lang') == 'en' ? $record->description_en : $record->description_ar !!}
-                    </p>
-                </div>
-
-                <!-- Categories -->
-                <div class="mb-8">
-                    <h3 class="text-xl font-semibold text-[#2B3467] mb-3">
-                        {{ session('lang') == 'en' ? 'Categories' : 'الفئات' }}</h3>
-                    <div class="flex flex-wrap gap-2">
-                        @foreach ($record->categories as $category)
-                            <span class="px-3 py-1 bg-[#BAD7E9] text-[#2B3467] rounded-full text-sm">
-                                {!! session('lang') == 'en' ? $category->name_en : $category->name_ar !!}
-                            </span>
-                        @endforeach
-                    </div>
-                </div>
-
-                <!-- Add to Cart Section -->
-                <form action="{{ route('cart.add', $record->id) }}" method="GET" class="space-y-6">
-                    @csrf
-                    <div class="flex justify-start items-center space-x-4 mb-4 ">
-                        @foreach ($record->colors as $color)
-                            <input type="radio" name="color" value="{{ $color->id }}" required
-                                class="rounded-full box-border size-10 p-2 hover:border hove bg-[{!! $color->hex_code !!}]"
-                                style="background-color: {!! $color->hex_code !!}"
-                                {{ $color->id == $record->colors->first()->id ? 'checked' : '' }} />
-                        @endforeach
-                    </div>
-                    <div class="md:flex items-center md:space-x-4">
-                        <div class=" flex justify-center items-center border rounded-lg overflow-hidden">
-                            <button type="button"
-                                class="px-4 py-2 w-full bg-gray-100 text-[#2B3467] hover:bg-gray-200 transition-colors"
-                                onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                −
-                            </button>
-                            <input type="number" name="qty"
-                                value="{{ session('cart') && !empty($cart[$record->id]['quantity']) ? $cart[$record->id]['quantity'] : 1 }}"
-                                min="{{ $record->minimum_quantity }}" max="{{ $record->maximum_quantity }}"
-                                class="w-16 text-center border-0 bg-white text-[#2B3467] focus:ring-0"
-                                aria-label="Quantity">
-                            <button type="button"
-                                class="px-4 py-2 w-full bg-gray-100 text-[#2B3467] hover:bg-gray-200 transition-colors"
-                                onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                +
-                            </button>
+                    <!-- Price and Availability -->
+                    <div class="mb-8 flex items-center justify-between">
+                        <div class="flex items-end space-x-4">
+                            @if ($record->offer_price)
+                                <span class="text-3xl font-bold text-[#2B3467] transform transition-all duration-300 hover:scale-105">
+                                    {{ session('lang') == 'en' ? 'IQD' : 'د.ع' }}
+                                    {{ $record->offer_price }}</span>
+                                <span class="text-xl text-gray-400 line-through">
+                                    {{ session('lang') == 'en' ? 'IQD' : 'د.ع' }}
+                                    {{ $record->price }}</span>
+                            @else
+                                <span class="text-3xl font-bold text-[#2B3467] transform transition-all duration-300 hover:scale-105">
+                                    {{ session('lang') == 'en' ? 'IQD' : 'د.ع' }}
+                                    {{ $record->price }}</span>
+                            @endif
                         </div>
-                        <button type="submit"
-                            class="flex-1 w-full md:mt-0 mt-4 bg-green-400 text-white px-8 py-3  mx-auto rounded-lg hover:bg-[#1a1f3d] transition-colors flex items-center justify-center space-x-2">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 576 512">
-                                <path
-                                    d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
-                            </svg>
-                            <span>{{ session('lang') == 'en' ? 'Add to Cart' : 'أضف إلى السلة' }}</span>
-                        </button>
+                        <span
+                            class="px-4 py-2 rounded-full transform transition-all duration-300 hover:scale-105 {{ $record->status == 'in_stock' ? 'bg-green-100 text-green-800 hover:bg-green-200' : 'bg-red-100 text-red-800 hover:bg-red-200' }}">
+                            {{ session('lang') == 'en'
+                                ? ($record->status == 'in_stock'
+                                    ? 'In Stock'
+                                    : 'Out of Stock')
+                                : ($record->status == 'in_stock'
+                                    ? 'متوفر'
+                                    : 'إنتهى') }}
+                        </span>
                     </div>
-                    <p class="text-sm text-gray-500">
-                        {{ session('lang') == 'en' ? 'Maximum quantity:' : 'الحد الأقصى:' }}
-                        {{ $record->maximum_quantity }}
-                    </p>
-                </form>
+
+                    <!-- Product Description -->
+                    <div class="mb-8 transform transition-all duration-300 hover:shadow-lg p-4 rounded-lg">
+                        <h3 class="text-xl font-semibold text-[#2B3467] mb-3">
+                            {{ session('lang') == 'en' ? 'Description' : 'وصف' }}</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            {!! session('lang') == 'en' ? $record->description_en : $record->description_ar !!}
+                        </p>
+                    </div>
+
+                    <!-- Categories -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-semibold text-[#2B3467] mb-3">
+                            {{ session('lang') == 'en' ? 'Categories' : 'الفئات' }}</h3>
+                        <div class="flex flex-wrap gap-2">
+                            @foreach ($record->categories as $category)
+                                <span class="px-3 py-1 bg-[#2B3467]/10 text-[#2B3467] rounded-full text-sm transform transition-all duration-300 hover:scale-105 hover:bg-[#2B3467] hover:text-white">
+                                    {!! session('lang') == 'en' ? $category->name_en : $category->name_ar !!}
+                                </span>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <!-- Add to Cart Section -->
+                    @livewire('product-details', ['record' => $record])
+                </div>
             </div>
         </div>
 
         <!-- Reviews Section -->
-        <div class="mt-16 bg-white p-8 rounded-xl shadow-lg">
-            <h2 class="text-3xl font-bold text-[#2B3467] mb-8">
+        <div class="mt-16 bg-white/90 backdrop-blur-sm p-8 rounded-xl shadow-lg transform transition-all duration-300 hover:shadow-2xl" x-data="{ open: true }">
+            <div class="md:text-4xl text-xl font-bold flex justify-between text-[#2B3467] mb-4 cursor-pointer hover:text-[#1a1f3d] transition-colors duration-300" @click="open = !open">
                 {{ session('lang') == 'en' ? 'Customer Reviews' : 'آراء العملاء' }}
-            </h2>
-
+                <span class="cursor-pointer transform transition-transform duration-300 hover:scale-110" x-show="!open">+</span>
+                <span class="cursor-pointer transform transition-transform duration-300 hover:scale-110" x-show="open">−</span>
+            </div>
             <!-- Review Form -->
-            <form action="{{ route('add-review') }}" method="POST" class="mb-12">
+            <form action="{{ route('add-review') }}" method="POST" class="mb-12" x-show="open"
+                x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 scale-95"
+                x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-300"
+                x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95">
                 @csrf
                 <input type="hidden" name="id" value="{{ $record->id }}">
 
@@ -184,7 +191,7 @@
                                 <input type="radio" id="star{{ $i }}" name="rate"
                                     value="{{ $i }}" class="hidden" required>
                                 <label for="star{{ $i }}"
-                                    class="cursor-pointer text-3xl text-gray-300 transition-colors hover:text-[#FFD700]">
+                                    class="cursor-pointer text-3xl text-gray-300 transition-all duration-300 hover:text-[#FFD700] hover:scale-110">
                                     ★
                                 </label>
                             @endfor
@@ -196,13 +203,13 @@
                             {{ session('lang') == 'en' ? 'Your Review' : 'رأيك' }}
                         </label>
                         <textarea id="comment" name="comment" rows="4"
-                            class="w-full p-4 border rounded-lg focus:ring-2 focus:ring-[#2B3467] focus:border-transparent"
+                            class="w-full p-4 border rounded-lg focus:ring-2 focus:ring-[#2B3467] focus:border-transparent transition-all duration-300 hover:shadow-lg"
                             placeholder="{{ session('lang') == 'en' ? 'Share your experience with this product...' : 'شاركنا تجربتك مع هذا المنتج...' }}"
                             required></textarea>
                     </div>
 
                     <button type="submit"
-                        class="px-6 py-3 bg-[#2B3467] text-white rounded-lg hover:bg-[#1a1f3d] transition-colors">
+                        class="px-6 py-3 bg-[#2B3467] text-white rounded-lg hover:bg-[#1a1f3d] transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
                         {{ session('lang') == 'en' ? 'Submit Review' : 'إرسال التقييم' }}
                     </button>
                 </div>
@@ -211,18 +218,18 @@
             <!-- Reviews List -->
             <div class="space-y-8">
                 @foreach ($comments as $com)
-                    <div class="border-l-4 border-[#2B3467] pl-4 py-4">
+                    <div class="border-l-4 border-[#2B3467] pl-4 py-4 transform transition-all duration-300 hover:shadow-lg rounded-r-lg">
                         <div class="flex items-center space-x-4 mb-2">
                             <div class="flex items-center space-x-1 text-[#FFD700]">
                                 @for ($i = 1; $i <= 5; $i++)
-                                    <span class="{{ $i <= $com->rate ? 'text-[#FFD700]' : 'text-gray-300' }}">★</span>
+                                    <span class="{{ $i <= $com->rate ? 'text-[#FFD700]' : 'text-gray-300' }} transform transition-transform duration-300 hover:scale-110">★</span>
                                 @endfor
                             </div>
                             <span class="text-gray-500 text-sm">{{ $com->created_at->diffForHumans() }}</span>
                         </div>
                         <p class="text-gray-700">{{ $com->comment }}</p>
                         <div class="mt-2 flex items-center space-x-2">
-                            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 text-[#2B3467]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                             </svg>
@@ -235,29 +242,6 @@
     </div>
 
     <style>
-        /* Custom modal animation */
-        .modal-enter {
-            opacity: 0;
-            transform: scale(0.95);
-        }
-
-        .modal-enter-active {
-            opacity: 1;
-            transform: scale(1);
-            transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .modal-exit {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .modal-exit-active {
-            opacity: 0;
-            transform: scale(0.95);
-            transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
         .rating-stars input:checked~label {
             color: #FFD700;
         }
@@ -266,20 +250,62 @@
         .rating-stars label:hover~label {
             color: #FFD700;
         }
+
+        /* Image Gallery Styles */
+        .aspect-square {
+            aspect-ratio: 1 / 1;
+        }
+
+        @media (max-width: 1024px) {
+            .aspect-square {
+                aspect-ratio: 4 / 3;
+            }
+        }
     </style>
 
     <script>
         function changeMainImage(newSrc) {
-            console.log("Changing main image to:", newSrc); // Debugging: Log the new image source
             const mainImage = document.getElementById('mainImage');
             const mainImageModalImg = document.getElementById('mainImageModalImg');
 
             if (mainImage && mainImageModalImg) {
-                mainImage.src = newSrc;
-                mainImageModalImg.src = newSrc;
-            } else {
-                console.error("Main image or modal image not found!"); // Debugging: Log an error if elements are missing
+                // Add fade out effect
+                mainImage.style.opacity = '0';
+                setTimeout(() => {
+                    mainImage.src = newSrc;
+                    mainImageModalImg.src = newSrc;
+                    // Add fade in effect
+                    mainImage.style.opacity = '1';
+                }, 200);
             }
         }
+
+        // Initialize image gallery and zoom effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const mainImage = document.getElementById('mainImage');
+            const container = document.getElementById('imageContainer');
+            
+            if (mainImage && container) {
+                mainImage.style.transition = 'opacity 0.2s ease-in-out';
+
+                container.addEventListener('mousemove', function(e) {
+                    const rect = container.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    // Calculate the position as a percentage
+                    const xPercent = (x / rect.width) * 100;
+                    const yPercent = (y / rect.height) * 100;
+                    
+                    // Apply the zoom effect
+                    mainImage.style.transform = `scale(1.5) translate(${(50 - xPercent) * 0.5}%, ${(50 - yPercent) * 0.5}%)`;
+                });
+
+                container.addEventListener('mouseleave', function() {
+                    mainImage.style.transform = 'scale(1) translate(0, 0)';
+                });
+            }
+        });
     </script>
 @endsection
+

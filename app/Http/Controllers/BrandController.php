@@ -38,6 +38,7 @@ class BrandController extends Controller
     {
         $request->validate([
             'name_en' => 'required',
+            'name_ar' => 'required',
         ]);
 
         $inputs = $request->all();
@@ -84,6 +85,7 @@ class BrandController extends Controller
     {
         $request->validate([
             'name_en' => 'required',
+            'name_ar' => 'required',
         ]);
 
         $inputs = $request->all();
@@ -110,6 +112,11 @@ class BrandController extends Controller
      */
     public function destroy(string $id)
     {
+        $record = Brand::find($id);
+
+        if($record->products()->exists()){
+            return redirect()->back()->with("error","Cannot delete this record for the relations !");
+        }
         $record = DestroyBrand::execute($id);
 
         if( $record ){  

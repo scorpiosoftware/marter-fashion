@@ -79,6 +79,9 @@ class ProductViewController extends Controller
         if(!empty($inputs['selected'])){
             $inputs['selected'] = $inputs['selected'] == 'true' ? 1 : 0;
         }
+        else{
+            $inputs['selected'] = $record->selected;
+        }
         if ($record->update($inputs)) {
             return redirect()->back()->with('success', 'record updated successfuly');
         } else {

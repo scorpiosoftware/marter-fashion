@@ -16,3 +16,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+[dir="rtl"] {
+    direction: rtl;
+    text-align: right;
+}
+
+[dir="rtl"] .aside {
+  float: right;
+  margin-left: 0;
+  margin-right: 20px; /* Adjust as needed */
+}
+
+/* Or use specific selectors */
+[dir="rtl"] .navbar,
+[dir="rtl"] .content {
+    text-align: right;
+}
+.primary-bg {
+    @apply bg-[#9e01a1];
+}
+
+.nav-bar {
+   @apply shadow-xl antialiased font-serif;
+}
+
+.primary-btn {
+    @apply bg-white text-black font-bold;
+}

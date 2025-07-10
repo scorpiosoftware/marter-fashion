@@ -22,6 +22,8 @@
         "ckeditor5": "^44.2.1",
         "ckeditor5-premium-features": "^44.2.1",
         "jquery": "^3.7.1",
+        "sweetalert": "^2.1.2",
+        "sweetalert2": "^11.22.2",
         "wowjs": "^1.1.3"
     }
 }

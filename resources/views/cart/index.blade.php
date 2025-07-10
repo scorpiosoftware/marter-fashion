@@ -19,37 +19,8 @@
                                             <img class="box-content object-cover size-60 mx-auto transition-all delay-0 hover:scale-95 dark:hidden"
                                                 src="{{ URL::to('storage/' . $details['photo']) }}" alt="imac image" />
                                         </a>
-
-                                        {{-- <label for="counter-input" class="sr-only">Choose quantity:</label> --}}
                                         <div class="flex items-center justify-between md:order-3 md:justify-end">
-                                            {{-- <div class="flex items-center">
-                                                <a href="{{ route('cart.decrease', $id) }}"
-                                                    class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
-                                                    <svg class="h-2.5 w-2.5 text-gray-900 dark:text-white"
-                                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 18 2">
-                                                        <path stroke="currentColor" stroke-linecap="round"
-                                                            stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
-                                                    </svg>
-                                                </a>
-                                                <form action="{{ route('cart.add', $id) }}" method="GET">
-                                                    @csrf
-                                                    @method('GET')
-                                                    <input type="text" id="counter-input" data-input-counter
-                                                        class="w-10 shrink-0 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 dark:text-white"
-                                                        placeholder="" onchange="this.form.submit()" name="qty"
-                                                        value="{{ $details['quantity'] }}" required />
-                                                </form>
-                                                <a href="{{ route('cart.add', $id) }}"
-                                                    class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
-                                                    <svg class="h-2.5 w-2.5 text-gray-900 dark:text-white"
-                                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 18 18">
-                                                        <path stroke="currentColor" stroke-linecap="round"
-                                                            stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
-                                                    </svg>
-                                                </a>
-                                            </div> --}}
+
                                             <div class="text-end md:order-4 md:w-32">
                                                 <p class="text-base font-bold text-gray-900 dark:text-white">
                                                     د.ع {{ $details['price'] }}</p>
@@ -61,6 +32,7 @@
                                                 <a href="#"
                                                 class="text-base font-medium text-gray-900 hover:underline dark:text-white">{{ $details['name'] }}</a>
                                                 <div class="px-2 py-2 rounded-full border box-border size-6" style="background-color: {{$details['color']->hex_code}};"></div>
+                                                <div class=" rounded-full size-6">{{$details['size']->name}}</div>
                                             </div>
 
                                             <div class="flex items-center gap-4">
@@ -87,7 +59,7 @@
                                                                 stroke-linejoin="round" stroke-width="2"
                                                                 d="M6 18 17.94 6M18 18 6.06 6" />
                                                         </svg>
-                                                        {{ \App\Helpers\TranslationHelper::translate('Remov','ar') }}
+                                                        {{ \App\Helpers\TranslationHelper::translate('Remove','ar') }}
                                                     </button>
 
                                                 </form>

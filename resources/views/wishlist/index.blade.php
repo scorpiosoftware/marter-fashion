@@ -27,7 +27,7 @@
                                                 {{session('lang') == 'en' ? 'add to cart' : 'اضف الى السلة'}}</a>
                                         </div>
                                         <div class="w-full min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md">
-                                            <a href="{{ route('shop.show',$id) }}"
+                                            <a href="{{ route('shop.show', ['id' => $id, 'slug' => Str::slug($details['name']) ]) }}"
                                                 class="text-base font-medium text-gray-900 hover:underline dark:text-white">{{ $details['name'] }}</a>
                                             <div class="flex items-center gap-4">
                                                 <form action="{{ route('wishlist.destroy', $id) }}" method="POST">

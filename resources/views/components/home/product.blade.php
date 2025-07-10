@@ -2,7 +2,7 @@
     data-min-delay='300' data-delay="1500">
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <div class="product-image">
-        <a name="{{ $item->id }}" href="{{ route('shop.show', $item->id) }}" class="image">
+        <a name="{{ $item->id }}" href="{{ route('shop.show', ['id' => $item->id, 'slug' => Str::slug($item->name_en)]) }}" class="image">
             <div class="image-container">
                 <div class="skeleton-loader min-h-36"></div>
                 <img src="{{ URL::to('storage/' . $item->main_image_url) }}" class="w-full max-h-60 p-3 object-cover">
@@ -68,7 +68,7 @@
             </li>
 
 
-            <li><a href="{{ route('shop.show', $item->id) }}" data-tip="Quick View"><i class="fa fa-search"></i></a>
+            <li><a href="{{ route('shop.show', ['id' => $item->id, 'slug' => Str::slug($item->name_en)]) }}" data-tip="Quick View"><i class="fa fa-search"></i></a>
             </li>
         </ul>
     </div>

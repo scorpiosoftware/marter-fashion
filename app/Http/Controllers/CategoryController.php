@@ -110,6 +110,10 @@ class CategoryController extends Controller
     public function destroy(string $id)
     {
         $record = GetCategory::execute($id);
+
+        if($record->products()->exists() || $record->children()->exists()){
+            return redirect()->back()->with("error","Cannot delete this record for the relations !");
+        }
         $delete_image = DeleteMedia::execute($record->image_url);
         $record = DestroyCategory::execute($record->id);
         if($record){

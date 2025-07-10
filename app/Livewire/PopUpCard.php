@@ -9,7 +9,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Colors;
 
 class PopUpCard extends Component
 {
-    public $colors;
+   public $colors;
     public $selectedColor = null;
     public $minPrice;
     public $maxPrice;

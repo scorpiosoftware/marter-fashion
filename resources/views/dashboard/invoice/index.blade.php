@@ -105,7 +105,7 @@
                             {{ $record->phone }}
                         </td>
                         <td class="px-6 py-4 font-extrabold text-green-400 text-base text-nowrap">
-                            {{ $record->total_amount }} $
+                            {{ $record->total_amount }} د.ع
                         </td>
                         <td class="px-6 py-4 font-extrabold text-green-400 text-base text-nowrap">
                             {{ $record->order_date }}

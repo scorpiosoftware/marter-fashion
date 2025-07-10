@@ -1,111 +1,51 @@
-<div class="pt-4 max-w-screen-2xl mx-auto bg-[#fce4ec] rounded-md p-4 shadow-xl transform transition-all duration-1000 hover:scale-95 hover:shadow-2xl wowDiv"  data-animation="animate__fadeInDownBig" data-delay="300">
-    <div class="flex justify-start items-center px-8">
-        <div class="flex justify-between items-center space-x-3">
-            <div class="font-bold text-2xl text-gray-800">{{ $title }}</div>
-            <div>
-                <a href="{{ route('shop.index') }}"
-                    class="font-bold text-green-500 hover:text-green-600 transition-all duration-300 hover:scale-110 hover:underline">
-                    {{ session('lang') == 'en' ? 'view all' : 'عرض الكل' }}
-                </a>
+<div x-data="{ show: true }" class="md:mx-auto w-full md:max-w-4xl px-4">
+    <div @click="show = !show"
+        class="group flex items-center justify-between p-4 mb-6 rounded-lg bg-gradient-to-r from-slate-100 to-slate-200 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer">
+        <h2 class="text-2xl font-bold text-gray-800">{{ $title }}</h2>
+        <div class="transform transition-transform duration-300" :class="{ 'rotate-180': !show }">
+            <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+        </div>
+    </div>
+    
+    <div x-show="show" 
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0 transform scale-95"
+         x-transition:enter-end="opacity-100 transform scale-100"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100 transform scale-100"
+         x-transition:leave-end="opacity-0 transform scale-95"
+         class="grid md:grid-cols-3 grid-cols-1 gap-4 justify-items-center">
+        @foreach ($products as $item)
+            <div class="">
+                <livewire:product :item="$item" wire:key="product-{{ $item->id }}">
             </div>
-        </div>
+        @endforeach
     </div>
-    <div class="border-b-2 border-gray-300 px-8 mt-2"></div>
-    @if($products->count() > 0)
-    <div class="relative w-full max-w-screen-2xl mx-auto group">
-        <div id="scrollContainer-{{ $products->first()->categories()->first()->id }}" 
-             class="flex space-x-4 overflow-x-hidden scroll-smooth p-4"
-             data-scroll-direction="forward">
-            @foreach ($products as $item)
-                <livewire:product :item="$item">
-            @endforeach
-        </div>
-        
-        <button id="prevBtn-{{ $products->first()->categories()->first()->id }}"
-            class="absolute left-0 top-1/2 -translate-y-1/2 bg-[#fce4ec] text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300  shadow-lg">
-            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12l4-4m-4 4 4 4"/>
-              </svg>
-              
-        </button>
-        <button id="nextBtn-{{ $products->first()->categories()->first()->id }}"
-            class="absolute right-0 top-1/2 -translate-y-1/2 bg-[#fce4ec] text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg">
-            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4"/>
-              </svg>
-              
-        </button>
-    </div>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const scrollContainer = document.getElementById('scrollContainer-{{ $products->first()->categories()->first()->id }}');
-        const itemWidth = 250 + 16;
-        let autoScrollInterval;
-        let isHovering = false;
-    
-        // Auto-scroll functionality
-        function startAutoScroll() {
-            autoScrollInterval = setInterval(() => {
-                if (!isHovering) {
-                    const direction = scrollContainer.dataset.scrollDirection;
-                    const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
-                    
-                    if (scrollContainer.scrollLeft >= maxScroll - 6) {
-                        // Smooth reset to start
-                        scrollContainer.scrollTo({
-                            left: 0,
-                            behavior: 'smooth'
-                        });
-                    } else {
-                        scrollContainer.scrollBy({
-                            left: itemWidth * (direction === 'forward' ? 1 : -1),
-                            behavior: 'smooth'
-                        });
-                    }
-                }
-            }, 5000); // Adjust interval duration (5000ms = 5 seconds)
-        }
-    
-        // Pause on hover
-        scrollContainer.parentElement.addEventListener('mouseenter', () => {
-            isHovering = true;
-            clearInterval(autoScrollInterval);
-        });
-    
-        // Resume on mouse leave
-        scrollContainer.parentElement.addEventListener('mouseleave', () => {
-            isHovering = false;
-            startAutoScroll();
-        });
-    
-        // Manual scroll handlers
-        document.getElementById('nextBtn-{{ $products->first()->categories()->first()->id }}').addEventListener('click', () => {
-            clearInterval(autoScrollInterval);
-            scrollContainer.scrollBy({ left: itemWidth, behavior: 'smooth' });
-            startAutoScroll();
-        });
-    
-        document.getElementById('prevBtn-{{ $products->first()->categories()->first()->id }}').addEventListener('click', () => {
-            clearInterval(autoScrollInterval);
-            const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
-            
-            if (scrollContainer.scrollLeft <= 10) {
-                // Jump to end before scrolling
-                scrollContainer.scrollTo({ left: maxScroll, behavior: 'auto' });
+
+    @if($hasMoreProducts)
+        <div x-data="{ 
+            observe() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            @this.loadMore()
+                        }
+                    })
+                }, { threshold: 0.5 })
+                
+                observer.observe(this.$el)
             }
-            
-            scrollContainer.scrollBy({ left: -itemWidth, behavior: 'smooth' });
-            startAutoScroll();
-        });
-    
-        // Start auto-scroll initially
-        startAutoScroll();
-    
-        // Reset scroll position when window resizes
-        window.addEventListener('resize', () => {
-            scrollContainer.scrollLeft = 0;
-        });
-    });
-    </script>
+        }" x-init="observe" class="w-full h-10 flex items-center justify-center my-4">
+            <div wire:loading wire:target="loadMore" class="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
+        </div>
+    @else
+        <div class="w-full text-center text-gray-500 my-4">
+            {{ session('lang') == 'en' ? 'No more products to load' : 'لا توجد منتجات أخرى للتحميل' }}
+        </div>
     @endif
+
+    <!-- Quick View Modal -->
+    <livewire:quick-view-product />
 </div>

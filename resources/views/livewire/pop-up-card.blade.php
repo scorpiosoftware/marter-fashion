@@ -1,59 +1,57 @@
-<div class="fixed top-0 w-full min-h-screen  z-50 bg-opacity-60 content-center wowDiv"
+<div class="fixed top-0 left-0 w-full min-h-screen flex items-center justify-center z-50 bg-black bg-opacity-60 backdrop-blur-sm"
     data-animation="animate__fadeInDown" data-delay="300" wire:show='show' x-transition.duration.500ms>
 
     <form action="{{ route('filter.products') }}" method="POST"
-        class="border md:max-w-lg max-w-sm p-4 mx-auto bg-[#fce4ec] rounded-xl content-center">
+        class="border-0 md:max-w-lg max-w-sm p-8 mx-auto bg-white rounded-2xl shadow-2xl transform transition-all">
         @csrf
         @method('POST')
 
-
-        <p class="text-center w-full text-xl font-bold">{{ session('lang') == 'en' ? 'Quick Search' : 'بحث سريع' }}</p>
-        <div class="w-full md:col-start-1 md:col-end-3 pt-10">
-            <label for="colors" class="block mb-2 text-sm font-medium text-center text-gray-900 d:text-white">
-                {{ session('lang') == 'en'
-                    ? 'Choose
-                                                Colors'
-                    : '' }}</label>
-            {{-- <div class="grid grid-cols-4 items-center gap-4 justify-items-center max-w-72 mx-auto">
-                @foreach ($colors as $color)
-                    <div class="items-center flex justify-stretch gap-x-4">
-                        <input type="checkbox" value="{{ $color->id }}" name="color_id[]"
-                            class="rounded-full box-border size-12 p-2 hover:border bg-[{!! $color->hex_code !!}]"
-                            style="background-color: {!! $color->hex_code !!}"
-                            @if (!empty(request()->input('color_id'))) @foreach (request()->input('color_id') as $index)
-                    @if ($index == $color->id)
-                    checked
-                    @break @endif
-                            @endforeach
-                @endif
-                />
-            </div>
-            @endforeach
-        </div> --}}
+        <div class="mb-8 text-center">
+            <p class="text-2xl font-extrabold text-gray-800 tracking-tight">
+                {{ session('lang') == 'en' ? 'Quick Search' : 'بحث سريع' }}
+            </p>
+            <div class="mt-2 w-12 h-1 bg-[#f8578c] mx-auto rounded-full"></div>
         </div>
-        <div class="flex justify-between items-center py-4">
-            <div>
-                <label for="min_price"
-                    class="block mb-2 text-sm font-medium text-gray-900 d:text-white">{{ session('lang') == 'en' ? 'Min Price' : 'الحد الأدنى للسعر' }}</label>
-                <input type="text" class="block w-full rounded-sm cursor-pointer focus:outline-none" name="min_price"
-                    id="min_price" placeholder={{session('lang') == 'en' ? 'IQD' : 'د.ع'}}>
+
+        <div class="flex justify-between items-center gap-6 mb-8">
+            <div class="flex-1">
+                <label for="min_price" class="block mb-2 text-sm font-semibold text-gray-700">
+                    {{ session('lang') == 'en' ? 'Min Price' : 'الحد الأدنى للسعر' }}
+                </label>
+                <div class="relative">
+                    <input type="text" 
+                           class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f8578c] focus:border-transparent placeholder-gray-400 transition-all"
+                           name="min_price"
+                           id="min_price"
+                           placeholder="{{ session('lang') == 'en' ? 'IQD' : 'د.ع' }}">
+                </div>
             </div>
-            <div>
-                <label for="max_price"
-                    class="block mb-2 text-sm font-medium text-gray-900 d:text-white">{{ session('lang') == 'en' ? 'Max Price' : 'الحد الأقصى للسعر' }}</label>
-                <input type="text" class="block w-full rounded-sm cursor-pointer focus:outline-none" name="max_price"
-                    id="max_price" placeholder={{session('lang') == 'en' ? 'IQD' : 'د.ع'}}>
+            
+            <div class="flex-1">
+                <label for="max_price" class="block mb-2 text-sm font-semibold text-gray-700">
+                    {{ session('lang') == 'en' ? 'Max Price' : 'الحد الأقصى للسعر' }}
+                </label>
+                <div class="relative">
+                    <input type="text" 
+                           class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f8578c] focus:border-transparent placeholder-gray-400 transition-all"
+                           name="max_price"
+                           id="max_price"
+                           placeholder="{{ session('lang') == 'en' ? 'IQD' : 'د.ع' }}">
+                </div>
             </div>
         </div>
 
-
-        <div class="w-full flex items-center justify-between space-x-10 gap-x-5">
-            <button
-                class=" w-1/2 border border-black  rounded-xl py-3 text-black font-bold hover:bg-white hover:text-[#f8578c]">{{ session('lang') == 'en' ? 'Search' : 'ابحث' }}</button>
-            <div class="w-full px-2"></div>
-                <button type="button"
-                class="w-1/2 border border-black  rounded-xl py-3 text-black font-bold hover:bg-white hover:text-[#f8578c]"
-                wire:click='close'>{{ session('lang') == 'en' ? 'close' : 'اغلاق' }}</button>
+        <div class="flex items-center justify-between gap-4">
+            <button type="submit"
+                class="flex-1 px-6 py-3.5 bg-[#f8578c] text-white font-semibold rounded-lg hover:bg-[#e54a7a] transition-colors duration-300 transform hover:scale-[1.02] shadow-md">
+                {{ session('lang') == 'en' ? 'Search' : 'ابحث' }}
+            </button>
+            
+            <button type="button"
+                class="flex-1 px-6 py-3.5 border-2 border-gray-300 text-gray-600 font-semibold rounded-lg hover:bg-gray-50 transition-colors duration-300 transform hover:scale-[1.02]"
+                wire:click='close'>
+                {{ session('lang') == 'en' ? 'Close' : 'اغلاق' }}
+            </button>
         </div>
     </form>
 </div>

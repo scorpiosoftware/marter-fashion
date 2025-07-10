@@ -17,10 +17,8 @@
     <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    {{-- <script src="https://unpkg.com/@tailwindcss/browser@4"></script> --}}
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Scripts -->
-    <link rel="stylesheet" href="{{URL::to('assets-vite/assets/app-DPaHq_65.css')}}">
-    <script href="{{URL::to('assets-vite/assets/app-CnKQ0RRM.js')}}"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 

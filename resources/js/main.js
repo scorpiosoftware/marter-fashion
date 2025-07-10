@@ -13,7 +13,7 @@
 
 
     // Initiate the wowjs
-    new WOW().init();
+    // new WOW().init();
 
     var lastScrollTop = 0;
     // Navbar on scrolling

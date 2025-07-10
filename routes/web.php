@@ -41,6 +41,8 @@ Route::get('/lang/{locale}',function(string $locale){
 Route::group(['prefix' => ''], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::resource('shop', ShopController::class);
+    Route::get('/shop/{id}/{slug}', [ShopController::class, 'show'])
+    ->name('shop.show');
     Route::get('/show-cart/address', [OrderController::class, 'create'])->name('address');
     Route::resource('order', OrderController::class);
     Route::post('/contactUs/send', [InboxController::class,'store'])->name('send-comment');
@@ -57,7 +59,7 @@ Route::group(['prefix' => ''], function () {
     });
 });
 
-Route::post('/shop/', [ShopController::class, 'filter'])->name('filter.products');
+Route::post('/shop/', [ShopController::class, 'index'])->name('filter.products');
 Route::get('/add-to-cart/{id}/', [CartController::class, 'addToCart'])->name('cart.add');
 Route::get('/decrement-to-cart/{id}', [CartController::class, 'decrementToCart'])->name('cart.decrease');
 Route::get('/show-cart', [CartController::class, 'index'])->name('cart.show');

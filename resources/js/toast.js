@@ -1,45 +1,45 @@
-// script.js
+// // script.js
 
-let icon = {
-    success:
-    '<span class="material-symbols-outlined">task_alt</span>',
-    danger:
-    '<span class="material-symbols-outlined">error</span>',
-    warning:
-    '<span class="material-symbols-outlined">warning</span>',
-    info:
-    '<span class="material-symbols-outlined">info</span>',
-};
+// let icon = {
+//     success:
+//     '<span class="material-symbols-outlined">task_alt</span>',
+//     danger:
+//     '<span class="material-symbols-outlined">error</span>',
+//     warning:
+//     '<span class="material-symbols-outlined">warning</span>',
+//     info:
+//     '<span class="material-symbols-outlined">info</span>',
+// };
 
-const showToast = (
-    message = "Sample Message",
-    toastType = "info",
-    duration = 5000) => {
-    if (
-        !Object.keys(icon).includes(toastType))
-        toastType = "info";
+// const showToast = (
+//     message = "Sample Message",
+//     toastType = "info",
+//     duration = 5000) => {
+//     if (
+//         !Object.keys(icon).includes(toastType))
+//         toastType = "info";
 
-    let box = document.createElement("div");
-    box.classList.add(
-        "toast", `toast-${toastType}`);
-    box.innerHTML = ` <div class="toast-content-wrapper">
-                      <div class="toast-icon">
-                      ${icon[toastType]}
-                      </div>
-                      <div class="toast-message">${message}</div>
-                      <div class="toast-progress"></div>
-                      </div>`;
-    duration = duration || 5000;
-    box.querySelector(".toast-progress").style.animationDuration =
-            `${duration / 1000}s`;
+//     let box = document.createElement("div");
+//     box.classList.add(
+//         "toast", `toast-${toastType}`);
+//     box.innerHTML = ` <div class="toast-content-wrapper">
+//                       <div class="toast-icon">
+//                       ${icon[toastType]}
+//                       </div>
+//                       <div class="toast-message">${message}</div>
+//                       <div class="toast-progress"></div>
+//                       </div>`;
+//     duration = duration || 5000;
+//     box.querySelector(".toast-progress").style.animationDuration =
+//             `${duration / 1000}s`;
 
-    let toastAlready = 
-        document.body.querySelector(".toast");
-    if (toastAlready) {
-        toastAlready.remove();
-    }
+//     let toastAlready = 
+//         document.body.querySelector(".toast");
+//     if (toastAlready) {
+//         toastAlready.remove();
+//     }
 
-    document.body.appendChild(box)};
+//     document.body.appendChild(box)};
 
 // let submit = 
 //     document.querySelector(".custom-toast.success-toast");

@@ -16,9 +16,11 @@ use App\Models\Color;
 use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\ProductImage;
+use App\Models\Size;
 use App\Models\StoreSections;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Str;
 use Symfony\Component\Console\Input\Input;
 
 class ProductController extends Controller
@@ -37,10 +39,12 @@ class ProductController extends Controller
     public function create()
     {
         $categories = ListCategory::execute();
+        $sizes = Size::all();
         $brands = ListBrand::execute();
         $sections = StoreSections::all();
         $colors = Color::all();
-        return view("dashboard.product.create", compact('categories', 'brands','sections','colors'));
+        $randomCode = Str::random(24);
+        return view("dashboard.product.create", compact('categories', 'brands', 'sections', 'colors', 'sizes','randomCode'));
     }
 
     /**
@@ -49,12 +53,12 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-        'section_id' => 'required',
-        'branch_id'  => 'required',
-        'name_en' => 'required',
-        'brand_id' => 'required',
-        'price' => 'required',
-        'description_en' => 'required'
+            'section_id' => 'required',
+            'branch_id'  => 'required',
+            'name_en' => 'required',
+            'brand_id' => 'required',
+            'price' => 'required',
+            'description_en' => 'required'
         ]);
 
         $inputs = $request->all();
@@ -63,17 +67,21 @@ class ProductController extends Controller
         if ($record) {
 
             // add main product image and attach categories
-            if($request->has('categories')){
+            if ($request->has('categories')) {
                 $record->categories()->attach($inputs['categories']);
             }
-            if($request->has('colors')){
+            // add main product image and attach categories
+            if ($request->has('sizes')) {
+                $record->sizes()->attach($inputs['sizes']);
+            }
+            if ($request->has('colors')) {
                 $record->colors()->attach($inputs['colors']);
             }
-         
+
             if (!empty($request->file('main_image_url'))) {
                 $main_image = StoreMedia::execute(
                     $request->file('main_image_url'),
-                    'product/'. $record->id . '/main',
+                    'product/' . $record->id . '/main',
                     'public'
                 );
                 $record->main_image_url = $main_image;
@@ -81,12 +89,12 @@ class ProductController extends Controller
             $record->save();
 
             // add other product images
-            if(!empty($request->file('images'))){
+            if (!empty($request->file('images'))) {
                 foreach ($request->file('images') as $imagefile) {
                     $image = new ProductImage();
                     $path = StoreMedia::execute(
                         $imagefile,
-                        'product/'. $record->id . '',
+                        'product/' . $record->id . '',
                         'public'
                     );
                     $image->image_url = $path;
@@ -118,11 +126,12 @@ class ProductController extends Controller
     {
         $record = GetProduct::execute($id);
         $categories = ListCategory::execute();
+        $sizes = Size::all();
         $brands = ListBrand::execute();
         $sections = StoreSections::all();
         $branches = Branch::all();
         $colors = Color::all();
-        return view("dashboard.product.edit", compact("record", "categories", "brands",'colors','sections','branches'));
+        return view("dashboard.product.edit", compact("record", "categories","sizes", "brands", 'colors', 'sections', 'branches'));
     }
 
     /**
@@ -143,11 +152,15 @@ class ProductController extends Controller
 
         $record = Product::find($id);
 
-        if($request->has('categories')){
+        if ($request->has('categories')) {
             $record->categories()->detach();
             $record->categories()->attach($inputs['categories']);
         }
-        if($request->has('colors')){
+        if ($request->has('sizes')) {
+            $record->sizes()->detach();
+            $record->sizes()->attach($inputs['sizes']);
+        }
+        if ($request->has('colors')) {
             $record->colors()->detach();
             $record->colors()->attach($inputs['colors']);
         }
@@ -157,18 +170,18 @@ class ProductController extends Controller
         if ($request->has('main_image_url')) {
             $inputs['main_image_url'] = StoreMedia::execute(
                 $request->file('main_image_url'),
-                'product/'. $record->id . '/main',
+                'product/' . $record->id . '/main',
                 'public'
             );
             DeleteMedia::execute($record->main_image_url);
             $record->main_image_url =  $inputs['main_image_url'];
             $record->save();
         }
-           
+
         // delete images and add new images
         if ($request->has('images')) {
             $record = GetProduct::execute($id);
-            foreach($record->images as $image){
+            foreach ($record->images as $image) {
                 DeleteMedia::execute($image->image_url);
             }
             $record->images()->delete();
@@ -201,18 +214,17 @@ class ProductController extends Controller
     {
         $record = GetProduct::execute($id);
 
-        $items = OrderItem::where('product_id',$record->id)->get();
-        if($items->count() <= 0){
-            File::deleteDirectory('storage/'.$record->id);
+        $items = OrderItem::where('product_id', $record->id)->get();
+        if ($items->count() <= 0) {
+            File::deleteDirectory('storage/' . $record->id);
             $record = DestroyProduct::execute($id);
             if ($record) {
                 return redirect()->back()->with("success", "Record deleted");
             } else {
                 return redirect()->back()->with("error", "Error on delete record");
             }
-        }else{
+        } else {
             return redirect()->back()->with("error", "Cannot delete ordered products instead change status to [out of stock] or update product fields");
         }
-
     }
 }

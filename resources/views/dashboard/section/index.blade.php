@@ -94,12 +94,12 @@
                 @foreach ($records as $record)
                     <tr class="bg-white border-b d:bg-gray-800 d:border-gray-700">
                         <td class="px-6 py-4 font-extrabold whitespace-nowrap text-black text-base">
-                            {{ $record->name }}
+                          {{ session('lang') == 'en' ? $record->name : $record?->name_ar }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-black text-sm">
                           <div class="flex justify-start items-start gap-x-2">
                             @foreach ($record->branches as $branch)
-                                <div class=" bg-amber-50 rounded-full border p-1 cursor-pointer">{{$branch->name}}</div>
+                                <div class=" bg-amber-50 rounded-full border p-1 cursor-pointer"> {{ session('lang') == 'en' ? $branch?->name : $branch?->name_ar }}</div>
                             @endforeach
                           </div>
                         </td>
@@ -111,7 +111,7 @@
                             </form>
                             {{-- <a href=""
                                 class="font-medium text-yellow-400 hover:underline">Add Branch</a> --}}
-                            <a href="{{ route('storeSections.edit', $record->id) }}"
+                            <a href="{{ route('storeSections.edit', $record->id) }}" wire:navigate
                                 class="font-medium text-blue-600 hover:underline">{{session('lang') == 'en' ? 'edit' : 'تعديل'}}</a>
 
                             <form action="{{ route('storeSections.destroy', $record->id) }}" method="POST">
