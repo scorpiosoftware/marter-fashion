@@ -32,7 +32,7 @@
                     <img id="mainImage" src="{{ URL::to('storage/' . $record->main_image_url) }}"
                         onclick="Livewire.dispatch('openGallery')"
                         class="relative z-10 w-full h-full object-contain transition-transform duration-100 ease-out"
-                        alt="Main product image" />
+                        alt="Main product image"  loading="lazy"/>
                     <div class="absolute inset-0 bg-gradient-to-t from-[#2B3467]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     
                     <!-- Zoom Indicator -->
@@ -53,7 +53,7 @@
                                 <div class="relative w-full h-full rounded-lg overflow-hidden">
                                     <img src="{{ URL::to('storage/' . $image->image_url) }}"
                                         class="w-full h-full object-cover transition-all duration-300 group-hover:brightness-110"
-                                        alt="Product thumbnail">
+                                        alt="Product thumbnail" loading="lazy">
                                     <div class="absolute inset-0 bg-[#2B3467] opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-lg"></div>
                                 </div>
                                 <!-- Active Indicator -->

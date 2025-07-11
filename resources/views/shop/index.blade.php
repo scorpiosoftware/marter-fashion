@@ -384,6 +384,7 @@
             @endif
             @foreach ($products as $item)
                 @livewire('product', ['item' => $item], key($item->id))
+                {{-- <livewire:product :item="$item" , wire:key='$item->id'> --}}
             @endforeach
 
         </div>

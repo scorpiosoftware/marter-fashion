@@ -7,8 +7,8 @@
             </div>
             <!-- Logo Section -->
             <div class="md:flex md:items-center mx-auto w-1/2 justify-center">
-                <a href="/" class="flex items-center gap-2 group relative overflow-hidden bg-white backdrop-blur-sm rounded-lg px-4 py-2 shadow-sm">
-                    @if (!isset($carousel->logo_url))
+                <a href="/" class="flex items-center gap-2 group relative overflow-hidden bg-transparent backdrop-blur-sm rounded-lg px-4 py-2 shadow-sm">
+                    @if (isset($carousel->logo_url))
                         <div class="w-60 h-16 mx-auto overflow-hidden transition-all duration-300 hover:scale-105">
                             <img src="{{ asset('storage/' . $carousel->logo_url) }}" 
                                 alt="{{ session('lang') == 'en' ? env('APP_NAME') : env('APP_NAME_AR') }}"
@@ -26,8 +26,9 @@
             <div>
                 <div class="w-full mx-auto text-center ">
                     <button data-collapse-toggle="mobile-menu"
-                        class="lg:hidden p-2.5  border-2  border-white rounded-lg w-full transition-colors">
-                        <img class="w-6" src="{{ asset('media/icons/menu.png') }}" alt="">
+                        class="lg:hidden p-2.5   rounded-lg w-full transition-colors">
+                        {{-- <img class="w-6" src="{{ asset('media/icons/menu.png') }}" alt=""> --}}
+                          <i class="fa fa-bars text-2xl"></i>
                     </button>
                 </div>
                 <!-- Mobile Menu -->
@@ -36,9 +37,8 @@
             {{-- Side Menu --}}
             <div x-data="{ open: false }" class="hidden md:flex justify-start items-start gap-x-4 ">
                 <button @click="open = !open"
-                    class=" p-2.5 bg-white transition-all duration-300 hover:scale-90  rounded-lg ">
-                    {{-- <img class="w-6" src="{{ asset('media/icons/menu.png') }}" alt=""> --}}
-                      <i class="fa fa-bars text-lg"></i>
+                    class=" p-2.5  transition-all duration-300 hover:scale-110  rounded-lg ">
+                       <i class="fa fa-bars text-2xl"></i>
                 </button>
                 <!-- Action Icons -->
                 <div class="flex items-center gap-4 " x-cloak x-show="open"

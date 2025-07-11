@@ -37,7 +37,7 @@
                 <div class="box-border aspect-square w-full overflow-hidden flex items-center justify-center">
                     <img src="{{ URL::to('storage/' . $item->main_image_url) }}"
                         class="max-w-full max-h-full p-3 object-contain aspect-square bg-white"
-                        alt="{{ $item->name }}">
+                        alt="{{ $item->name }}" loading="lazy" lazy>
                 </div>
             </a>
         </div>

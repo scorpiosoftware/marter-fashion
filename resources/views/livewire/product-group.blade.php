@@ -19,7 +19,7 @@
          class="grid md:grid-cols-3 grid-cols-1 gap-4 justify-items-center">
         @foreach ($products as $item)
             <div class="">
-                <livewire:product :item="$item" wire:key="product-{{ $item->id }}">
+                <livewire:product :item="$item" wire:key="product-{{ $item->id }}" lazy>
             </div>
         @endforeach
     </div>

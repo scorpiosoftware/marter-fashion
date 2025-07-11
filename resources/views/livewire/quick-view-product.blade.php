@@ -40,7 +40,7 @@
                     <div class="aspect-square w-full overflow-hidden rounded-xl bg-gray-100">
                         <img src="{{ URL::to('storage/' . $selectedImage) }}" 
                              alt="{{ session('lang') == 'en' ? $product->name_en : $product->name_ar }}"
-                             class="w-full h-full object-contain p-4">
+                             class="w-full h-full object-contain p-4" loading="lazy">
                     </div>
 
                     <!-- Thumbnail Gallery -->
@@ -56,7 +56,7 @@
                                     class="aspect-square rounded-lg overflow-hidden border-2 {{ $selectedImage === $image->url ? 'border-indigo-500' : 'border-transparent' }}">
                                 <img src="{{ URL::to('storage/' . $image->image_url) }}" 
                                      alt="{{ session('lang') == 'en' ? $product->name_en : $product->name_ar }}"
-                                     class="w-full h-full object-cover">
+                                     class="w-full h-full object-cover" loading="lazy">
                             </button>
                         @endforeach
                     </div>
