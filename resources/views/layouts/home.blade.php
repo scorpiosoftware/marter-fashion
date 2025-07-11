@@ -17,27 +17,28 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-M7Vz+vGx0cNuD5cE44iRTGPKxZMXO3cgxR2RTW0QuU">
-
-    @vite('resources/css/app.css', 'resources/js/app.js')
     @livewireStyles
     @stack('styles')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+
 </head>
 
 <body class="font-sans antialiased">
     {{-- <div data-wow-duration="2s" data-wow-iteration="100" class="wow bounce">bounce</div> --}}
     <livewire:add-item-message>
-    <x-home.speed-dial />
-    <x-home.navbar :categories="$categories" :carousel="$carousel" />
-    <x-home.category :categories="$categories" />
-    <main>
-        @yield('content')
-        <br>
-        <br>
-        <x-home.footer />
-        <x-section.scripts />
-        @stack('scripts')
-    </main>
-    @livewireScripts
+        <x-home.speed-dial />
+        <x-home.navbar :categories="$categories" :carousel="$carousel" />
+        <x-home.category :categories="$categories" />
+        <main>
+            @yield('content')
+            <br>
+            <br>
+            <x-home.footer />
+            <x-section.scripts />
+            @stack('scripts')
+        </main>
+        @livewireScripts
 </body>
 
 </html>
