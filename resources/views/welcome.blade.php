@@ -51,7 +51,9 @@
                 </div>
             </div>
         @endif
-            <livewire:pop-up-card>
+
+        @livewire('ads-modal')
+        <livewire:pop-up-card>
 
             <livewire:add-item-message>
                 <div id="toast-cart" tabindex="-1"

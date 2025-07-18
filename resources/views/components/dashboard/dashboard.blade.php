@@ -81,7 +81,8 @@
 {{-- Dashboard SideBar --}}
 <aside
     class="fixed top-10 z-40 w-64 h-screen pt-20 transition-transform duration-300 -translate-x-full  border-r border-gray-200 sm:translate-x-0 d:bg-gray-800 d:border-gray-700 shadow-lg">
-    <div class="h-full px-3 pb-4 overflow-y-auto  d:bg-gray-800 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-gray-400 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb:hover]:bg-gray-500">
+    <div
+        class="h-full px-3 pb-4 overflow-y-auto  d:bg-gray-800 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-gray-400 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb:hover]:bg-gray-500">
         <ul class="space-y-2 font-medium text-black">
             <li class="bg-white rounded-lg">
                 <a href="{{ route('dashboard.index') }}" wire:navigate
@@ -134,6 +135,19 @@
                     <span class="ms-3">{{ session('lang') == 'en' ? 'Product Views' : 'عرض المنتجات' }}</span>
                 </a>
             </li>
+            <li class="bg-white rounded-lg">
+                <a href="{{ route('ads.index') }}" wire:navigate
+                    class="flex items-center p-2  rounded-lg  hover:bg-gray-100 group">
+                    <svg class="w-5 h-5 transition duration-75 group-hover:text-gray-900 " aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
+                        <path
+                            d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
+                        <path
+                            d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
+                    </svg>
+                    <span class="ms-3">{{ session('lang') == 'en' ? 'Ads Manager' : 'ادارة الاعلانات' }}</span>
+                </a>
+            </li>
             <li x-data="{ open: false }" class="bg-white rounded-lg">
                 <button type="button" @click="open = !open"
                     class="flex items-center w-full p-2 text-base transition duration-200 rounded-lg group hover:bg-gray-100">
@@ -145,15 +159,14 @@
                     </svg>
                     <span
                         class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">{{ session('lang') == 'en' ? 'Catalog' : 'قوائم التعديل' }}</span>
-                    <svg class="w-3 h-3 transition-transform duration-200" :class="{ 'rotate-180': open }" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 10 6">
+                    <svg class="w-3 h-3 transition-transform duration-200" :class="{ 'rotate-180': open }"
+                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="m1 1 4 4 4-4" />
                     </svg>
                 </button>
                 <div class="relative">
-                    <ul x-show="open" 
-                        x-transition:enter="transition ease-out duration-200"
+                    <ul x-show="open" x-transition:enter="transition ease-out duration-200"
                         x-transition:enter-start="opacity-0 transform -translate-y-2"
                         x-transition:enter-end="opacity-100 transform translate-y-0"
                         x-transition:leave="transition ease-in duration-150"
